@@ -1,0 +1,13 @@
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.exe
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.deps.json
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.runtimeconfig.json
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.runtimeconfig.dev.json
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.dll
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.pdb
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csprojAssemblyReference.cache
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.AssemblyInfoInputs.cache
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.AssemblyInfo.cs
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CoreCompileInputs.cache
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.dll
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.pdb
+C:\Users\Niko\OneDrive - ECAM\ECAM\BA3\Q1\E3030 Software Engineering 1 6ECTS\IT Concept\Project\NetworkSimulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.genruntimeconfig.cache
