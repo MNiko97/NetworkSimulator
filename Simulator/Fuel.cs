@@ -1,4 +1,4 @@
-namespace Fuel
+namespace Network
 {
     class Fuel
     {

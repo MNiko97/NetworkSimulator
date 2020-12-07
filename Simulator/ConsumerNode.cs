@@ -1,4 +1,4 @@
-namespace Node{
+namespace Network{
 
 class ConsumerNode{
     public int energyPrice;

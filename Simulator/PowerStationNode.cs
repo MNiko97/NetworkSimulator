@@ -1,6 +1,6 @@
 using Node;
 using Fuel;
-namespace Node
+namespace Network
 {
     class PowerStationNode
     {
