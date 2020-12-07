@@ -1,15 +1,3 @@
 .vscode
-Simulator/bin/Debug/netcoreapp3.1/Simulator.dll
-Simulator/bin/Debug/netcoreapp3.1/Simulator.exe
-Simulator/bin/Debug/netcoreapp3.1/Simulator.pdb
-Simulator/bin/Debug/netcoreapp3.1/Simulator.runtimeconfig.dev.json
-Simulator/obj/project.assets.json
-Simulator/obj/project.nuget.cache
-Simulator/obj/Simulator.csproj.nuget.dgspec.json
-Simulator/obj/Debug/netcoreapp3.1/apphost.exe
-Simulator/obj/Debug/netcoreapp3.1/Simulator.assets.cache
-Simulator/obj/Debug/netcoreapp3.1/Simulator.csproj.FileListAbsolute.txt
-Simulator/obj/Debug/netcoreapp3.1/Simulator.csprojAssemblyReference.cache
-Simulator/obj/Debug/netcoreapp3.1/Simulator.dll
-Simulator/obj/Debug/netcoreapp3.1/Simulator.genruntimeconfig.cache
-Simulator/obj/Debug/netcoreapp3.1/Simulator.pdb
+Simulator/bin
+Simulator/obj
