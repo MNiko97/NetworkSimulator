@@ -1,12 +1,15 @@
-class Fuel
+namespace Fuel
 {
-    public int cost;
-    public Fuel(int cost)
+    class Fuel
     {
-        this.cost = cost;
-    }
-    public int getCost()
-    {
-        return cost;
+        public int cost;
+        public Fuel(int cost)
+        {
+            this.cost = cost;
+        }
+        public int getCost()
+        {
+            return cost;
+        }
     }
 }
