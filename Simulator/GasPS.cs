@@ -1,6 +1,6 @@
 namespace Network
 {
-    class Gas : PowerStationNode
+    class GasPS : PowerStationNode
     
 
     {
