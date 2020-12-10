@@ -56,7 +56,16 @@ namespace Network{
             }
         }
         public override string ToString(){
-            return base.ToString() + " L" + id.ToString();
+            return "Line L" + id.ToString();
+        }
+        public int getLinePower(){
+            return linePower;
+        }
+        public bool getLineState(){
+            return lineState;
+        }
+        public int getID(){
+            return id;
         }
     }
 }
