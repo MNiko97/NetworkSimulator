@@ -5,13 +5,13 @@ namespace Network
         public int productionCost ;
         public int pollutionProduction;
         public string flexibility;
-        public bool state;
         public Fuel fuelType;
-        //maybe change this
-        //create the constructor
-        public PowerStationNode(int id){
-            this.id = id;
-            // compléter et corriger
+
+        public PowerStationNode(int id, Fuel fuelType, int productionCost, int pollutionProduction, string flexibility): base(id){
+            this.fuelType = fuelType;
+            this.productionCost = productionCost;
+            this.pollutionProduction = pollutionProduction;
+            this.flexibility = flexibility;
         }
         public void setEnergyProduction(int energyProduction)
         {
@@ -23,7 +23,11 @@ namespace Network
         }
         public string getFlexibility()
         {
-            return ""; //to modify
+            return this.flexibility;
+        }
+        public Fuel getFuel()
+        {
+            return this.fuelType;
         }
 
     }
