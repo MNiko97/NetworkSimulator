@@ -9,7 +9,7 @@ namespace Network
         float currentEnergyProduction;
 
 
-        public Gas(int id, int maxEnergyProduction, int utilizationPercentage) : base(id)
+        public GasPS(int id, int maxEnergyProduction, int utilizationPercentage) : base(id)
         {
             this.maxEnergyProduction = maxEnergyProduction;
             this.utilizationPercentage = utilizationPercentage;
