@@ -1,5 +1,4 @@
 .vscode
-Simulator/bin/
-Simulator/obj/
-Simulator/bin/Debug/
-Simulator/obj/Debug/
+Simulator/bin
+Simulator/obj
+Simulator/Program.cs

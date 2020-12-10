@@ -17,8 +17,11 @@ namespace Network{
         public void updateNode(){
             // To implement
         }
+        public int getID(){
+            return id;
+        }
         public override string ToString(){
-            return base.ToString() + " N" + id.ToString();
+            return "Node N" + id.ToString();
         }
     }   
 }
