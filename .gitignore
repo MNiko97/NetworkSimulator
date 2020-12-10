@@ -1,5 +1,9 @@
 .vscode
 Simulator/bin/
 Simulator/obj/
-Simulator/bin/Debug/
-Simulator/obj/Debug/
+Simulator/bin/Debug/netcoreapp3.1/Simulator.dll
+Simulator/bin/Debug/netcoreapp3.1/Simulator.pdb
+Simulator/obj/Debug/netcoreapp3.1/Simulator.csproj.CoreCompileInputs.cache
+Simulator/obj/Debug/netcoreapp3.1/Simulator.dll
+Simulator/obj/Debug/netcoreapp3.1/Simulator.pdb
+Simulator/Program.cs
