@@ -4,20 +4,10 @@ namespace Network
     
 
     {
-        int maxEnergyProduction;
-        int utilizationPercentage;
-        float currentEnergyProduction;
 
-
-        public GasPS(int id, int maxEnergyProduction, int utilizationPercentage) : base(id)
+        public GasPS(int id, int maxEnergyProduction, int utilizationPercentage, Fuel fuelType) : base(id, maxEnergyProduction, utilizationPercentage, fuelType)
         {
-            this.maxEnergyProduction = maxEnergyProduction;
-            this.utilizationPercentage = utilizationPercentage;
-        }
-        public float getCurrentPower()
-        {
-            currentEnergyProduction = this.maxEnergyProduction * this.utilizationPercentage /100;
-            return currentEnergyProduction;
+            this.fuelType = fuelType;
         }
 
     }
