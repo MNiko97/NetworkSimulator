@@ -1,0 +1,16 @@
+Create and Run a C# Project :
+
+1. Go to your CS folder :
+cd BA3/CS
+
+2. Create a new folder for your project :
+dotnet new console -o foldernameproject
+
+it creates the a folder for your project and generate all necessary files
+
+3. To run your program go to your folder project:
+cd foldernameproject
+dotnet run
+
+requirement:
+download dotnet SDK
