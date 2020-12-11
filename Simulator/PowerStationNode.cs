@@ -6,22 +6,26 @@ namespace Network
 
         public string flexibility;
         public int maxEnergyProduction;
-        public int utilizationPercentage; 
+        public int utilizationPercentage = 100; 
         public float CurrentCost ;
         public float currentPollution;      
         public float currentProduction; 
         public Fuel fuelType;
+        //public bool nodeState;
 
 
-        public PowerStationNode(int id, int maxEnergyProduction, int utilizationPercentage, Fuel fuelType): base(id)
+        public PowerStationNode(int id, int maxEnergyProduction, Fuel fuelType): base(id)
         {
             this.maxEnergyProduction = maxEnergyProduction;
-            this.utilizationPercentage = utilizationPercentage;
-            this.fuelType = fuelType;
-            setCurrentPower();
-            setCurrentPollution();
-            setCurrentCost();
 
+            this.fuelType = fuelType;
+            setUpdate();
+
+        }
+        public void setUtilizationPercentage(int newPercentage)
+        {
+            utilizationPercentage = newPercentage;
+            setUpdate();
         }
         public void setCurrentPollution()
         {
@@ -39,6 +43,14 @@ namespace Network
 
             currentProduction = this.maxEnergyProduction * this.utilizationPercentage /100;
            
+        }
+        public void setUpdate()
+        {
+            setCurrentPower();
+            setCurrentPollution();
+            setCurrentCost();
+   
+
         }
 
     }

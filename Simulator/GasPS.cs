@@ -5,7 +5,7 @@ namespace Network
 
     {
 
-        public GasPS(int id, int maxEnergyProduction, int utilizationPercentage, Fuel fuelType) : base(id, maxEnergyProduction, utilizationPercentage, fuelType)
+        public GasPS(int id, int maxEnergyProduction, Fuel fuelType) : base(id,maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
         }

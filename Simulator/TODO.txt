@@ -1,0 +1,6 @@
+IN NUCLEARPS.CS :
+    -implement changeStateDelay and cost
+    -overwrite "setUtilizationPercentage" by 100 or 0 when stateNode is ON/OFF, maybe do it in POWERSTATIONNODE
+IN POWERSTATIONNODE.CS :
+    -import correctly stateNode
+    -implement flexibility (flexible,constant,weather dependent)
