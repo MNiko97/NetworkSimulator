@@ -1,14 +1,19 @@
+using System;
+
 namespace Network{
 
-class ConsumerNode : Node
+    class ConsumerNode : Node
     {
-    public int energyPrice;
-    //public int energyQuantity;
+        public int energyPrice;
+        public int energyQuantity;
 
-    public ConsumerNode(int id, int energyPrice) : base (id)
-    {
-        this.energyPrice = energyPrice;
-        //this.energyQuantity = energyQuantity;
+        public ConsumerNode(int id, int energyQuantity) : base (id)
+        {
+            this.energyQuantity = energyQuantity;
+        }
+
+        public virtual void setPrice(){
+            energyPrice = this.energyQuantity;
+        }
     }
-}
 }

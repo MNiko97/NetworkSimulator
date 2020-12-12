@@ -20,7 +20,7 @@ namespace Network
         public void addInputLine(int id)
         {
             inputLine.Add(id);
-            // Console.WriteLine(string.Join("\t", inputLine));
+            Console.WriteLine("Input "+ string.Join("\t", inputLine));
         }
 
         public void addOutputLine(int id)
@@ -28,8 +28,8 @@ namespace Network
             if (outputIsFull == false){
                 outputLine.Add(id);
                 outputIsFull = true;
-                // Console.WriteLine(outputIsFull);
-                // Console.WriteLine(string.Join("\t", outputLine));
+                //Console.WriteLine(outputIsFull);
+                Console.WriteLine("Output "+string.Join("\t", outputLine));
             }
             else
             {
