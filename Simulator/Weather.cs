@@ -1,10 +1,10 @@
 namespace Network{
     class Weather{
-        public int windIntensity;
-        public int solarIntensity;
-        public Weather(int windIntensity, int solarIntensity){
-            this.windIntensity = windIntensity;
-            this.solarIntensity = solarIntensity;
+        public static int windIntensity;
+        public static int solarIntensity;
+        public Weather(int windIntensityPercentage, int solarIntensityPercentage){
+            windIntensity = windIntensityPercentage;
+            solarIntensity = solarIntensityPercentage;
         }
         public int getWindIntensity(){
             return windIntensity;

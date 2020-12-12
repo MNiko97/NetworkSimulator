@@ -1,6 +1,7 @@
 IN NUCLEARPS.CS :
-    -implement changeStateDelay and cost
-    -overwrite "setUtilizationPercentage" by 100 or 0 when stateNode is ON/OFF, maybe do it in POWERSTATIONNODE
+    -Changing state still not operationnal
+
 IN POWERSTATIONNODE.CS :
     -import correctly stateNode
     -implement flexibility (flexible,constant,weather dependent)
+    -correct problem inside "setcurrentPower", for the moment, solarPS and WindPS ahve a problem where they start with 100% weather intensity but I stated it otherwise...
