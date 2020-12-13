@@ -3,5 +3,6 @@ IN NUCLEARPS.CS :
 
 IN POWERSTATIONNODE.CS :
     -import correctly stateNode
-    -implement flexibility (flexible,constant,weather dependent)
-    -correct problem inside "setcurrentPower", for the moment, solarPS and WindPS ahve a problem where they start with 100% weather intensity but I stated it otherwise...
+    -correct problem inside "setcurrentPower", for the moment, 
+    solarPS and WindPS ahve a problem where they start with 100% weather intensity 
+    but I stated it otherwise... I DONT KNOW HO TO CHANGE THAT. (minor problem)
