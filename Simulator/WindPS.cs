@@ -10,7 +10,11 @@ namespace Network
             this.fuelType = fuelType;
             this.flexibility = true;
             this.isWeatherDependent = true;
-            this.weatherIntensity= Weather.windIntensity;
+            //this.weatherIntensity= 100;
+        }
+        public void setWind(int windIntensity)
+        {
+            this.weatherIntensity= windIntensity;
         }
 
 

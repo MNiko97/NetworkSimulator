@@ -1,7 +1,7 @@
 namespace Network{
     class Weather{
-        public static int windIntensity;
-        public static int solarIntensity;
+        public int windIntensity;
+        public int solarIntensity;
         public Weather(int windIntensityPercentage, int solarIntensityPercentage){
             windIntensity = windIntensityPercentage;
             solarIntensity = solarIntensityPercentage;

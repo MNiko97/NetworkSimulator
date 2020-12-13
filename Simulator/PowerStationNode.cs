@@ -24,10 +24,22 @@ namespace Network
             this.isWeatherDependent = false;
             this.utilizationPercentage = 100;
             this.fuelType = fuelType;
-            //this.weatherIntensity = 100;
+            //this.weatherIntensity = 0;
             this.isProviding = true;
             setUpdate();
 
+        }
+        public float getCurrentProduction()
+        {
+            return currentProduction;
+        }
+        public override string ToString()
+        {
+            return "\nflex : "+this.flexibility + "\nis weather dependent : "+this.isWeatherDependent
+            +"\nmax production : "+this.maxEnergyProduction+"\nutilization perc : "+this.utilizationPercentage
+            +"\ncurrent prod : "+this.currentProduction+"\ncurrent cost : "+this.CurrentCost+ "\ncurrent pollution : "+this.currentPollution
+            +"\nfuel energy per unit : "+this.fuelType.energyPerUnit+"\nis providing : "+this.isProviding + "\nweather intensity : "
+            +this.weatherIntensity ;
         }
         public void setUtilizationPercentage(int newPercentage)
         {
@@ -96,11 +108,13 @@ namespace Network
             if(this.isWeatherDependent ==false)
             {
                 //for ex : gas power station
+                // Console.WriteLine("\n\nis weather dependent : FALSE FFS \n\n");
                 currentProduction = this.maxEnergyProduction * this.utilizationPercentage /100;
             }
   
             else if (this.isWeatherDependent==true)
             {
+                // Console.WriteLine("\n\nis weather dependent : TRUE FFS \n\n");
                 //for ex : wind power stations (!!! there is a factor windintensity!!!)
                 currentProduction = this.maxEnergyProduction * this.utilizationPercentage * this.weatherIntensity/10000;
             }

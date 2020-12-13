@@ -10,7 +10,12 @@ namespace Network
             this.fuelType = fuelType;
             this.flexibility = false;
             this.isWeatherDependent = true;
-            this.weatherIntensity= Weather.solarIntensity;
+            //this.weatherIntensity= 0;
+            
+        }
+        public void setSolar(int solarIntensity)
+        {
+            this.weatherIntensity= solarIntensity;
         }
 
 
