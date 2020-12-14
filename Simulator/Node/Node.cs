@@ -5,10 +5,13 @@ namespace Network{
         public int id;
         public int nodePower;
         public bool nodeState;
-        public Node(int id){
-            this.id = id;
+        public Node(){
+            this.id = 0;
             this.nodePower = 0;
             this.nodeState = false;
+        }
+        public void setId(int id){
+            this.id = id;
         }
         public int getNodePower(){
             return nodePower;

@@ -4,7 +4,7 @@ namespace Network{
 
     class Company : ConsumerNode
     {
-        public Company(int id) : base(id)
+        public Company() : base()
         {
         }
 

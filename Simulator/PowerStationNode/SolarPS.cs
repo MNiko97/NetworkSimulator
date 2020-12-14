@@ -5,7 +5,7 @@ namespace Network
 
     {
 
-        public SolarPS(int id, int maxEnergyProduction, Fuel fuelType) : base(id,maxEnergyProduction, fuelType)
+        public SolarPS(int maxEnergyProduction, Fuel fuelType) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
             this.flexibility = false;

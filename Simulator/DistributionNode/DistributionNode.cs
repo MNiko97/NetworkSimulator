@@ -11,7 +11,7 @@ namespace Network
         public List<Line> outputLine;
 
 
-        public DistributionNode(int id) : base(id)
+        public DistributionNode() : base()
         {
             this.inputLine = new List<Line>();
             this.outputLine = new List<Line>();

@@ -5,7 +5,7 @@ namespace Network
 
     {
 
-        public WindPS(int id, int maxEnergyProduction, Fuel fuelType) : base(id,maxEnergyProduction, fuelType)
+        public WindPS(int maxEnergyProduction, Fuel fuelType) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
             this.flexibility = true;

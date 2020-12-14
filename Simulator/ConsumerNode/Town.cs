@@ -4,7 +4,7 @@ namespace Network{
 
     class Town : ConsumerNode
     {
-        public Town(int id) : base(id)
+        public Town() : base()
         {
         }
         

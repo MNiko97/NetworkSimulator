@@ -19,7 +19,7 @@ namespace Network
         public int weatherIntensity;
 
 
-        public PowerStationNode(int id, int maxEnergyProduction, Fuel fuelType): base(id)
+        public PowerStationNode(int maxEnergyProduction, Fuel fuelType): base()
         {
             this.maxEnergyProduction = maxEnergyProduction;
             this.flexibility = true;

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Network{
 
-    class ConsumerNode : Node
+    abstract class ConsumerNode : Node
     {
         public int energyPrice;
         public int energyQuantity;
 
-        public ConsumerNode(int id) : base (id)
+        public ConsumerNode() : base ()
         {
             this.energyQuantity = 0;
         }

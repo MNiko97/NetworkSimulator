@@ -11,7 +11,7 @@ namespace Network
         int totalInputPower;
 
 
-        public ConcentrationNode(int id) : base (id)
+        public ConcentrationNode() : base ()
         {
             this.inputLine = new List<Line>();
             this.outputLine = new List<Line>();

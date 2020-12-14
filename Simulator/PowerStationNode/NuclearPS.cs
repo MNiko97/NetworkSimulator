@@ -11,7 +11,7 @@ namespace Network
         public int changeStateCost;
         public bool isChangingState;
     
-        public NuclearPS(int id, int maxEnergyProduction, Fuel fuelType) : base(id,maxEnergyProduction, fuelType)
+        public NuclearPS(int maxEnergyProduction, Fuel fuelType) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
             this.flexibility = false;
