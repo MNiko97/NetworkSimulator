@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
+
 namespace Network{
-    class Line{
+    class Line : IupdatableComponent{
         public int id;
         public Node lineIN;
         public Node lineOUT;
@@ -66,6 +68,16 @@ namespace Network{
         }
         public int getID(){
             return id;
+        }
+
+        public void update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> getAlert()
+        {
+            throw new NotImplementedException();
         }
     }
 }

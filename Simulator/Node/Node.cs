@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
 namespace Network{
-    abstract class Node : updatableComponent{
+    abstract class Node : IupdatableComponent{
         public int id;
         public int nodePower;
         public bool nodeState;

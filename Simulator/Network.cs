@@ -14,8 +14,17 @@ namespace Network{
             this.newLineID = 0;
             this.newNodeID = 0;
         }
-        public void addNode(){
-            nodeArray.Add(newNodeID, new Node(newNodeID++));
+        public void addPowerStationNode(int maxEnergy, Fuel fuel ){
+            nodeArray.Add(newNodeID, new PowerStationNode(newNodeID++, maxEnergy, fuel));
+        }
+        public void addConsumerNode(){
+            nodeArray.Add(newNodeID, new ConsumerNode(newNodeID++));
+        }
+        public void addContentrationNode(){
+            nodeArray.Add(newNodeID, new ConcentrationNode(newNodeID++));
+        }
+        public void addDistributionNode(){
+            nodeArray.Add(newNodeID, new DistributionNode(newNodeID++));
         }
         public void addLine(int maxPower){
             lineArray.Add(newLineID, new Line(newLineID++, maxPower));

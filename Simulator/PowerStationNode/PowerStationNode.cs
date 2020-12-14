@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 namespace Network
 {
     class PowerStationNode : Node
@@ -137,6 +139,15 @@ namespace Network
 
         }
 
+        public override void update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<string> getAlert()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
