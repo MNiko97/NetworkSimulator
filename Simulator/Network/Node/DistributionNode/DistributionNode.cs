@@ -6,20 +6,20 @@ namespace Network
     class DistributionNode : Node
     {
         public bool inputIsFull;
-        public List<int> inputLine;
-        public List<int> outputLine;
+        public List<Line> inputLine;
+        public List<Line> outputLine;
 
 
         public DistributionNode(int id) : base(id)
         {
-            this.inputLine = new List<int>();
-            this.outputLine = new List<int>();
+            this.inputLine = new List<Line>();
+            this.outputLine = new List<Line>();
         }
 
-        public void addInputLine(int id)
+        public void addInputLine(Line line)
         {
             if (inputIsFull == false){
-                inputLine.Add(id);
+                inputLine.Add(line);
                 inputIsFull = true;
                 Console.WriteLine(inputIsFull);
                 Console.WriteLine(string.Join("\t", inputLine));
@@ -29,8 +29,8 @@ namespace Network
                 Console.WriteLine("Distribution Node input is already connected, can't connect another line!");
             }
         }
-        public void addOutputLine(int id){
-            outputLine.Add(id);
+        public void addOutputLine(Line line){
+            outputLine.Add(line);
             Console.WriteLine(string.Join("\t", outputLine));
         }
 

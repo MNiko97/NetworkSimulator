@@ -6,30 +6,30 @@ namespace Network
     class ConcentrationNode : Node
     {
         public bool outputIsFull;
-        public List<int> inputLine;
-        public List<int> outputLine;
+        public List<Line> inputLine;
+        public List<Line> outputLine;
         int totalInputPower;
 
 
         public ConcentrationNode(int id) : base (id)
         {
-            this.inputLine = new List<int>();
-            this.outputLine = new List<int>();
+            this.inputLine = new List<Line>();
+            this.outputLine = new List<Line>();
         }
 
-        public void addInputLine(int id)
+        public void addInputLine(Line line)
         {
-            inputLine.Add(id);
-            Console.WriteLine("Input "+ string.Join("\t", inputLine));
+            inputLine.Add(line);
+            // Console.WriteLine(string.Join("\t", inputLine));
         }
 
-        public void addOutputLine(int id)
+        public void addOutputLine(Line line)
         {
-            if (outputIsFull == false){
-                outputLine.Add(id);
+            if (!outputIsFull){
+                outputLine.Add(line);
                 outputIsFull = true;
-                //Console.WriteLine(outputIsFull);
-                Console.WriteLine("Output "+string.Join("\t", outputLine));
+                // Console.WriteLine(outputIsFull);
+                // Console.WriteLine(string.Join("\t", outputLine));
             }
             else
             {
@@ -37,9 +37,12 @@ namespace Network
             }
         }
 
-        public int sumInput(){
-            totalInputPower =0;
-            return totalInputPower;
+        public void sumInput(){
+            totalInputPower = 0;
+            foreach (Line line in inputLine){
+                totalInputPower += line.getLinePower();
+            }
+
         }
 
 

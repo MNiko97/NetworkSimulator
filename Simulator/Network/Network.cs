@@ -14,32 +14,21 @@ namespace Network{
             this.newLineID = 0;
             this.newNodeID = 0;
         }
-        public void addNodeToNetwork(){
+        public void addNode(){
             nodeArray.Add(newNodeID, new Node(newNodeID++));
         }
-        public void addLineToNetwork(int maxPower){
+        public void addLine(int maxPower){
             lineArray.Add(newLineID, new Line(newLineID++, maxPower));
         }
         public void connectTwoNodes(int node1ID, int node2ID, int lineID){
-               lineArray[lineID].connect(nodeArray[node1ID], nodeArray[node2ID]);
-        }
-        public bool searchLineByID(int id){
-            if (lineArray.ContainsKey(id)){
-                return true;
+            try{
+                lineArray[lineID].connect(nodeArray[node1ID], nodeArray[node2ID]);
             }
-            else{
-                return false;
+            catch{
+                Console.WriteLine("One of the node or line does not exist");
             }
         }
-        public bool searchNodeByID(int id){
-            if(nodeArray.ContainsKey(id)){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-        public void updateNewtork(){
+        public void updateNetwork(){
             foreach(var node in nodeArray){
                 node.Value.updateNode();
             }
