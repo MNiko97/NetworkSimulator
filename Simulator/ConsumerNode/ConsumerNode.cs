@@ -7,9 +7,9 @@ namespace Network{
         public int energyPrice;
         public int energyQuantity;
 
-        public ConsumerNode(int id, int energyQuantity) : base (id)
+        public ConsumerNode(int id) : base (id)
         {
-            this.energyQuantity = energyQuantity;
+            this.energyQuantity = 0;
         }
 
         public virtual void setPrice(){

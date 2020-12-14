@@ -4,7 +4,7 @@ namespace Network{
 
     class ExportCountry : ConsumerNode
     {
-        public ExportCountry(int id, int energyQuantity):base(id, energyQuantity)
+        public ExportCountry(int id):base(id)
         {
         }
 
