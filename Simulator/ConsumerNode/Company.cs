@@ -13,5 +13,8 @@ namespace Network{
             energyPrice = 10*energyQuantity;
             Console.WriteLine("Company paid "+energyPrice+" euros for "+energyQuantity+" KW");
         }
+        public override string ToString(){
+            return "Company N" + id.ToString();
+        }
     }
 }

@@ -34,7 +34,9 @@ namespace Network
             outputLine.Add(line);
             Console.WriteLine(string.Join("\t", outputLine));
         }
-
+        public override string ToString(){
+            return "Distribution Node N" + id.ToString();
+        }
         public override List<string> getAlert()
         {
             throw new NotImplementedException();

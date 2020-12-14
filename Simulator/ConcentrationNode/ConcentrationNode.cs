@@ -36,7 +36,9 @@ namespace Network
                 Console.WriteLine("Concentration Node output is already connected, can't connect another line!");
             }
         }
-
+        public override string ToString(){
+            return "Concentration Node N" + id.ToString();
+        }
         public override List<string> getAlert()
         {
             throw new NotImplementedException();

@@ -7,7 +7,9 @@ namespace Network{
         public ExportCountry(int id):base(id)
         {
         }
-
+        public override string ToString(){
+            return "External Source N" + id.ToString();
+        }
         public override void setPrice()
         {
             energyPrice = 25*energyQuantity;

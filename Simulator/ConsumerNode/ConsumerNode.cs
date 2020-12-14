@@ -17,7 +17,7 @@ namespace Network{
         {
             throw new NotImplementedException();
         }
-
+    
         public virtual void setPrice(){
             energyPrice = this.energyQuantity;
         }
