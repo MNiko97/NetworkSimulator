@@ -31,6 +31,10 @@ namespace Network
         {
             return this.energyPerUnit;
         }
+        public void setCost(int newCost)
+        {
+            this.costPerUnit = newCost;
+        }
         
     }
 }
