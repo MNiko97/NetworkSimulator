@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Network{
 
@@ -12,8 +13,18 @@ namespace Network{
             this.energyQuantity = 0;
         }
 
+        public override List<string> getAlert()
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual void setPrice(){
             energyPrice = this.energyQuantity;
+        }
+
+        public override void update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

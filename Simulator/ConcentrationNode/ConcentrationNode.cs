@@ -37,6 +37,11 @@ namespace Network
             }
         }
 
+        public override List<string> getAlert()
+        {
+            throw new NotImplementedException();
+        }
+
         public void sumInput(){
             totalInputPower = 0;
             foreach (Line line in inputLine){
@@ -45,6 +50,9 @@ namespace Network
 
         }
 
-
+        public override void update()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

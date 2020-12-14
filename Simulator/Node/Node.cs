@@ -1,5 +1,7 @@
+using System.Collections.Generic;
+
 namespace Network{
-    class Node{
+    abstract class Node : updatableComponent{
         public int id;
         public int nodePower;
         public bool nodeState;
@@ -20,8 +22,7 @@ namespace Network{
         public int getID(){
             return id;
         }
-        public override string ToString(){
-            return "Node N" + id.ToString();
-        }
+        public abstract void update();
+        public abstract List<string> getAlert(); 
     }   
 }

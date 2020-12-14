@@ -5,6 +5,7 @@ namespace Network
 {
     class DistributionNode : Node
     {
+        private const string V = "Node N";
         public bool inputIsFull;
         public List<Line> inputLine;
         public List<Line> outputLine;
@@ -34,8 +35,15 @@ namespace Network
             Console.WriteLine(string.Join("\t", outputLine));
         }
 
+        public override List<string> getAlert()
+        {
+            throw new NotImplementedException();
+        }
 
-
+        public override void update()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
