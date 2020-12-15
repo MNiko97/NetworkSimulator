@@ -35,13 +35,8 @@ namespace Network
         {
             return currentProduction;
         }
-        public override string ToString()
-        {
-            return "\nflex : "+this.flexibility + "\nis weather dependent : "+this.isWeatherDependent
-            +"\nmax production : "+this.maxEnergyProduction+"\nutilization perc : "+this.utilizationPercentage
-            +"\ncurrent prod : "+this.currentProduction+"\ncurrent cost : "+this.CurrentCost+ "\ncurrent pollution : "+this.currentPollution
-            +"\nfuel energy per unit : "+this.fuelType.energyPerUnit+"\nis providing : "+this.isProviding + "\nweather intensity : "
-            +this.weatherIntensity ;
+        public override string ToString(){
+            return "Power Station N" + id.ToString();
         }
         public void setUtilizationPercentage(int newPercentage)
         {

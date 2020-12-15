@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 namespace Network{
     class Network{
         public Dictionary<int, Node> nodeArray;
@@ -22,7 +23,7 @@ namespace Network{
             node.setId(newNodeID);
             nodeArray.Add(newNodeID++, node);
         }
-        public void addContentrationNode(){
+        public void addConcentrationNode(){
             ConcentrationNode node = new ConcentrationNode();
             node.setId(newNodeID);
             nodeArray.Add(newNodeID++, node);
@@ -35,13 +36,23 @@ namespace Network{
         public void addLine(int maxPower){
             lineArray.Add(newLineID, new Line(newLineID++, maxPower));
         }
-        public void connectTwoNodes(int node1ID, int node2ID, int lineID){
-            try{
-                lineArray[lineID].connect(nodeArray[node1ID], nodeArray[node2ID]);
+        public void connectTwoNodes(string node1ID, string node2ID, string lineID){
+            string node1str = Regex.Replace(node1ID, "[^0-9.]", "");
+            string node2str = Regex.Replace(node2ID, "[^0-9.]", "");
+            string linestr = Regex.Replace(lineID, "[^0-9.]", "");
+            int node1;
+            int node2;
+            int line;
+            if(Int32.TryParse(node1str, out node1) && Int32.TryParse(node2str, out node2) && Int32.TryParse(linestr, out line)){
+                Console.WriteLine(nodeArray[node1] is PowerStationNode);
+                try{
+                    lineArray[line].connect(nodeArray[node1], nodeArray[node2]);
+                }
+                catch{
+                    Console.WriteLine("One of the node or line does not exist");
+                }
             }
-            catch{
-                Console.WriteLine("One of the node or line does not exist");
-            }
+           
         }
         public void updateNetwork(){
             foreach(var node in nodeArray){

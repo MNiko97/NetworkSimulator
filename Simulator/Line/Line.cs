@@ -4,8 +4,7 @@ using System.Collections.Generic;
 namespace Network{
     class Line : IupdatableComponent{
         public int id;
-        public Node lineIN;
-        public Node lineOUT;
+        public List<Node> connexion;
         public int maxPower;
         public bool lineState;
         public int linePower;
@@ -20,7 +19,7 @@ namespace Network{
         }
         public void updateLine(){
             if (isConnected){
-                linePower = lineIN.getNodePower();
+                linePower = connexion[1].getNodePower();
                 if(checkLineState()){
                     lineState = true;
                 }
@@ -49,8 +48,8 @@ namespace Network{
         }
         public void connect(Node node1, Node node2){
             if(!isConnected){
-                lineIN = node1;
-                lineOUT = node2;
+                connexion.Add(node1);
+                connexion.Add(node2);
                 isConnected = true;
             }
             else{
