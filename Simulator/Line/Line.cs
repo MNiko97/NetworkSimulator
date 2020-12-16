@@ -16,6 +16,7 @@ namespace Network{
             this.lineState = false;
             this.linePower = 0;
             this.isConnected = false;
+            this.connexion = new List<Node>();
         }
         public void updateLine(){
             if (isConnected){

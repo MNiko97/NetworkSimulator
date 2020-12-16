@@ -7,7 +7,12 @@ namespace Network{
         public Town() : base()
         {
         }
-        
+
+        public override void connect(Line line)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void setPrice(){
             energyPrice = 10*energyQuantity;
             Console.WriteLine("Town paid "+energyPrice+" euros for "+energyQuantity+" KW");

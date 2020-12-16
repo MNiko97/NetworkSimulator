@@ -8,6 +8,11 @@ namespace Network{
         {
         }
 
+        public override void connect(Line line)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void setPrice()
         {
             energyPrice = 10*energyQuantity;

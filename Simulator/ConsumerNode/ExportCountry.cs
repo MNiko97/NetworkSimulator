@@ -15,5 +15,10 @@ namespace Network{
             energyPrice = 25*energyQuantity;
             Console.WriteLine("Foreign country paid "+energyPrice+" euros for "+energyQuantity+" KW");
         }
+
+        public override void connect(Line line)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

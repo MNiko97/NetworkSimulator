@@ -19,12 +19,10 @@ namespace Network{
         public bool getNodeState(){
             return nodeState;
         }
-        public void updateNode(){
-            // To implement
-        }
         public int getID(){
             return id;
         }
+        public abstract void connect(Line line);
         public abstract void update();
         public abstract List<string> getAlert(); 
     }   

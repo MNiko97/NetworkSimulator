@@ -46,6 +46,11 @@ namespace Network
         {
             throw new NotImplementedException();
         }
+
+        public override void connect(Line line)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

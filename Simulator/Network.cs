@@ -45,6 +45,7 @@ namespace Network{
             int line;
             if(Int32.TryParse(node1str, out node1) && Int32.TryParse(node2str, out node2) && Int32.TryParse(linestr, out line)){
                 Console.WriteLine(nodeArray[node1] is PowerStationNode);
+                Console.WriteLine(nodeArray[node1].GetType().Name);
                 try{
                     lineArray[line].connect(nodeArray[node1], nodeArray[node2]);
                 }
@@ -52,11 +53,13 @@ namespace Network{
                     Console.WriteLine("One of the node or line does not exist");
                 }
             }
-           
+        }
+        public void connect(int node1ID, int node2ID, int lineID){
+
         }
         public void updateNetwork(){
             foreach(var node in nodeArray){
-                node.Value.updateNode();
+                node.Value.update();
             }
             foreach(var line in lineArray){
                 line.Value.updateLine();
