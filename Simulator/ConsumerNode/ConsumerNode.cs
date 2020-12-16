@@ -29,7 +29,17 @@ namespace Network{
         public override void update()
         {
             if(isConnectedToLine){
-                energyQuantity -= connexionLine[0].getLinePower();
+                connexionLine[0].update();
+                float power = connexionLine[0].getLinePower();
+                if(energyQuantity - power < 0){
+                    nodeState = false;
+                    Console.WriteLine("too much power, explosion");
+                    //throw new Exception();
+                }
+                else{
+                   energyQuantity -= power; 
+                }
+                
             }
         }
         public override void connect(Line line)
@@ -37,6 +47,7 @@ namespace Network{
             if(!isConnectedToLine){
                 connexionLine.Add(line);
                 isConnectedToLine = true;
+                nodeState = true;
                 line.addNode(this);
             }else{
                 Console.WriteLine("Node N", id, " is already connected");

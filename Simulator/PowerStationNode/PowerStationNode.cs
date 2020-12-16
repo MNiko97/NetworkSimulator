@@ -91,9 +91,13 @@ namespace Network
         }
         public override void update()
         {
+            Console.WriteLine("Node N" + id.ToString() + " is updating");
             if(isProviding){
                 if(isConnectedToLine){
+                    Console.WriteLine("step1");
                     connexionLine[0].setPowerLine(1500, id);
+                    Console.WriteLine("step5");
+                    connexionLine[0].update();
                 }
             }
             setUpdate(); // may modify it later

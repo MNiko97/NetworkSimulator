@@ -20,6 +20,7 @@ namespace Network
         public void addInputLine(Line line)
         {
             inputLine.Add(line);
+            line.addNode(this);
             // Console.WriteLine(string.Join("\t", inputLine));
         }
 
@@ -27,13 +28,14 @@ namespace Network
         {
             if (!outputIsFull){
                 outputLine.Add(line);
+                line.addNode(this);
                 outputIsFull = true;
                 // Console.WriteLine(outputIsFull);
                 // Console.WriteLine(string.Join("\t", outputLine));
             }
             else
             {
-                Console.WriteLine("Concentration Node output is already connected, can't connect another line!");
+                Console.WriteLine("Concentration Node N" + id.ToString() +" output is already connected, can't connect another line!");
             }
         }
         public override string ToString(){
@@ -58,7 +60,11 @@ namespace Network
         }
         public override void connect(Line line)
         {
-            throw new NotImplementedException();
+            if(line.isInputAvailable()){
+                addOutputLine(line);
+            }else{
+                addInputLine(line);
+            }
         }
     }
 }

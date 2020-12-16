@@ -44,14 +44,12 @@ namespace Network{
             foreach(var node in nodeArray){
                 node.Value.update();
             }
-            foreach(var line in lineArray){
-                line.Value.update();
-            }
+            
         }
         public void show(){
             foreach (var line in lineArray){
-                Console.WriteLine("{0}    Status: {1}    Current Power: {2}MW    Connected: {3}", 
-                line.Value, line.Value.getLineState(), line.Value.getLinePower(), line.Value.isConnected);
+                Console.WriteLine("{0}    Status: {1}    Current Power: {2}MW    Connected: {3}    Link: {4}", 
+                line.Value, line.Value.getLineState(), line.Value.getLinePower(), line.Value.isConnected, line.Value.showConnexionNode());
             }
             foreach (var node in nodeArray){
                 Console.WriteLine("{0}    Status: {1}    Current Power: {2}MW",

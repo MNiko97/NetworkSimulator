@@ -21,9 +21,10 @@ namespace Network
         {
             if (inputIsFull == false){
                 inputLine.Add(line);
+                line.addNode(this);
                 inputIsFull = true;
-                Console.WriteLine(inputIsFull);
-                Console.WriteLine(string.Join("\t", inputLine));
+                //Console.WriteLine(inputIsFull);
+                //Console.WriteLine(string.Join("\t", inputLine));
             }
             else
             {
@@ -32,7 +33,8 @@ namespace Network
         }
         public void addOutputLine(Line line){
             outputLine.Add(line);
-            Console.WriteLine(string.Join("\t", outputLine));
+            line.addNode(this);
+            //Console.WriteLine(string.Join("\t", outputLine));
         }
         public override string ToString(){
             return "Distribution Node N" + id.ToString();
@@ -49,7 +51,11 @@ namespace Network
 
         public override void connect(Line line)
         {
-            throw new NotImplementedException();
+            if(line.isInputAvailable()){
+                addOutputLine(line);
+            }else{
+                addInputLine(line);
+            }
         }
     }
 

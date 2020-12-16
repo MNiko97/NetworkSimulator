@@ -5,7 +5,7 @@ namespace Network{
     class Line : IupdatableComponent{
         public int id;
         public List<Node> connexionNode;
-        public int maxPower;
+        public float maxPower;
         public bool lineState;
         public float linePower;
         public bool isConnected;
@@ -20,20 +20,21 @@ namespace Network{
             
         }
         public void checkLineState(){
+            Console.WriteLine("step6");
             if (linePower > maxPower){
                 Console.WriteLine("Current power exceding line L"+ id.ToString() +" maximum capacity");
                 linePower = 0;
                 //generate an error to node
-                this.lineState = false;
-                Console.WriteLine(this.lineState);
+                lineState = false;
             }
-            if (linePower < 0){
+            else if (linePower < 0){
                 Console.WriteLine("Current power in line L"+ id.ToString() + " is negative");
-                this.linePower = 0;
-                this.lineState = false;
+                linePower = 0;
+                lineState = false;
             }
-            else{
-                this.lineState = true;
+            else if (linePower <= maxPower){
+                Console.WriteLine("step7");
+                lineState = true;
             }
         }
         public void addNode(Node node){
@@ -50,15 +51,21 @@ namespace Network{
             }
         }
         public void setPowerLine(float newPower, int id){
+            Console.WriteLine("step2");
             if(connexionNode[0].getID() == id){
+                Console.WriteLine("step3");
                 linePower = newPower;
             }
             else{
-                Console.WriteLine("Error two sources on the line");
+                Console.WriteLine("step4");
                 linePower = 0;
+                lineState = false;
+                Console.WriteLine(lineState);
+                Console.WriteLine("Error: line connected to 2 sources");
             }
             
         }
+        
         public override string ToString(){
             return "Line L" + id.ToString();
         }
@@ -71,15 +78,29 @@ namespace Network{
         public int getID(){
             return id;
         }
-
+        public string showConnexionNode(){
+            string strConnexionNode = "[";
+            foreach(var node in connexionNode){
+                strConnexionNode += "N" + node.id.ToString() + " ";            
+            }
+            strConnexionNode += "]";
+            return strConnexionNode;
+        }
         public void update()
         {
            checkLineState();
         }
-
         public List<string> getAlert()
         {
             throw new NotImplementedException();
+        }
+        public bool isInputAvailable(){
+            if(connexionNode.Count == 0){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
     }
 }
