@@ -6,3 +6,7 @@ IN POWERSTATIONNODE.CS :
     -correct problem inside "setcurrentPower", for the moment, 
     solarPS and WindPS ahve a problem where they start with 100% weather intensity 
     but I stated it otherwise... I DONT KNOW HO TO CHANGE THAT. (minor problem)
+
+IN SOLAR AND WIND PS :
+weather intensity doesn't get updated with the network. (network.weather.setSolarIntensity(0);)
+have to delete the setSolar and setWind functions when weather intensity update is working.

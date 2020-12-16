@@ -11,7 +11,7 @@ namespace Network{
         public Network(){
             this.nodeArray = new Dictionary<int, Node>();
             this.lineArray = new Dictionary<int, Line>();
-            this.weather = new Weather(100, 50);        
+            this.weather = new Weather(80, 70);        
             this.newLineID = 0;
             this.newNodeID = 0;
         }
