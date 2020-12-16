@@ -8,7 +8,7 @@ namespace Network
         public bool outputIsFull;
         public List<Line> inputLine;
         public List<Line> outputLine;
-        int totalInputPower;
+        float totalInputPower;
 
 
         public ConcentrationNode() : base ()
@@ -54,7 +54,7 @@ namespace Network
 
         public override void update()
         {
-            throw new NotImplementedException();
+            //to implement
         }
         public override void connect(Line line)
         {

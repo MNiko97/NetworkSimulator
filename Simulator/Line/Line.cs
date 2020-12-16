@@ -4,10 +4,10 @@ using System.Collections.Generic;
 namespace Network{
     class Line : IupdatableComponent{
         public int id;
-        public List<Node> connexion;
+        public List<Node> connexionNode;
         public int maxPower;
         public bool lineState;
-        public int linePower;
+        public float linePower;
         public bool isConnected;
         
         public Line(int id, int maxPower){
@@ -16,11 +16,12 @@ namespace Network{
             this.lineState = false;
             this.linePower = 0;
             this.isConnected = false;
-            this.connexion = new List<Node>();
+            this.connexionNode = new List<Node>();
+            
         }
         public void updateLine(){
             if (isConnected){
-                linePower = connexion[1].getNodePower();
+                linePower = connexionNode[1].getNodePower();
                 if(checkLineState()){
                     lineState = true;
                 }
@@ -47,20 +48,29 @@ namespace Network{
                 return true;
             }
         }
-        public void connect(Node node1, Node node2){
+        public void addNode(Node node){
             if(!isConnected){
-                connexion.Add(node1);
-                connexion.Add(node2);
-                isConnected = true;
+                if(connexionNode.Count <2){
+                    connexionNode.Add(node); 
+                    if (connexionNode.Count == 2){
+                        isConnected = true;
+                    }
+                }
             }
             else{
                 Console.WriteLine("The line L", id, " is already connected");
             }
         }
+        public void setPowerLine(float newPower, int id){
+            if(connexionNode[0].getID() == id){
+                linePower = newPower;
+            }
+            
+        }
         public override string ToString(){
             return "Line L" + id.ToString();
         }
-        public int getLinePower(){
+        public float getLinePower(){
             return linePower;
         }
         public bool getLineState(){
@@ -72,7 +82,7 @@ namespace Network{
 
         public void update()
         {
-            throw new NotImplementedException();
+            //to implement
         }
 
         public List<string> getAlert()

@@ -44,7 +44,7 @@ namespace Network
 
         public override void update()
         {
-            throw new NotImplementedException();
+            //to implement
         }
 
         public override void connect(Line line)

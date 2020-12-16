@@ -5,7 +5,6 @@ namespace Network
 {
     class PowerStationNode : Node
     {
-
         public bool flexibility;
         public bool isWeatherDependent;
         public int maxEnergyProduction;
@@ -17,6 +16,8 @@ namespace Network
         public bool isProviding;
         //public bool nodeState;
         public int weatherIntensity;
+        public bool isConnectedToLine;
+        public List<Line> connexionLine;
 
 
         public PowerStationNode(int maxEnergyProduction, Fuel fuelType): base()
@@ -28,6 +29,8 @@ namespace Network
             this.fuelType = fuelType;
             //this.weatherIntensity = 0;
             this.isProviding = true;
+            this.isConnectedToLine = false;
+            this.connexionLine = new List<Line>();
             setUpdate();
 
         }
@@ -135,7 +138,11 @@ namespace Network
         }
         public override void update()
         {
-            throw new NotImplementedException();
+            if(isProviding){
+                if(isConnectedToLine){
+                    connexionLine[0].setPowerLine(1500, id);
+                }
+            }
         }
 
         public override List<string> getAlert()
@@ -145,7 +152,13 @@ namespace Network
 
         public override void connect(Line line)
         {
-            throw new NotImplementedException();
+            if(!isConnectedToLine){
+                connexionLine.Add(line);
+                isConnectedToLine = true;
+                line.addNode(this);
+            }else{
+                Console.WriteLine("Node N", id, " is already connected");
+            }
         }
     }
 }
