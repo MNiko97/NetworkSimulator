@@ -19,33 +19,21 @@ namespace Network{
             this.connexionNode = new List<Node>();
             
         }
-        public void updateLine(){
-            if (isConnected){
-                linePower = connexionNode[1].getNodePower();
-                if(checkLineState()){
-                    lineState = true;
-                }
-                else{
-                    linePower = 0;
-                    lineState = false;
-                } 
-            }
-            else{
+        public void checkLineState(){
+            if (linePower > maxPower){
+                Console.WriteLine("Current power exceding line L"+ id.ToString() +" maximum capacity");
                 linePower = 0;
-                lineState = false;
-                Console.WriteLine("Line L", id, " is not connected");
-            }       
-        }
-        public bool checkLineState(){
-            if (linePower >= maxPower){
-                return false;
+                //generate an error to node
+                this.lineState = false;
+                Console.WriteLine(this.lineState);
             }
-            else if (linePower < 0){
-                Console.WriteLine("The current power in line L", id, " is négative");
-                return false;
+            if (linePower < 0){
+                Console.WriteLine("Current power in line L"+ id.ToString() + " is negative");
+                this.linePower = 0;
+                this.lineState = false;
             }
             else{
-                return true;
+                this.lineState = true;
             }
         }
         public void addNode(Node node){
@@ -65,6 +53,10 @@ namespace Network{
             if(connexionNode[0].getID() == id){
                 linePower = newPower;
             }
+            else{
+                Console.WriteLine("Error two sources on the line");
+                linePower = 0;
+            }
             
         }
         public override string ToString(){
@@ -74,7 +66,7 @@ namespace Network{
             return linePower;
         }
         public bool getLineState(){
-            return lineState;
+            return this.lineState;
         }
         public int getID(){
             return id;
@@ -82,7 +74,7 @@ namespace Network{
 
         public void update()
         {
-            //to implement
+           checkLineState();
         }
 
         public List<string> getAlert()

@@ -5,8 +5,8 @@ namespace Network{
 
     abstract class ConsumerNode : Node
     {
-        public int energyPrice;
-        public int energyQuantity;
+        public float energyPrice;
+        public float energyQuantity;
         public bool isConnectedToLine;
         public List<Line> connexionLine;
 
@@ -28,7 +28,9 @@ namespace Network{
 
         public override void update()
         {
-            //to implement
+            if(isConnectedToLine){
+                energyQuantity -= connexionLine[0].getLinePower();
+            }
         }
         public override void connect(Line line)
         {
