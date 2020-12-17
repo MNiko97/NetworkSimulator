@@ -20,7 +20,6 @@ namespace Network{
             
         }
         public void checkLineState(){
-            Console.WriteLine("step6");
             if (linePower > maxPower){
                 Console.WriteLine("Current power exceding line L"+ id.ToString() +" maximum capacity");
                 linePower = 0;
@@ -28,12 +27,11 @@ namespace Network{
                 lineState = false;
             }
             else if (linePower < 0){
-                Console.WriteLine("Current power in line L"+ id.ToString() + " is negative");
+                Console.WriteLine("Abnormal power in line L"+ id.ToString());
                 linePower = 0;
                 lineState = false;
             }
             else if (linePower <= maxPower){
-                Console.WriteLine("step7");
                 lineState = true;
             }
         }
@@ -51,16 +49,11 @@ namespace Network{
             }
         }
         public void setPowerLine(float newPower, int id){
-            Console.WriteLine("step2");
             if(connexionNode[0].getID() == id){
-                Console.WriteLine("step3");
                 linePower = newPower;
             }
             else{
-                Console.WriteLine("step4");
-                linePower = 0;
-                lineState = false;
-                Console.WriteLine(lineState);
+                linePower = -1;
                 Console.WriteLine("Error: line connected to 2 sources");
             }
             

@@ -33,7 +33,7 @@ namespace Network{
                 float power = connexionLine[0].getLinePower();
                 if(energyQuantity - power < 0){
                     nodeState = false;
-                    Console.WriteLine("too much power, explosion");
+                    Console.WriteLine("too much power, overflow");
                     //throw new Exception();
                 }
                 else{
