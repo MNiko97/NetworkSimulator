@@ -1,11 +1,13 @@
 IN NUCLEARPS.CS :
-    -Changing state still not operationnal
+    -Changing state not working properly
+    -CurrentCost during tutnOFF/ turnON is not 0 ==> Do we let it like that?
+    -currentProduction/pollution still not 0 when turning the station ON
 
 IN POWERSTATIONNODE.CS :
     -import correctly stateNode
-    -correct problem inside "setcurrentPower", for the moment, 
-    solarPS and WindPS ahve a problem where they start with 100% weather intensity 
-    but I stated it otherwise... I DONT KNOW HO TO CHANGE THAT. (minor problem)
+    -adapt variables with the Node and Network class
+
+    
 
 
 
