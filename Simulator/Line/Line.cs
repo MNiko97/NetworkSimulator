@@ -21,13 +21,13 @@ namespace Network{
         }
         public void checkLineState(){
             if (linePower > maxPower){
-                Console.WriteLine("Current power exceding line L"+ id.ToString() +" maximum capacity");
+                Console.WriteLine("Error: Current power exceding " + this + " maximum capacity");
                 linePower = 0;
                 //generate an error to node
                 lineState = false;
             }
             else if (linePower < 0){
-                Console.WriteLine("Abnormal power in line L"+ id.ToString());
+                Console.WriteLine("Error: Abnormal power in " + this);
                 linePower = 0;
                 lineState = false;
             }
@@ -39,13 +39,14 @@ namespace Network{
             if(!isConnected){
                 if(connexionNode.Count <2){
                     connexionNode.Add(node); 
-                    if (connexionNode.Count == 2){
-                        isConnected = true;
-                    }
+                }
+                else if (connexionNode.Count == 2){
+                    isConnected = true;
                 }
             }
             else{
-                Console.WriteLine("The line L", id, " is already connected");
+                Console.WriteLine("Error: " + this + " is already connected");
+                Console.WriteLine("Error: " + node + " is not connected");
             }
         }
         public void setPowerLine(float newPower, int id){
@@ -54,7 +55,7 @@ namespace Network{
             }
             else{
                 linePower = -1;
-                Console.WriteLine("Error: line connected to 2 sources");
+                Console.WriteLine("Error: " + this + " is connected to 2 sources");
             }
             
         }

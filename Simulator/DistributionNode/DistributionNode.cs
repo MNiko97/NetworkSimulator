@@ -39,6 +39,13 @@ namespace Network
         public override string ToString(){
             return "Distribution Node N" + id.ToString();
         }
+        public void output(){
+            foreach (Line line in outputLine){
+                line.setPowerLine(nodePower/outputLine.Count, id);
+                line.update();
+            }
+        }
+
         public override List<string> getAlert()
         {
             throw new NotImplementedException();
@@ -46,7 +53,10 @@ namespace Network
 
         public override void update()
         {
-            //to implement
+            if(inputIsFull){
+               nodePower = inputLine[0].getLinePower(); 
+            }
+            output();
         }
 
         public override void connect(Line line)
@@ -55,6 +65,12 @@ namespace Network
                 addOutputLine(line);
             }else{
                 addInputLine(line);
+            }
+            updateNodeState();
+        }
+        public void updateNodeState(){
+            if(outputLine.Count > 0 && inputIsFull){    
+                nodeState = true;
             }
         }
     }

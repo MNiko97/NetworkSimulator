@@ -5,6 +5,7 @@ namespace Network{
     class Network{
         public Dictionary<int, Node> nodeArray;
         public Dictionary<int, Line> lineArray;
+        public List<int> path;
         public Weather weather;
         public int newLineID;
         public int newNodeID;
@@ -14,6 +15,21 @@ namespace Network{
             this.weather = new Weather(80, 70);        
             this.newLineID = 0;
             this.newNodeID = 0;
+            this.path = new List<int>();
+        }
+        public void findAllPath(List<Node> start){
+            var previousPath = start;
+            var ignoredPath = new List<int>();
+            var newPath = new List<int>();
+            foreach(var line in lineArray){
+                var currentPath = line.Value.connexionNode;
+                if(currentPath[0].id == previousPath[1].id){
+                    newPath.Add(line.Value.id);
+                }
+                else{
+                    ignoredPath.Add(line.Value.id);
+                }
+            }
         }
         public void addPowerStationNode(PowerStationNode node){
             node.setId(newNodeID);

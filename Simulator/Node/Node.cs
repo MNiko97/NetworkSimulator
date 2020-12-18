@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace Network{
     abstract class Node : IupdatableComponent{
         public int id;
-        public int nodePower;
+        public float nodePower;
         public bool nodeState;
         public Node(){
             this.id = 0;
@@ -13,7 +13,7 @@ namespace Network{
         public void setId(int id){
             this.id = id;
         }
-        public int getNodePower(){
+        public float getNodePower(){
             return nodePower;
         }
         public bool getNodeState(){

@@ -8,7 +8,6 @@ namespace Network
         public bool outputIsFull;
         public List<Line> inputLine;
         public List<Line> outputLine;
-        float totalInputPower;
 
 
         public ConcentrationNode() : base ()
@@ -47,23 +46,33 @@ namespace Network
         }
 
         public void sumInput(){
-            totalInputPower = 0;
+            nodePower = 0;
             foreach (Line line in inputLine){
-                totalInputPower += line.getLinePower();
+                nodePower += line.getLinePower();
             }
-
         }
 
         public override void update()
         {
-            //to implement
+            sumInput();
+            if(nodeState){
+                outputLine[0].setPowerLine(nodePower, id);
+                outputLine[0].update();
+            }
         }
         public override void connect(Line line)
         {
             if(line.isInputAvailable()){
                 addOutputLine(line);
-            }else{
+            }
+            else {
                 addInputLine(line);
+            }
+            updateNodeState();
+        }
+        public void updateNodeState(){
+            if(inputLine.Count > 0 && outputIsFull){    
+                nodeState = true;
             }
         }
     }

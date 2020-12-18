@@ -30,7 +30,7 @@ namespace Network
             this.isProviding = true;
             this.isConnectedToLine = false;
             this.connexionLine = new List<Line>();
-            
+            nodeState = true;
             //setUpdate();
 
         }
@@ -68,7 +68,7 @@ namespace Network
             }
             
             
-            update();
+            //update();
         }
 
         public void setCurrentPollution()
@@ -92,9 +92,9 @@ namespace Network
         public override void update()
         {
             //Console.WriteLine("Node N" + id.ToString() + " is updating");
-            if(isProviding){
+            if(nodeState){
                 if(isConnectedToLine){
-                    connexionLine[0].setPowerLine(1500, id);
+                    connexionLine[0].setPowerLine(nodePower, id);
                     connexionLine[0].update();
                 }
             }
@@ -119,7 +119,7 @@ namespace Network
         }
         public string getCurrentStatus()
         {
-            update();
+            //update();
             return ("\nflex : "+this.flexibility + "\nis weather dependent : "+this.isWeatherDependent
             +"\nmax production : "+this.maxEnergyProduction
             +"\ncurrent prod : "+this.currentProduction+"\ncurrent cost : "+this.CurrentCost+ "\ncurrent pollution : "+this.currentPollution

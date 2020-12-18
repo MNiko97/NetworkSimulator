@@ -10,3 +10,9 @@ IN POWERSTATIONNODE.CS :
 IN SOLAR AND WIND PS :
 weather intensity doesn't get updated with the network. (network.weather.setSolarIntensity(0);)
 have to delete the setSolar and setWind functions when weather intensity update is working.
+
+Question for Lurkin:
+
+- Qu'entendez vous par graphe pour la première ligne de la grille d'évaluation ?
+- ligne 2 vous demander de mettre à jour en appelant une méthode, ça n'a rien
+avoir avec le fait qu'on doit maj le réseaux toute les seconde ? 
