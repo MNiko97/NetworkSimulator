@@ -17,13 +17,14 @@ namespace Network{
             this.newNodeID = 0;
             this.path = new List<int>();
         }
-        public void findAllPath(List<Node> start){
-            var previousPath = start;
-            var ignoredPath = new List<int>();
+        public void findAllPath(int start, List<int> ignored,  List<int> all){
+            var previousPath = lineArray[start].connexionNode[1].id;
+            var ignoredPath = ignored;
+            var allPath = all;
             var newPath = new List<int>();
             foreach(var line in lineArray){
-                var currentPath = line.Value.connexionNode;
-                if(currentPath[0].id == previousPath[1].id){
+                var currentPath = line.Value.connexionNode[0].id;
+                if(currentPath == previousPath){
                     newPath.Add(line.Value.id);
                 }
                 else{
