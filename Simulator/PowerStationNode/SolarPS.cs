@@ -1,3 +1,4 @@
+using System;
 namespace Network
 {
     class SolarPS : PowerStationNode
@@ -5,48 +6,38 @@ namespace Network
 
     {
 
-        public SolarPS(int maxEnergyProduction, Fuel fuelType) : base(maxEnergyProduction, fuelType)
+        public SolarPS(int maxEnergyProduction, Fuel fuelType, Weather weather) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
             this.flexibility = false;
             this.isWeatherDependent = true;
-            //this.weatherIntensity= 0;
-            //update();
+            this.weatherIntensity= weather.solarIntensity;
             this.currentProduction = this.maxEnergyProduction * this.weatherIntensity/100;
         }
-        public void setSolar(int solarIntensity) //NEED To have an automatic update
+
+        public void setUpdateWeather(Weather weather) //If we want to test with another weather intensity
         {
-            this.weatherIntensity= solarIntensity;
+            this.weatherIntensity = weather.solarIntensity;
             this.currentProduction = this.maxEnergyProduction * this.weatherIntensity/100;
             update();
         }
-        public void setCurrentPower() // NEED TO CHANGE
-        {
-            this.currentProduction = this.maxEnergyProduction * this.weatherIntensity/100;
 
-        }
-        public override void setUpdate()
-        {
-            //setCurrentPower();
-        }
+
         public override void setEnergyProduction(int newEnergyQuantity)
         {
             // base.setEnergyProduction(newEnergyQuantity);
-            if (newEnergyQuantity>= (this.maxEnergyProduction* this.weatherIntensity/100))
+            if (newEnergyQuantity>0)
             {
                 this.currentProduction = this.maxEnergyProduction* this.weatherIntensity/100;
                 this.isProviding = true;
             }
-            else if (newEnergyQuantity <= 0)
+            else 
             {
+                // Console.WriteLine("New energy quantity ="+newEnergyQuantity);
                 this.currentProduction =0;
                 this.isProviding = false;
             }
-            else
-            {
-                this.currentProduction = this.maxEnergyProduction * this.weatherIntensity/100;
-                this.isProviding = true;
-            }  
+            
             update();          
         }
 

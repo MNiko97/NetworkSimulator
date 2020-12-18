@@ -5,27 +5,24 @@ namespace Network
 
     {
 
-        public WindPS(int maxEnergyProduction, Fuel fuelType) : base(maxEnergyProduction, fuelType)
+        public WindPS(int maxEnergyProduction, Fuel fuelType, Weather weather) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
-            this.flexibility = true;
             this.isWeatherDependent = true;
+            this.weatherIntensity= weather.solarIntensity;
             this.currentProduction = this.maxEnergyProduction * this.weatherIntensity/100;
-            //this.weatherIntensity= 100;
+
             
             
         }
-        public void setWind(int windIntensity) //NEED To have an automatic update
+        
+        public void setUpdateWeather(Weather weather) //If we want to test with another weather intensity
         {
-            this.weatherIntensity= windIntensity;
+            this.weatherIntensity = weather.windIntensity;
             this.currentProduction = this.maxEnergyProduction * this.weatherIntensity/100;
             update();
         }
-        public void setCurrentPower()// NEED TO CHANGE
-        {
-            this.currentProduction = this.currentProduction * this.weatherIntensity/100;
 
-        }
         public override void setEnergyProduction(int newEnergyQuantity)
         {
             // base.setEnergyProduction(newEnergyQuantity);
@@ -46,10 +43,7 @@ namespace Network
             }  
             update();          
         }
-        public override void setUpdate()
-        {
-            //setCurrentPower();
-        }
+
 
 
     }

@@ -30,14 +30,11 @@ namespace Network
             this.isProviding = true;
             this.isConnectedToLine = false;
             this.connexionLine = new List<Line>();
-            nodeState = true;
+            // nodeState = true;
             //setUpdate();
 
         }
-        public float getCurrentProduction()
-        {
-            return currentProduction;
-        }
+
         public override string ToString(){
             return "Power Station N" + id.ToString();
         }
@@ -68,8 +65,9 @@ namespace Network
             }
             
             
-            //update();
+            update();
         }
+        
 
         public void setCurrentPollution()
         {
@@ -83,12 +81,7 @@ namespace Network
  
         }
         
-        public virtual void setUpdate()
-        {
-            setCurrentPollution();
-            setCurrentCost();
 
-        }
         public override void update()
         {
             //Console.WriteLine("Node N" + id.ToString() + " is updating");
@@ -98,7 +91,9 @@ namespace Network
                     connexionLine[0].update();
                 }
             }
-            setUpdate(); // may modify it later
+            setCurrentPollution();
+            setCurrentCost();
+            
             
         }
 
