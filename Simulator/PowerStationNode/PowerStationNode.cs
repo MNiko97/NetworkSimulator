@@ -8,11 +8,11 @@ namespace Network
         public bool flexibility;
         public bool isWeatherDependent;
         public int maxEnergyProduction;
-        public float CurrentCost ;
+        public float currentCost ;
         public float currentPollution;      
         public float currentProduction; 
         public Fuel fuelType;
-        public bool isProviding;
+        //public bool nodeState;
         //public bool nodeState;
         public int weatherIntensity;
         public bool isConnectedToLine;
@@ -27,9 +27,12 @@ namespace Network
             
             this.fuelType = fuelType;
             this.currentProduction = maxEnergyProduction;
-            this.isProviding = true;
+            this.nodeState = true;
             this.isConnectedToLine = false;
             this.connexionLine = new List<Line>();
+
+            
+            //update();
             // nodeState = true;
             //setUpdate();
 
@@ -40,29 +43,36 @@ namespace Network
         }
         public virtual void setEnergyProduction(int newEnergyQuantity)
         {
-            
-            if (newEnergyQuantity>=this.maxEnergyProduction)
+
+            if(newEnergyQuantity <=0) //asking to turn off
             {
-                this.currentProduction = this.maxEnergyProduction;
-                this.isProviding = true;
+                // nodeState = false;
+                // nodePower = 0;
+                this.currentProduction = 0;
+                this.nodeState = false;
             }
-            else if (newEnergyQuantity <= 0)
+            else    //asking to set a new value or turn on
             {
-                this.currentProduction =0;
-                this.isProviding = false;
-            }
-            else
-            {
-                if (this.flexibility==true)
+                if(this.flexibility) //if flexible
                 {
-                    this.currentProduction = newEnergyQuantity;
+                    if (newEnergyQuantity>=this.maxEnergyProduction)
+                    {
+                        this.currentProduction = this.maxEnergyProduction;
+                    }
+                    else
+                    {
+                        this.currentProduction = newEnergyQuantity;
+                    }
+                    this.nodeState = true;
                 }
-                else
+                else //if not flexible
                 {
                     this.currentProduction = this.maxEnergyProduction;
-                }                   
-                this.isProviding = true;
+                    this.nodeState = true;
+                }
             }
+
+
             
             
             update();
@@ -77,7 +87,7 @@ namespace Network
         public virtual void setCurrentCost()
         {
             
-            CurrentCost = this.fuelType.getCost() * this.currentProduction / fuelType.getEnergy();
+            currentCost = this.fuelType.getCost() * this.currentProduction / fuelType.getEnergy();
  
         }
         
@@ -114,11 +124,11 @@ namespace Network
         }
         public string getCurrentStatus()
         {
-            //update();
+            update();
             return ("\nflex : "+this.flexibility + "\nis weather dependent : "+this.isWeatherDependent
             +"\nmax production : "+this.maxEnergyProduction
-            +"\ncurrent prod : "+this.currentProduction+"\ncurrent cost : "+this.CurrentCost+ "\ncurrent pollution : "+this.currentPollution
-            +"\nfuel energy per unit : "+this.fuelType.energyPerUnit+"\nis providing : "+this.isProviding + "\nweather intensity : "
+            +"\ncurrent prod : "+this.currentProduction+"\ncurrent cost : "+this.currentCost+ "\ncurrent pollution : "+this.currentPollution
+            +"\nfuel energy per unit : "+this.fuelType.energyPerUnit+"\nis providing : "+this.nodeState + "\nweather intensity : "
             +this.weatherIntensity);
         }
     }

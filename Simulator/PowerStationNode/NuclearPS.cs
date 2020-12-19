@@ -10,164 +10,129 @@ namespace Network
     {
         public int changeStateDelay;
         public int changeStateCost;
-        public bool isChangingState;
-        public bool isOn;
+        public bool isChanging;
+        public int stationState;
     
         public NuclearPS(int maxEnergyProduction, Fuel fuelType) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
             this.flexibility = false;
             this.changeStateCost = 4000;
-            this.changeStateDelay = 1000;
-            this.isChangingState = false;
-            this.isOn= true;
+            this.changeStateDelay = 5000;
+            this.isChanging = false;
+            this.currentProduction = maxEnergyProduction;
+            
+            this.stationState = 1;
 
+            
+            
         }
-
-
-        public void turningOff()
+        public override void setEnergyProduction(int newEnergyQuantity)
         {
-            this.isChangingState = false;
-            Console.WriteLine("The power station is now off.");
-            update();
-        }
-        public void turningOn()
-        {
-            this.isChangingState = false;
-            this.isOn =true;
-            Console.WriteLine("The Power station is now operational");
-            update();
-        }
-
-
-        public override void setCurrentCost()
-        {
-            if (this.isProviding == false)
+            if(this.isChanging ==false) //if the station is NOT turning OFF or ON
             {
-                if(this.isChangingState) //while it's changing state it can't run
+                if(newEnergyQuantity <=0) //asking to turn off
                 {
-                    CurrentCost = 0;
-                    currentProduction =0;
-                    currentPollution = 0;
-                    //this.isProviding = false; maybe useless
-                    Console.WriteLine("Couldn't turn OFF the Power Station while on turn-on or turn-off. Please wait.");
-                }
-                else
-                {
-                    if(this.isOn ==true)//was running and ordered it to stop
+                    if (this.nodeState) //if STATE TRUE  --> want to turn OFF
                     {
-                        this.isOn =false;
-                        this.isChangingState = true;
-                        this.CurrentCost = this.changeStateCost;
+                        this.currentProduction = 0;
+                        this.nodeState = false;
 
-                        Console.WriteLine("Turning off the Power Station. Please wait...");
-                        Task.Delay(5000).ContinueWith(t=> turningOff());
-                        
+                        this.isChanging = true; //BLOCKING OTHER COMMANDS
+                        this.stationState = 2; //turning off state
                     }
-                    else //if is not and we dind't change anything then cost = 0
+                    else //if STATE FALSE --> already OFF
                     {
-                        this.CurrentCost = 0;
-                        Console.WriteLine("Turning off the Power Station while already off. Nothing changed.");
-                    }
-                }
-                     
-            }
-            else    //requiring to provide
-            {
-                if(this.isChangingState) //while it's changing state it can't run
-                {
-                    CurrentCost = 0;
-                    currentProduction =0;
-                    currentPollution = 0;
-                    //this.isProviding = false; maybe useless
-                    Console.WriteLine("Couldn't turn ON the Power Station while on turn-on or turn-off. Please wait.");
-                }
-                else
-                {
-                    if(this.isOn ==false) //if we asked to start when it was off
-                    {
-                        this.isChangingState = true;
-                        this.CurrentCost = this.changeStateCost;
+                        this.currentProduction = 0;
+                        this.nodeState = false;
                         
-                        Console.WriteLine("Turning on the Power Station. Please wait...");
-                        Task.Delay(5000).ContinueWith(t=> turningOn());
+                        this.isChanging = false;
+                        this.stationState = 3; //sleeping state
                     }
                     
-                    else //if not blocked
+                }
+                else // asking to turn ON
+                {
+                    if (this.nodeState) // if STATE TRUE --> already ON
                     {
-                        CurrentCost = this.fuelType.getCost() * currentProduction / fuelType.getEnergy();
+                        this.currentProduction = this.maxEnergyProduction;
+                        this.nodeState = true;
+
+                        this.isChanging = false;
+                        this.stationState = 1; //running state
+                    }
+                    else //IF STATE OFF --> want to start
+                    {
+                        this.currentProduction = 0;
+                        this.nodeState = false;
+
+                        this.isChanging = true;
+                        this.stationState = 4; //turning on state
                     }
                 }
-                
-                
-                
             }
+            else //when changing a state
+            {
+                this.currentProduction = 0; // always 0 
+                this.nodeState = false; //always not providing
+            }
+            
+            update();
         }
-        public void changeState()
+        public override void setCurrentCost()
         {
-            CurrentCost = this.changeStateCost;
-            if(this.isProviding)
+            switch (this.stationState)
             {
-                this.isProviding = false;
-            }
-            else
-            {
-                this.isProviding = true;
-            }
+                case 1: //Running
+                    Console.WriteLine("CASE 1");
 
+                    this.nodeState = true;
+                    this.isChanging = false;
+
+                    this.currentProduction = this.maxEnergyProduction;
+                    currentCost = this.fuelType.getCost() * this.currentProduction / fuelType.getEnergy();
+                    
+                    break;
+
+                case 2 : //stopping
+                    Console.WriteLine("CASE 2");
+
+
+
+                    currentCost = this.changeStateCost;
+
+                    Task.Delay(this.changeStateDelay).ContinueWith(t=>this.stationState = 3);
+
+                    break;
+                    
+                case 3 : // sleeping
+                    Console.WriteLine("CASE 3");
+
+                    currentCost = 0;
+                    this.isChanging = false;
+
+                    
+                    break;
+
+                case 4: //starting
+                    Console.WriteLine("CASE 4");
+
+                    currentCost = this.changeStateCost;
+
+                    Task.Delay(this.changeStateDelay).ContinueWith(t=>this.stationState = 1);
+                    break;
+
+                default : 
+                    this.stationState = 1;
+                    Console.WriteLine("Station state ERROR");
+                    break;
+
+            }
         }
         
+
+
         
-        
-
-        // public void testTimer()
-        // {
-        //     var timerState = new TimerState { Counter = 0 };
-
-        //     timer = new Timer(
-        //         callback: new TimerCallback(TimerTask),
-        //         state: timerState,
-        //         dueTime: 4000,
-        //         period: 2000);
-
-        //     while (timerState.Counter <= 10)
-        //     {
-        //         Task.Delay(1000).Wait();
-        //     }
-
-        //     timer.Dispose();
-        //     Console.WriteLine($"{DateTime.Now:HH:mm:ss.fff}: done.");
-        // }
-        // private static void TimerTask(object timerState)
-        // {
-        //     Console.WriteLine($"{DateTime.Now:HH:mm:ss.fff}: starting a new callback.");
-        //     var state = timerState as TimerState;
-        //     Interlocked.Increment(ref state.Counter);
-        // }
-
-        // class TimerState
-        // {
-        //     public int Counter;
-        // }
-        // public void SetTimer()
-        // {
-        //     // Create a timer with one second interval.
-        //     changeStateTimer = new System.Timers.Timer(1000);
-            
-        //     // Hook up the Elapsed event for the timer. 
-        //     changeStateTimer.Elapsed += OnTimedEvent;
-        //     // Have the timer fire repeated events (true is the default)
-        //     changeStateTimer.AutoReset = true;
-        //     // Start the timer
-        //     changeStateTimer.Enabled = true;
-
-            
-        // }
-
-        // private static void OnTimedEvent(Object source, ElapsedEventArgs e)
-        // {
-        //     Console.WriteLine("Current time: {0:HH:mm:ss.fff}", e.SignalTime);
-        // }
         
 
         

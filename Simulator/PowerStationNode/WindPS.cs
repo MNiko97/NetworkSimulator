@@ -29,17 +29,17 @@ namespace Network
             if (newEnergyQuantity>= (this.maxEnergyProduction* this.weatherIntensity/100))
             {
                 this.currentProduction = this.maxEnergyProduction* this.weatherIntensity/100;
-                this.isProviding = true;
+                this.nodeState = true;
             }
             else if (newEnergyQuantity <= 0)
             {
                 this.currentProduction =0;
-                this.isProviding = false;
+                this.nodeState = false;
             }
             else
             {
                 this.currentProduction = newEnergyQuantity;
-                this.isProviding = true;
+                this.nodeState = true;
             }  
             update();          
         }

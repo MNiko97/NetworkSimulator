@@ -1,12 +1,11 @@
 IN NUCLEARPS.CS :
     -Changing state not working properly
     -CurrentCost during tutnOFF/ turnON is not 0 ==> Do we let it like that?
-    -currentProduction/pollution still not 0 when turning the station ON
 
 IN POWERSTATIONNODE.CS :
     -import correctly stateNode
     -adapt variables with the Node and Network class
-
+    -Have to call Update every time I want to get the status
     
 
 

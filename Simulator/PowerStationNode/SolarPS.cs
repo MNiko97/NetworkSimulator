@@ -29,13 +29,13 @@ namespace Network
             if (newEnergyQuantity>0)
             {
                 this.currentProduction = this.maxEnergyProduction* this.weatherIntensity/100;
-                this.isProviding = true;
+                this.nodeState = true;
             }
             else 
             {
                 // Console.WriteLine("New energy quantity ="+newEnergyQuantity);
                 this.currentProduction =0;
-                this.isProviding = false;
+                this.nodeState = false;
             }
             
             update();          
