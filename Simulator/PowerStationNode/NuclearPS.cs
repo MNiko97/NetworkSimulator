@@ -1,28 +1,28 @@
 using System;
-using System.Threading;
 using System.Threading.Tasks;
-// using System.Timers;
+
 namespace Network
 {
     class NuclearPS : PowerStationNode 
     
 
     {
-        public int changeStateDelay;
-        public int changeStateCost;
+        public int changingDelay;
+        public int changingCost;
+        public int changingState;
         public bool isChanging;
-        public int stationState;
+        
     
         public NuclearPS(int maxEnergyProduction, Fuel fuelType) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
-            this.flexibility = false;
-            this.changeStateCost = 4000;
-            this.changeStateDelay = 5000;
+            this.isFlexible = false;
+            this.changingCost = 4000;
+            this.changingDelay = 5000;
             this.isChanging = false;
-            this.currentProduction = maxEnergyProduction;
+            this.nodePower = maxEnergyProduction;
             
-            this.stationState = 1;
+            this.changingState = 1;
 
             
             
@@ -35,19 +35,19 @@ namespace Network
                 {
                     if (this.nodeState) //if STATE TRUE  --> want to turn OFF
                     {
-                        this.currentProduction = 0;
+                        this.nodePower = 0;
                         this.nodeState = false;
 
                         this.isChanging = true; //BLOCKING OTHER COMMANDS
-                        this.stationState = 2; //turning off state
+                        this.changingState = 2; //turning off state
                     }
                     else //if STATE FALSE --> already OFF
                     {
-                        this.currentProduction = 0;
+                        this.nodePower = 0;
                         this.nodeState = false;
                         
                         this.isChanging = false;
-                        this.stationState = 3; //sleeping state
+                        this.changingState = 3; //sleeping state
                     }
                     
                 }
@@ -55,25 +55,25 @@ namespace Network
                 {
                     if (this.nodeState) // if STATE TRUE --> already ON
                     {
-                        this.currentProduction = this.maxEnergyProduction;
+                        this.nodePower = this.maxEnergyProduction;
                         this.nodeState = true;
 
                         this.isChanging = false;
-                        this.stationState = 1; //running state
+                        this.changingState = 1; //running state
                     }
                     else //IF STATE OFF --> want to start
                     {
-                        this.currentProduction = 0;
+                        this.nodePower = 0;
                         this.nodeState = false;
 
                         this.isChanging = true;
-                        this.stationState = 4; //turning on state
+                        this.changingState = 4; //turning on state
                     }
                 }
             }
             else //when changing a state
             {
-                this.currentProduction = 0; // always 0 
+                this.nodePower = 0; // always 0 
                 this.nodeState = false; //always not providing
             }
             
@@ -81,32 +81,30 @@ namespace Network
         }
         public override void setCurrentCost()
         {
-            switch (this.stationState)
+            switch (this.changingState)
             {
                 case 1: //Running
-                    Console.WriteLine("CASE 1");
+                    //Console.WriteLine("CASE 1");
 
                     this.nodeState = true;
                     this.isChanging = false;
 
-                    this.currentProduction = this.maxEnergyProduction;
-                    currentCost = this.fuelType.getCost() * this.currentProduction / fuelType.getEnergy();
+                    this.nodePower = this.maxEnergyProduction;
+                    currentCost = this.fuelType.getCost() * this.nodePower / fuelType.getEnergy();
                     
                     break;
 
                 case 2 : //stopping
-                    Console.WriteLine("CASE 2");
+                    //Console.WriteLine("CASE 2");
 
+                    currentCost = this.changingCost;
 
-
-                    currentCost = this.changeStateCost;
-
-                    Task.Delay(this.changeStateDelay).ContinueWith(t=>this.stationState = 3);
+                    Task.Delay(this.changingDelay).ContinueWith(t=>this.changingState = 3);
 
                     break;
                     
                 case 3 : // sleeping
-                    Console.WriteLine("CASE 3");
+                    //Console.WriteLine("CASE 3");
 
                     currentCost = 0;
                     this.isChanging = false;
@@ -115,27 +113,21 @@ namespace Network
                     break;
 
                 case 4: //starting
-                    Console.WriteLine("CASE 4");
+                    //Console.WriteLine("CASE 4");
 
-                    currentCost = this.changeStateCost;
+                    currentCost = this.changingCost;
 
-                    Task.Delay(this.changeStateDelay).ContinueWith(t=>this.stationState = 1);
+                    Task.Delay(this.changingDelay).ContinueWith(t=>this.changingState = 1);
                     break;
 
                 default : 
-                    this.stationState = 1;
+                    this.changingState = 1;
                     Console.WriteLine("Station state ERROR");
                     break;
 
             }
         }
-        
-
-
-        
-        
-
-        
+              
         
     }
 }
