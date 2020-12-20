@@ -40,14 +40,14 @@ namespace Network{
                 if(connexionNode.Count <2){
                     connexionNode.Add(node); 
                 }
-                else if (connexionNode.Count == 2){
-                    isConnected = true;
-                }
-            }
-            else{
+            }else{
                 Console.WriteLine("Error: " + this + " is already connected");
                 Console.WriteLine("Error: " + node + " is not connected");
             }
+            if(connexionNode.Count == 2){
+                isConnected = true;
+            }
+            
         }
         public void setPowerLine(float newPower, int id){
             if(connexionNode[0].getID() == id){
@@ -74,10 +74,15 @@ namespace Network{
         }
         public string showConnexionNode(){
             string strConnexionNode = "[";
-            foreach(var node in connexionNode){
-                strConnexionNode += "N" + node.id.ToString() + " ";            
+            if(connexionNode.Count == 0){
+                strConnexionNode += "empty]";
             }
-            strConnexionNode += "]";
+            if(connexionNode.Count == 1){
+                strConnexionNode += "N" + connexionNode[0].id.ToString() + "-NONE";
+            }
+            if(connexionNode.Count == 2){
+                strConnexionNode += "N" + connexionNode[0].id.ToString() + "-" + "N" + connexionNode[1].id.ToString() + "]";
+            }
             return strConnexionNode;
         }
         public void update()
