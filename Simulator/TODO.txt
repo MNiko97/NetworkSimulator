@@ -1,15 +1,24 @@
 IN NUCLEARPS.CS :
-    -Changing state not working properly
     -CurrentCost during tutnOFF/ turnON is not 0 ==> Do we let it like that?
 
 IN POWERSTATIONNODE.CS :
     -import correctly stateNode
-    -adapt variables with the Node and Network class
     -Have to call Update every time I want to get the status
     
 
-
-
+IN NODE.CS (proposition):
+    -add nodePollution and nodeCost, so that we can see the pollution and cost at each node 
+    (even concentration and distribution) for multiple reasons :
+        1. At each state, we can see the power and pollution and cost => improve what lurkin wanted (Durant un laps de temps donné, une centrale se caractérise par une quantité d'énergie électrique produite, par un coût de production (dépendant du prix des combustibles) et par une quantité de CO2 produite.)
+        2. Maybe a town will buy electricity more expensive than another one because the powe stations it's connected to have to pay more (Gas is cheaper so if a path is only composed of gas, the consumer may pay less)
+        3. At each concentration and distribution Node, we can see which one pollutes the most
+        4. It's easy to do and so that I can use an interface easily.
+        5. Downside is, it's not enough to create proper interfaces ==> see Network proposition
+IN NETWORK.CS (proposition):
+    -Differenciate the types of nodes in nodeArray (Dictionary) :
+     PowerStationNode, ConsumerNode, DistributionNode and ConcentrationNode. Reasons : 
+        1. Be able to have a better interface with which one belongs to what
+        2. May be of use for creating easier paths in the network.
 
 Question for Lurkin:
 
