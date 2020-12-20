@@ -78,7 +78,7 @@ namespace Network{
                 strConnexionNode += "empty]";
             }
             if(connexionNode.Count == 1){
-                strConnexionNode += "N" + connexionNode[0].id.ToString() + "-NONE";
+                strConnexionNode += "N" + connexionNode[0].id.ToString() + "-NONE]";
             }
             if(connexionNode.Count == 2){
                 strConnexionNode += "N" + connexionNode[0].id.ToString() + "-" + "N" + connexionNode[1].id.ToString() + "]";

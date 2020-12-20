@@ -29,12 +29,10 @@ namespace Network
                 outputLine.Add(line);
                 line.addNode(this);
                 outputIsFull = true;
-                // Console.WriteLine(outputIsFull);
-                // Console.WriteLine(string.Join("\t", outputLine));
             }
             else
             {
-                Console.WriteLine("Concentration Node N" + id.ToString() +" output is already connected, can't connect another line!");
+                Console.WriteLine(this + " can only have 1 OUTPUT!");
             }
         }
         public override string ToString(){
@@ -62,14 +60,10 @@ namespace Network
         }
         public override void connect(Line line)
         {
-            if(!isConnected){
-                if(line.isInputAvailable()){
-                    addOutputLine(line);
-                }else{
-                    addInputLine(line);
-                }
+            if(line.isInputAvailable()){
+                addOutputLine(line);
             }else{
-                Console.WriteLine(this+" is already connected");
+                addInputLine(line);
             }
             if(inputLine.Count > 0 && outputIsFull){
                 isConnected = true;

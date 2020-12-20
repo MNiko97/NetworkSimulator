@@ -19,22 +19,19 @@ namespace Network
 
         public void addInputLine(Line line)
         {
-            if (inputIsFull == false){
+            if (!inputIsFull){
                 inputLine.Add(line);
                 line.addNode(this);
                 inputIsFull = true;
-                //Console.WriteLine(inputIsFull);
-                //Console.WriteLine(string.Join("\t", inputLine));
             }
             else
             {
-                Console.WriteLine("Distribution Node input is already connected, can't connect another line!");
+                Console.WriteLine(this + " can only have 1 INPUT!");
             }
         }
         public void addOutputLine(Line line){
             outputLine.Add(line);
             line.addNode(this);
-            //Console.WriteLine(string.Join("\t", outputLine));
         }
         public override string ToString(){
             return "Distribution Node N" + id.ToString();
@@ -57,17 +54,13 @@ namespace Network
             output();
         }
 
-        public override void connect(Line line){
-            if(!isConnected){
-                if(line.isInputAvailable()){
-                    addOutputLine(line);
-                }else{
-                    addInputLine(line);
-                } 
+        public override void connect(Line line){            
+            if(line.isInputAvailable()){
+                addOutputLine(line);
             }else{
-                Console.WriteLine(this+" is already connected");
-            }
-            if(outputLine.Count > 0 && inputIsFull){    
+                addInputLine(line);
+            } 
+            if(outputLine.Count > 0 && inputIsFull){  
                 isConnected = true;
                 nodeState = true;
             }
