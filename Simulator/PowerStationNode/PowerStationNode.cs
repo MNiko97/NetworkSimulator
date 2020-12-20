@@ -12,7 +12,6 @@ namespace Network
         public float currentPollution;      
         public Fuel fuelType;
         public int weatherIntensity;
-        public bool isConnectedToLine;
         public List<Line> connexionLine;
 
 
@@ -25,7 +24,6 @@ namespace Network
             this.fuelType = fuelType;
             this.nodePower = maxEnergyProduction;
             this.nodeState = true;
-            this.isConnectedToLine = false;
             this.connexionLine = new List<Line>();
 
             
@@ -102,7 +100,7 @@ namespace Network
         {
             //Console.WriteLine("Node N" + id.ToString() + " is updating");
             if(nodeState){
-                if(isConnectedToLine){
+                if(isConnected){
                     connexionLine[0].setPowerLine(nodePower, id);
                     connexionLine[0].update();
                 }
@@ -120,9 +118,9 @@ namespace Network
 
         public override void connect(Line line)
         {
-            if(!isConnectedToLine){
+            if(!isConnected){
                 connexionLine.Add(line);
-                isConnectedToLine = true;
+                isConnected = true;
                 line.addNode(this);
             }else{
                 Console.WriteLine("Node N", id, " is already connected");

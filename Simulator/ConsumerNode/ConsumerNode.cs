@@ -7,14 +7,12 @@ namespace Network{
     {
         public float energyPrice;
         public float energyQuantity;
-        public bool isConnectedToLine;
         public List<Line> connexionLine;
 
         public ConsumerNode(int powerDemand) : base ()
         {
             this.nodePower = powerDemand;
             this.energyQuantity = 0;
-            this.isConnectedToLine = false;
             this.connexionLine = new List<Line>();
         }
 
@@ -29,7 +27,7 @@ namespace Network{
 
         public override void update()
         {
-            if(isConnectedToLine){
+            if(isConnected){
                 connexionLine[0].update();
                 float power = connexionLine[0].getLinePower();
                 if(energyQuantity - power < 0){
@@ -45,9 +43,9 @@ namespace Network{
         }
         public override void connect(Line line)
         {
-            if(!isConnectedToLine){
+            if(!isConnected){
                 connexionLine.Add(line);
-                isConnectedToLine = true;
+                isConnected = true;
                 nodeState = true;
                 line.addNode(this);
             }else{
