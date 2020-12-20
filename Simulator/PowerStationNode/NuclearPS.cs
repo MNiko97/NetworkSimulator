@@ -27,7 +27,7 @@ namespace Network
             
             
         }
-        public override void setEnergyProduction(int newEnergyQuantity)
+        public override void setEnergyProduction(float newEnergyQuantity)
         {
             if(this.isChanging ==false) //if the station is NOT turning OFF or ON
             {

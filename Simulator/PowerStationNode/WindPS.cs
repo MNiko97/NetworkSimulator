@@ -23,7 +23,7 @@ namespace Network
             update();
         }
 
-        public override void setEnergyProduction(int newEnergyQuantity)
+        public override void setEnergyProduction(float newEnergyQuantity)
         {
             // base.setEnergyProduction(newEnergyQuantity);
             if (newEnergyQuantity>= (this.maxEnergyProduction* this.weatherIntensity/100))

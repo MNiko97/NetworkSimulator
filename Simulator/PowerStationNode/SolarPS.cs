@@ -23,7 +23,7 @@ namespace Network
         }
 
 
-        public override void setEnergyProduction(int newEnergyQuantity)
+        public override void setEnergyProduction(float newEnergyQuantity)
         {
             // base.setEnergyProduction(newEnergyQuantity);
             if (newEnergyQuantity>0)

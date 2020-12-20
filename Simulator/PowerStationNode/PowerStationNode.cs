@@ -45,7 +45,7 @@ namespace Network
             // return "Power Station N"+this.id+"  State : "+this.nodeState+"  Current Power : "
             // +this.nodePower+"   Current Cost : "+this.currentCost+"     Current Pollution : "+ this.currentPollution;
         }
-        public virtual void setEnergyProduction(int newEnergyQuantity)
+        public virtual void setEnergyProduction(float newEnergyQuantity)
         {
 
             if(newEnergyQuantity <=0) //asking to turn off
