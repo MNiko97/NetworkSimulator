@@ -4,6 +4,8 @@ using System.Text.RegularExpressions;
 namespace Network{
     class Network{
         public Dictionary<int, Node> nodeArray;
+        public Dictionary<int, Node> sourceArray;
+        public Dictionary<int, Node> consumerArray;
         public Dictionary<int, Line> lineArray;
         public List<int> path;
         public Weather weather;
@@ -11,34 +13,21 @@ namespace Network{
         public int newNodeID;
         public Network(){
             this.nodeArray = new Dictionary<int, Node>();
+            this.sourceArray = new Dictionary<int, Node>();
+            this.consumerArray = new Dictionary<int, Node>();
             this.lineArray = new Dictionary<int, Line>();
             this.weather = new Weather(80, 70);        
             this.newLineID = 0;
             this.newNodeID = 0;
             this.path = new List<int>();
-        }
-        public void findAllPath(int start, List<int> ignored,  List<int> all){
-            var previousPath = lineArray[start].connexionNode[1].id;
-            var ignoredPath = ignored;
-            var allPath = all;
-            var newPath = new List<int>();
-            foreach(var line in lineArray){
-                var currentPath = line.Value.connexionNode[0].id;
-                if(currentPath == previousPath){
-                    newPath.Add(line.Value.id);
-                }
-                else{
-                    ignoredPath.Add(line.Value.id);
-                }
-            }
-        }
+        }  
         public void addPowerStationNode(PowerStationNode node){
             node.setId(newNodeID);
-            nodeArray.Add(newNodeID++, node);
+            sourceArray.Add(newNodeID++, node);
         }
         public void addConsumerNode(ConsumerNode node){
             node.setId(newNodeID);
-            nodeArray.Add(newNodeID++, node);
+            consumerArray.Add(newNodeID++, node);
         }
         public void addConcentrationNode(){
             ConcentrationNode node = new ConcentrationNode();
