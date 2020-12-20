@@ -64,12 +64,12 @@ namespace Network
                 }else{
                     addInputLine(line);
                 } 
+            }else{
+                Console.WriteLine(this+" is already connected");
             }
             if(outputLine.Count > 0 && inputIsFull){    
                 isConnected = true;
                 nodeState = true;
-            }else{
-                Console.WriteLine(this+" is already connected");
             }
         }
     }
