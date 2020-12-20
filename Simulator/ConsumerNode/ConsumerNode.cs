@@ -10,8 +10,9 @@ namespace Network{
         public bool isConnectedToLine;
         public List<Line> connexionLine;
 
-        public ConsumerNode() : base ()
+        public ConsumerNode(int powerDemand) : base ()
         {
+            this.nodePower = powerDemand;
             this.energyQuantity = 0;
             this.isConnectedToLine = false;
             this.connexionLine = new List<Line>();

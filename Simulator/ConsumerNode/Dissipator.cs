@@ -4,7 +4,7 @@ namespace Network{
 
     class Dissipator : ConsumerNode
     {
-        public Dissipator():base()
+        public Dissipator(int powerDemand):base(powerDemand)
         {
         }
 

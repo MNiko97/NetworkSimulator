@@ -4,7 +4,7 @@ namespace Network{
 
     class ExportCountry : ConsumerNode
     {
-        public ExportCountry():base()
+        public ExportCountry(int powerDemand):base( powerDemand)
         {
         }
         public override string ToString(){

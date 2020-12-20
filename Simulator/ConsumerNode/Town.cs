@@ -4,7 +4,7 @@ namespace Network{
 
     class Town : ConsumerNode
     {
-        public Town() : base()
+        public Town(int powerDemand) : base( powerDemand)
         {
             energyQuantity = 10000;  
         }
