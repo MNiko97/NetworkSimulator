@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Network
 {
-    class PowerStationNode : Node
+    class PowerStationNode : Node //, IPowerStation
     {
         public bool isFlexible;
         public bool isWeatherDependent;
@@ -30,13 +30,22 @@ namespace Network
 
             
             //update();
-            // nodeState = true;
-            //setUpdate();
 
         }
 
+        // public  string getState()
+        // {
+        //     float pollution = this.currentPollution;
+
+        //     return "Power Station N"+this.id+"  State : "+this.nodeState+"  Current Power : "
+        //     +this.nodePower+"   Current Cost : "+this.currentCost+"     Current Pollution : "+ this.currentPollution;
+        // }
+        
         public override string ToString(){
             return "Power Station N" + id.ToString();
+            
+            // return "Power Station N"+this.id+"  State : "+this.nodeState+"  Current Power : "
+            // +this.nodePower+"   Current Cost : "+this.currentCost+"     Current Pollution : "+ this.currentPollution;
         }
         public virtual void setEnergyProduction(int newEnergyQuantity)
         {
