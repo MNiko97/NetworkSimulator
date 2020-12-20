@@ -5,6 +5,7 @@ namespace Network{
         public int id;
         public float nodePower;
         public bool nodeState;
+        public bool isConnected;
         public Node(){
             this.id = 0;
             this.nodePower = 0;
@@ -12,6 +13,7 @@ namespace Network{
         }
         public void setId(int id){
             this.id = id;
+            this.isConnected = false;
         }
         public float getNodePower(){
             return nodePower;
