@@ -4,13 +4,13 @@ namespace Network{
 
     class Dissipator : ConsumerNode
     {
-        public Dissipator(int powerDemand):base(powerDemand)
+        public Dissipator(float energyRequire):base(energyRequire)
         {
         }
 
         public override void setPrice(){
             energyPrice = 0;
-            Console.WriteLine(energyQuantity+" KW were lost because of overproduction");
+            Console.WriteLine(energyRequire+" KW were lost because of overproduction");
         }    
         public override string ToString(){
             return "Disspator N" + id.ToString();

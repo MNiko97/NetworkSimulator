@@ -4,14 +4,14 @@ namespace Network{
 
     class Company : ConsumerNode
     {
-        public Company(int powerDemand) : base(powerDemand)
+        public Company(float energyRequire) : base(energyRequire)
         {
         }
 
         public override void setPrice()
         {
-            energyPrice = 10*energyQuantity;
-            Console.WriteLine("Company paid "+energyPrice+" euros for "+energyQuantity+" KW");
+            energyPrice = 10*energyRequire;
+            Console.WriteLine("Company paid "+energyPrice+" euros for "+energyRequire+" KW");
         }
         public override string ToString(){
             return "Company N" + id.ToString();

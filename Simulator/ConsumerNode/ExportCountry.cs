@@ -4,7 +4,7 @@ namespace Network{
 
     class ExportCountry : ConsumerNode
     {
-        public ExportCountry(int powerDemand):base( powerDemand)
+        public ExportCountry(float energyRequire):base( energyRequire)
         {
         }
         public override string ToString(){
@@ -12,8 +12,8 @@ namespace Network{
         }
         public override void setPrice()
         {
-            energyPrice = 25*energyQuantity;
-            Console.WriteLine("Foreign country paid "+energyPrice+" euros for "+energyQuantity+" KW");
+            energyPrice = 25*energyRequire;
+            Console.WriteLine("Foreign country paid "+energyPrice+" euros for "+energyRequire+" KW");
         }
     }
 }

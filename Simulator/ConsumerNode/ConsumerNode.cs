@@ -6,13 +6,13 @@ namespace Network{
     abstract class ConsumerNode : Node
     {
         public float energyPrice;
-        public float energyQuantity;
+        public float energyRequire;
         public List<Line> connexionLine;
 
-        public ConsumerNode(int powerDemand) : base ()
+        public ConsumerNode(float energyRequire) : base ()
         {
-            this.nodePower = powerDemand;
-            this.energyQuantity = 0;
+            this.nodePower = 0;
+            this.energyRequire = energyRequire;
             this.connexionLine = new List<Line>();
         }
 
@@ -22,21 +22,22 @@ namespace Network{
         }
     
         public virtual void setPrice(){
-            energyPrice = this.energyQuantity;
+            //
         }
 
         public override void update()
         {
             if(isConnected){
                 connexionLine[0].update();
+                nodePower = connexionLine[0].getLinePower();
                 float power = connexionLine[0].getLinePower();
-                if(energyQuantity - power < 0){
+                if(energyRequire - power < 0){
                     nodeState = false;
                     Console.WriteLine("too much power, overflow");
                     //throw new Exception();
                 }
                 else{
-                   energyQuantity -= power; 
+                   energyRequire -= power; 
                 }
                 
             }
