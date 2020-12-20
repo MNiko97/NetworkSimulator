@@ -62,18 +62,20 @@ namespace Network
         }
         public override void connect(Line line)
         {
-            if(line.isInputAvailable()){
-                addOutputLine(line);
+            if(!isConnected){
+                if(line.isInputAvailable()){
+                    addOutputLine(line);
+                }else{
+                    addInputLine(line);
+                }
             }
-            else {
-                addInputLine(line);
-            }
-            updateNodeState();
-        }
-        public void updateNodeState(){
-            if(inputLine.Count > 0 && outputIsFull){    
+            if(inputLine.Count > 0 && outputIsFull){
+                isConnected = true;
                 nodeState = true;
+            }else{
+                Console.WriteLine(this+" is already connected");
             }
+            
         }
     }
 }

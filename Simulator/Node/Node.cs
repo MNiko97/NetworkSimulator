@@ -10,6 +10,7 @@ namespace Network{
             this.id = 0;
             this.nodePower = 0;
             this.nodeState = false;
+            this.isConnected = false;
         }
         public void setId(int id){
             this.id = id;

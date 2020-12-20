@@ -46,31 +46,30 @@ namespace Network
             }
         }
 
-        public override List<string> getAlert()
-        {
+        public override List<string> getAlert(){
             throw new NotImplementedException();
         }
 
-        public override void update()
-        {
+        public override void update(){
             if(inputIsFull){
                nodePower = inputLine[0].getLinePower(); 
             }
             output();
         }
 
-        public override void connect(Line line)
-        {
-            if(line.isInputAvailable()){
-                addOutputLine(line);
-            }else{
-                addInputLine(line);
+        public override void connect(Line line){
+            if(!isConnected){
+                if(line.isInputAvailable()){
+                    addOutputLine(line);
+                }else{
+                    addInputLine(line);
+                } 
             }
-            updateNodeState();
-        }
-        public void updateNodeState(){
             if(outputLine.Count > 0 && inputIsFull){    
+                isConnected = true;
                 nodeState = true;
+            }else{
+                Console.WriteLine(this+" is already connected");
             }
         }
     }
