@@ -120,7 +120,7 @@ namespace Network
         }
         public string getCurrentStatus()
         {
-            update();
+            //update();
             return ("\nflex : "+this.sourceType["isFlexible"]+ "\nis weather dependent : "+this.sourceType["isWeatherDependant"]
             +"\nmax production : "+this.maxEnergyProduction
             +"\ncurrent prod : "+this.nodePower+"\ncurrent cost : "+this.currentCost+ "\ncurrent pollution : "+this.currentPollution

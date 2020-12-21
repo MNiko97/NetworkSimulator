@@ -78,7 +78,7 @@ namespace Network
                 this.nodeState = false; //always not providing
             }
             
-            update();
+            //update();
         }
         public override void setCurrentCost()
         {
