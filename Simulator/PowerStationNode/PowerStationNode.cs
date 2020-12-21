@@ -99,6 +99,7 @@ namespace Network
             setCurrentCost();
             
             
+            
         }
 
         public override List<string> getAlert()
@@ -116,14 +117,10 @@ namespace Network
                 Console.WriteLine("Node N", id, " is already connected");
             }
         }
-        public string getCurrentStatus()
+        public string getCurrentState()
         {
             //update();
-            return ("\nflex : "+this.sourceType["isFlexible"]+ "\nis weather dependent : "+this.sourceType["isWeatherDependant"]
-            +"\nmax production : "+this.maxEnergyProduction
-            +"\ncurrent prod : "+this.nodePower+"\ncurrent cost : "+this.currentCost+ "\ncurrent pollution : "+this.currentPollution
-            +"\nfuel energy per unit : "+this.fuelType.energyPerUnit+"\nis providing : "+this.nodeState + "\nweather intensity : "
-            +this.weatherIntensity);
+            return ("\n"+this.GetType().Name+" Production : "+this.nodePower+"MW. Cost : "+this.currentCost+ "Euros. Pollution : "+this.currentPollution +"g of CO2." );
         }
     }
 }

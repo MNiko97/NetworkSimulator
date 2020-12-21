@@ -87,9 +87,12 @@ namespace Network{
                 if(consumer.Value.GetType().Name == nodeType)
                 {
                     // MINUS diff() because we want to reduce when diff()>0 and augment when <0
-                    consumer.Value.setEnergyRequire(consumer.Value.nodePower - diff()); 
-                    Console.WriteLine(consumer.Value+"    Current Power {0}    Difference {2}    energy require {1}",
-                    consumer.Value.nodePower, consumer.Value.energyRequire, diff());
+                     
+                    Console.WriteLine(consumer.Value+"     Current Power {0} MW     Power Require {1} MW     Difference : {2} MW",
+                    consumer.Value.nodePower, consumer.Value.energyRequire,diff());
+                    consumer.Value.setEnergyRequire(consumer.Value.nodePower - diff());
+                    
+
                 }
             }
         }
@@ -101,28 +104,25 @@ namespace Network{
                 && source.Value.sourceType["isInfinite"] == isInfinite)
                 {
                     // PLUS diff() because we want to augment when diff()>0 and reduce when <0
-                    source.Value.setEnergyProduction(source.Value.nodePower + diff()); 
-                    Console.WriteLine(source.Value+"    Current Power {0}    Difference {2}    max power {1}",
-                    source.Value.nodePower, source.Value.maxEnergyProduction, diff());
+                    
+                    Console.WriteLine(source.Value+"     Max Power : {0}MW     Current Power : {1} + {2} MW",
+                    source.Value.maxEnergyProduction, source.Value.nodePower,(diff()<source.Value.maxEnergyProduction)? (source.Value.maxEnergyProduction-source.Value.nodePower):diff());
+
+                    source.Value.setEnergyProduction(source.Value.nodePower + diff());
+                     
                 }
 
             }
         }
         public void run(){
-            Console.WriteLine("\n ACTIVE POWER STATIONS");
-            foreach(var source in sourceArray)
-            {
-                Console.WriteLine(source.Value+"            Current Power {1}           Max Power {2}           Type {0}",
-                source.Value.GetType().Name, source.Value.nodePower, source.Value.maxEnergyProduction);
-            }
-            Console.WriteLine("\n ACTIVE CONSUMERS");
-            foreach(var consummer in consumerArray)
-            {
-                Console.WriteLine(consummer.Value+"          Current Power {1}           Power Require {2}           Type {0}",
-                consummer.Value.GetType().Name, consummer.Value.nodePower, consummer.Value.energyRequire);
-            }
-            Console.WriteLine("\n");
-            
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("BEFORE ADJUSTMENTS");
+            show();
+            Console.WriteLine("\nADJUSTMENTS");
+            Console.WriteLine("The Adjustments we have to make in the Power Stations : {0}",diff()+
+            "\nIf the value is >0 : need to produce more. Else if value is<0 : need to produce less. Else : no modification required.\n");
+
+
             string mess= "demand = supply";
             int status = 0;
             while(diff()!=0)
@@ -176,24 +176,45 @@ namespace Network{
                         // status = 0;
                         break;
                     default: 
-                        Console.WriteLine("ERROR");
+                        mess = "ERROR";
                         //status = 0;
                         break;
                     
                 }
             }
-            Console.WriteLine("The status of the nodes before modification are : {0} and the difference is : {1}",mess,diff());
+            
+            Console.WriteLine("\nThe adjustment we needed to make were : {0} and the difference is now : {1}",mess,diff());
+            
             updateNetwork();
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("AFTER ADJUSTMENTS");
+            show();
+            foreach(var consumer in consumerArray)
+            {
+                consumer.Value.changeRequirement();
+            }
+            
         }
         public void show(){
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("\nACTIVE POWER STATIONS");
+            foreach(var source in sourceArray)
+            {
+                Console.WriteLine(source.Value+"     Max Power : {2}MW     Current Power : {1} MW     Current Cost : {3} Euros     Current Pollution : {4} g of CO2     State : {5}     Type : {0}",
+                source.Value.GetType().Name, source.Value.nodePower, source.Value.maxEnergyProduction,source.Value.currentCost,source.Value.currentPollution,source.Value.getNodeState());
+            }
+            Console.WriteLine("\nACTIVE CONSUMERS");
+            foreach(var consummer in consumerArray)
+            {
+                Console.WriteLine(consummer.Value+"     Current Power : {1} MW     Power Require {2} MW     State : {3}     Type : {0}",
+                consummer.Value.GetType().Name, consummer.Value.nodePower, consummer.Value.energyRequire,consummer.Value.getNodeState());
+            }
+            Console.WriteLine("\nACTIVE LINES");
             foreach (var line in lineArray){
-                Console.WriteLine("{0}    Status: {1}    Current Power: {2}MW    Connected: {3}    Link: {4}", 
+                Console.WriteLine("{0}    Status: {1}    Current Power: {2} MW    Connected: {3}    Link: {4}", 
                 line.Value, line.Value.getLineState(), line.Value.getLinePower(), line.Value.isConnected, line.Value.showConnexionNode());
             }
-            foreach (var node in nodeArray){
-                Console.WriteLine("{0}    Status: {1}    Current Power: {2}MW    Connected: {3}",
-                node.Value, node.Value.getNodeState(), node.Value.getNodePower(), node.Value.isConnected);
-            }
+            
         }
     }
 }

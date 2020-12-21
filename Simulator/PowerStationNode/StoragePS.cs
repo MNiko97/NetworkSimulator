@@ -14,7 +14,7 @@ namespace Network
         }
         public override void setEnergyProduction(float newEnergyQuantity)
         {
-            if(newEnergyQuantity =0) //asking to turn off
+            if(newEnergyQuantity ==0) //asking to turn off
             {
                 this.nodePower = 0;
                 this.nodeState = false;
