@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Network
 {
-    class PowerStationNode : Node //, IPowerStation
+    class PowerStationNode : Node 
     {
-        // public bool isFlexible;
-        //public bool isWeatherDependent;
         public Dictionary <string, bool> sourceType;
         public int maxEnergyProduction;
         public float currentCost ;
