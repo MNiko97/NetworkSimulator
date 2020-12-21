@@ -4,30 +4,33 @@ using System.Text.RegularExpressions;
 namespace Network{
     class Network{
         public Dictionary<int, Node> nodeArray;
-        public Dictionary<int, Node> sourceArray;
-        public Dictionary<int, Node> consumerArray;
+        public Dictionary<int, PowerStationNode> sourceArray;
+        public Dictionary<int, ConsumerNode> consumerArray;
         public Dictionary<int, Line> lineArray;
-        public List<int> path;
+
         public Weather weather;
+
         public int newLineID;
         public int newNodeID;
+
         public Network(){
             this.nodeArray = new Dictionary<int, Node>();
-            this.sourceArray = new Dictionary<int, Node>();
-            this.consumerArray = new Dictionary<int, Node>();
+            this.sourceArray = new Dictionary<int, PowerStationNode>();
+            this.consumerArray = new Dictionary<int, ConsumerNode>();
             this.lineArray = new Dictionary<int, Line>();
             this.weather = new Weather(80, 70);        
             this.newLineID = 0;
             this.newNodeID = 0;
-            this.path = new List<int>();
         }  
         public void addPowerStationNode(PowerStationNode node){
             node.setId(newNodeID);
-            sourceArray.Add(newNodeID++, node);
+            sourceArray.Add(newNodeID, node);
+            nodeArray.Add(newNodeID++, node);
         }
         public void addConsumerNode(ConsumerNode node){
             node.setId(newNodeID);
-            consumerArray.Add(newNodeID++, node);
+            consumerArray.Add(newNodeID, node);
+            nodeArray.Add(newNodeID++, node);
         }
         public void addConcentrationNode(){
             ConcentrationNode node = new ConcentrationNode();
@@ -47,10 +50,103 @@ namespace Network{
             nodeArray[node2ID].connect(lineArray[lineID]);
         }
         public void updateNetwork(){
-            foreach(var node in nodeArray){
-                node.Value.update();
+            List<int> updatedNode = new List<int>();
+            List<int> updatedLine = new List<int>();
+            foreach(var powerNode in sourceArray){
+                powerNode.Value.update();
+                updatedNode.Add(powerNode.Value.id);
             }
-            
+            foreach (var line in lineArray){
+                Console.WriteLine("");
+                while(!updatedLine.Contains(line.Value.id)){
+                    if(updatedNode.Contains(line.Value.connexionNode[0].id)){
+                        line.Value.connexionNode[1].update();
+                        updatedNode.Add(line.Value.connexionNode[1].id);
+                        updatedLine.Add(line.Value.id);
+                    }
+                }
+            }
+        }
+        public float diff(){
+            float powerRequired = 0;
+            float powerSent = 0;
+            foreach (var powerStation in sourceArray){
+                powerSent += powerStation.Value.nodePower;
+            }
+            foreach (var consumer in consumerArray)
+            {
+                powerRequired += consumer.Value.energyRequire;
+            }
+            return powerRequired - powerSent;
+        }
+        public void run(){
+            int priority = 1;
+            bool running = true;
+            while (running){
+                switch (priority){
+                    case 1:// Priority 1 : Use flexible sources to regulate power production
+                        foreach (var source in sourceArray){ 
+                            if(source.Value.isFlexible){
+                                float currentPower = source.Value.nodePower;
+                                source.Value.setEnergyProduction(currentPower + diff());
+                            }
+                        }
+                        if(diff() > 0){ // need more power production
+                            priority = 2;
+                        }
+                        if(diff() == 0){ // power requirement reached successfully !
+                            priority = 0;
+                        }
+                        if(diff() < 0){ // need to reduce power production
+                        priority = -2; 
+                        } 
+                        break;
+                    case 2: // Priority 2 : buy from outside if possible
+                        Console.WriteLine("Need to buy " + diff() + " MW");
+                        priority = 0;
+                        break;
+                    case -2:
+                        // Priority -2 : try to sell energy if possible
+                        if (diff() < 0){ // need to reduce power production
+                            priority = -3;
+                        }
+                        if(diff() == 0){ // power requirement reached successfully !
+                            priority = 0;
+                        }
+                        break;
+                    case -3: // Priority -3 : Reduce weather dependant power production
+                        foreach (var source in sourceArray){ 
+                            if(source.Value.isWeatherDependent){
+                                float currentPower = source.Value.nodePower;
+                                source.Value.setEnergyProduction(currentPower + diff());
+                            }
+                            if (diff() < 0){ // need to reduce power production
+                            priority = -4;
+                            }
+                            if(diff() == 0){ // power requirement reached successfully !
+                                priority = 0;
+                            }
+                        }
+                        break;
+                    case -4: // Priority 4 : use dissipator if possible
+                        // implement dissipator 
+                        if (diff() < 0){ // need to reduce power production
+                            priority = -5;
+                        }
+                        if(diff() == 0){ // power requirement reached successfully !
+                            priority = 0;
+                        }
+                        break;
+                    case -5: // Priotrity 5 : last resolution, shut down constant sources
+                        //turn on dependant power production
+                        priority = 0;
+                        break;
+                    case 0: //stop
+                        running = false;
+                        break;
+                }
+            }
+            updateNetwork();
         }
         public void show(){
             foreach (var line in lineArray){
@@ -58,27 +154,9 @@ namespace Network{
                 line.Value, line.Value.getLineState(), line.Value.getLinePower(), line.Value.isConnected, line.Value.showConnexionNode());
             }
             foreach (var node in nodeArray){
-                Console.WriteLine("{0}    Status: {1}    Current Power: {2}MW",
-                node.Value, node.Value.getNodeState(), node.Value.getNodePower());
+                Console.WriteLine("{0}    Status: {1}    Current Power: {2}MW    Connected: {3}",
+                node.Value, node.Value.getNodeState(), node.Value.getNodePower(), node.Value.isConnected);
             }
         }
-        /*public void connectTwoNodes(string node1ID, string node2ID, string lineID){
-            string node1str = Regex.Replace(node1ID, "[^0-9.]", "");
-            string node2str = Regex.Replace(node2ID, "[^0-9.]", "");
-            string linestr = Regex.Replace(lineID, "[^0-9.]", "");
-            int node1;
-            int node2;
-            int line;
-            if(Int32.TryParse(node1str, out node1) && Int32.TryParse(node2str, out node2) && Int32.TryParse(linestr, out line)){
-                Console.WriteLine(nodeArray[node1] is PowerStationNode);
-                Console.WriteLine(nodeArray[node1].GetType().Name);
-                try{
-                    lineArray[line].connect(nodeArray[node1], nodeArray[node2]);
-                }
-                catch{
-                    Console.WriteLine("One of the node or line does not exist");
-                }
-            }
-        }*/
     }
 }
