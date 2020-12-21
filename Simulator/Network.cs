@@ -106,7 +106,7 @@ namespace Network{
                     // PLUS diff() because we want to augment when diff()>0 and reduce when <0
                     
                     Console.WriteLine(source.Value+"     Max Power : {0}MW     Current Power : {1} + {2} MW",
-                    source.Value.maxEnergyProduction, source.Value.nodePower,(diff()>source.Value.maxEnergyProduction)? (source.Value.maxEnergyProduction-source.Value.nodePower):diff());
+                    source.Value.maxEnergyProduction, source.Value.nodePower,diff());
 
                     source.Value.setEnergyProduction(source.Value.nodePower + diff());
                      
