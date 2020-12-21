@@ -14,11 +14,10 @@ IN NODE.CS (proposition):
         3. At each concentration and distribution Node, we can see which one pollutes the most
         4. It's easy to do and so that I can use an interface easily.
         5. Downside is, it's not enough to create proper interfaces ==> see Network proposition
+        
 IN NETWORK.CS (proposition):
-    -Differenciate the types of nodes in nodeArray (Dictionary) :
-     PowerStationNode, ConsumerNode, DistributionNode and ConcentrationNode. Reasons : 
-        1. Be able to have a better interface with which one belongs to what
-        2. May be of use for creating easier paths in the network.
+    -CHANGE SWITCH-CASE with WHILE difference!=0 {if / else and if can't change => break    }
+    -Modify the if/else in case where supply> demand  (have a condition to first diminish import, then gas then WIND, then Export)
 
 Question for Lurkin:
 
