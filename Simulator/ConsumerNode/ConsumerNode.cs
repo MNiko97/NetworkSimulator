@@ -45,6 +45,10 @@ namespace Network{
 
         public override void update()
         {
+            Random energy = new Random();
+            float min = energyRequire - (energyRequire*20/100);
+            float max = energyRequire + (energyRequire*20/100); 
+            energyRequire = energy.Next(Convert.ToInt32(min), Convert.ToInt32(max));
             if(isConnected){
                 connexionLine[0].update();
                 nodePower = connexionLine[0].getLinePower();
