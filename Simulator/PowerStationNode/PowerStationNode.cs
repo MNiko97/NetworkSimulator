@@ -5,8 +5,9 @@ namespace Network
 {
     class PowerStationNode : Node //, IPowerStation
     {
-        public bool isFlexible;
-        public bool isWeatherDependent;
+        // public bool isFlexible;
+        //public bool isWeatherDependent;
+        public Dictionary <string, bool> sourceType;
         public int maxEnergyProduction;
         public float currentCost ;
         public float currentPollution;      
@@ -18,8 +19,12 @@ namespace Network
         public PowerStationNode(int maxEnergyProduction, Fuel fuelType): base()
         {
             this.maxEnergyProduction = maxEnergyProduction;
-            this.isFlexible = true;
-            this.isWeatherDependent = false;
+            // this.isFlexible = true;
+            // this.isWeatherDependent = false;
+            this.sourceType = new Dictionary<string, bool>();
+            this.sourceType.Add("isFlexible",false);
+            this.sourceType.Add("isWeatherDependant",false);
+            this.sourceType.Add("isInfinite",false);
             
             this.fuelType = fuelType;
             this.nodePower = maxEnergyProduction;
@@ -57,7 +62,7 @@ namespace Network
             }
             else    //asking to set a new value or turn on
             {
-                if(this.isFlexible) //if flexible
+                if(this.sourceType["isFlexible"]) //if flexible
                 {
                     if (newEnergyQuantity>=this.maxEnergyProduction)
                     {
@@ -129,7 +134,7 @@ namespace Network
         public string getCurrentStatus()
         {
             update();
-            return ("\nflex : "+this.isFlexible + "\nis weather dependent : "+this.isWeatherDependent
+            return ("\nflex : "+this.sourceType["isFlexible"]+ "\nis weather dependent : "+this.sourceType["isWeatherDependant"]
             +"\nmax production : "+this.maxEnergyProduction
             +"\ncurrent prod : "+this.nodePower+"\ncurrent cost : "+this.currentCost+ "\ncurrent pollution : "+this.currentPollution
             +"\nfuel energy per unit : "+this.fuelType.energyPerUnit+"\nis providing : "+this.nodeState + "\nweather intensity : "

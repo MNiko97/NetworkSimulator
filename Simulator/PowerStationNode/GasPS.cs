@@ -9,6 +9,9 @@ namespace Network
         {
             this.fuelType = fuelType;
             nodePower = maxEnergyProduction;
+            this.sourceType["isFlexible"]= true;
+            this.sourceType["isWeatherDependant"]= false;
+            this.sourceType["isInfinite"]= false;
         }
 
     }

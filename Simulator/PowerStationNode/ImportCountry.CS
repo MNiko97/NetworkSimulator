@@ -6,6 +6,9 @@ namespace Network
         {
             this.fuelType = fuelType;
             this.nodeState = false;
+            this.sourceType["isFlexible"]= true;
+            this.sourceType["isWeatherDependant"]= false;
+            this.sourceType["isInfinite"]= true;
 
         }
         public override void setEnergyProduction(float newEnergyQuantity)
