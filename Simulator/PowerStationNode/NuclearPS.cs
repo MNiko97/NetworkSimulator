@@ -16,13 +16,11 @@ namespace Network
         public NuclearPS(int maxEnergyProduction, Fuel fuelType) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
-            //this.isFlexible = false;
             this.changingCost = 4000;
             this.changingDelay = 5000;
             this.isChanging = false;
-            this.nodePower = maxEnergyProduction;
-            
             this.changingState = 1;
+            
             this.sourceType["isFlexible"]= false;
             this.sourceType["isWeatherDependant"]= false;
             this.sourceType["isInfinite"]= false;

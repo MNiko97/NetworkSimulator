@@ -16,8 +16,6 @@ namespace Network
             
             if(newEnergyQuantity <=0) //asking to turn off
             {
-                // nodeState = false;
-                // nodePower = 0;
                 this.nodePower = 0;
                 this.nodeState = false;
             }

@@ -11,9 +11,16 @@ namespace Network{
 
         public ConsumerNode(float energyRequire) : base ()
         {
-            this.nodePower = 0;
-            this.energyRequire = energyRequire;
+            this.nodePower = 0;        
             this.connexionLine = new List<Line>();
+            if (energyRequire<=0)
+            {
+                this.energyRequire = 0;
+            }
+            else
+            {
+                this.energyRequire = energyRequire;
+            }
         }
 
         public override List<string> getAlert()
@@ -25,7 +32,15 @@ namespace Network{
             //
         }
         public void setEnergyRequire(float energy){
-            energyRequire = energy;
+            if (energy<=0)
+            {
+                this.energyRequire = 0;
+            }
+            else
+            {
+                this.energyRequire = energy;
+            }
+            
         }
 
         public override void update()
@@ -56,6 +71,9 @@ namespace Network{
             }else{
                 Console.WriteLine("Node N", id, " is already connected");
             }
+        }
+        public override string ToString(){
+            return "Consumer N" + id.ToString();
         }
     }
 }

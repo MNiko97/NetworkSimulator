@@ -12,8 +12,8 @@ namespace Network{
             energyPrice = 0;
             Console.WriteLine(energyRequire+" KW were lost because of overproduction");
         }    
-        public override string ToString(){
-            return "Disspator N" + id.ToString();
-        }
+        // public override string ToString(){
+        //     return "Disspator N" + id.ToString();
+        // }
     }
 }

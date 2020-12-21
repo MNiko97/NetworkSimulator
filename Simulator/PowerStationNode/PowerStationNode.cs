@@ -19,44 +19,37 @@ namespace Network
         public PowerStationNode(int maxEnergyProduction, Fuel fuelType): base()
         {
             this.maxEnergyProduction = maxEnergyProduction;
-            // this.isFlexible = true;
-            // this.isWeatherDependent = false;
             this.sourceType = new Dictionary<string, bool>();
             this.sourceType.Add("isFlexible",false);
             this.sourceType.Add("isWeatherDependant",false);
             this.sourceType.Add("isInfinite",false);
             
             this.fuelType = fuelType;
-            this.nodePower = maxEnergyProduction;
+            
             this.nodeState = true;
             this.connexionLine = new List<Line>();
 
-            
-            //update();
-
+            if(maxEnergyProduction>=0)
+            {
+                this.nodePower = maxEnergyProduction;
+            }
+            else
+            {
+                this.nodePower = 0;
+            }
+        
         }
 
-        // public  string getState()
-        // {
-        //     float pollution = this.currentPollution;
-
-        //     return "Power Station N"+this.id+"  State : "+this.nodeState+"  Current Power : "
-        //     +this.nodePower+"   Current Cost : "+this.currentCost+"     Current Pollution : "+ this.currentPollution;
-        // }
         
         public override string ToString(){
             return "Power Station N" + id.ToString();
             
-            // return "Power Station N"+this.id+"  State : "+this.nodeState+"  Current Power : "
-            // +this.nodePower+"   Current Cost : "+this.currentCost+"     Current Pollution : "+ this.currentPollution;
         }
         public virtual void setEnergyProduction(float newEnergyQuantity)
         {
 
             if(newEnergyQuantity <=0) //asking to turn off
             {
-                // nodeState = false;
-                // nodePower = 0;
                 this.nodePower = 0;
                 this.nodeState = false;
             }
@@ -81,10 +74,6 @@ namespace Network
                 }
             }
 
-
-            
-            
-            //update();
         }
         
 
@@ -94,10 +83,8 @@ namespace Network
         }
 
         public virtual void setCurrentCost()
-        {
-            
+        {        
             currentCost = this.fuelType.getCost() * this.nodePower / fuelType.getEnergy();
- 
         }
         
 

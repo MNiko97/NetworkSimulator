@@ -8,15 +8,20 @@ namespace Network
         public WindPS(int maxEnergyProduction, Fuel fuelType, Weather weather) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
-            // this.isWeatherDependent = true;
-            this.weatherIntensity= weather.solarIntensity;
-            this.nodePower = this.maxEnergyProduction * this.weatherIntensity/100;
+            this.weatherIntensity= weather.windIntensity;
+
             this.sourceType["isFlexible"]= false;
             this.sourceType["isWeatherDependant"]= true;
             this.sourceType["isInfinite"]= false;
-
-            
-            
+            if(maxEnergyProduction>=0)
+            {
+                this.nodePower = maxEnergyProduction * this.weatherIntensity/100;
+            }
+            else
+            {
+                this.nodePower = 0;
+            }
+    
         }
         
         public void setUpdateWeather(Weather weather) //If we want to test with another weather intensity
@@ -28,7 +33,6 @@ namespace Network
 
         public override void setEnergyProduction(float newEnergyQuantity)
         {
-            // base.setEnergyProduction(newEnergyQuantity);
             if (newEnergyQuantity>= (this.maxEnergyProduction* this.weatherIntensity/100))
             {
                 this.nodePower = this.maxEnergyProduction* this.weatherIntensity/100;
