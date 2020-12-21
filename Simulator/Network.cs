@@ -79,35 +79,7 @@ namespace Network{
             }
             return powerRequired - powerSent; //demand - supply
         }
-        public int getPriority(int actualPriority)
-        {
-            if(diff() > 0){ // need more power production
-                
-                if(actualPriority == -1)
-                {
-                    actualPriority +=2; 
-                }
-                else
-                {
-                    actualPriority +=1; 
-                }
-            }
-            else if(diff() == 0){ // power requirement reached successfully !
-                actualPriority = 0;
-            }
-            else if(diff() < 0){ // need to reduce power production
-                if(actualPriority ==1)
-                {
-                    actualPriority -=2; 
-                }
-                else
-                {
-                    actualPriority -=1; 
-                }
-                
-            } 
-            return actualPriority;
-        }
+        
         public void setConsumerPower(string nodeType)
         {
             foreach(var consumer in consumerArray)
@@ -210,9 +182,6 @@ namespace Network{
                     
                 }
             }
-
-            
-            
             Console.WriteLine("The status of the nodes before modification are : {0} and the difference is : {1}",mess,diff());
             updateNetwork();
         }
