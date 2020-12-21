@@ -24,6 +24,9 @@ namespace Network{
         public virtual void setPrice(){
             //
         }
+        public void setEnergyRequire(float energy){
+            energyRequire = energy;
+        }
 
         public override void update()
         {
