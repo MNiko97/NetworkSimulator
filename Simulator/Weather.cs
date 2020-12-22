@@ -3,8 +3,8 @@ namespace Network{
         public int windIntensity;
         public int solarIntensity;
         public Weather(int windIntensityPercentage, int solarIntensityPercentage){
-            windIntensity = windIntensityPercentage;
-            solarIntensity = solarIntensityPercentage;
+            windIntensity = (windIntensityPercentage <100)?windIntensityPercentage:100;
+            solarIntensity = solarIntensityPercentage<100?solarIntensityPercentage:100;
         }
         public int getWindIntensity(){
             return windIntensity;

@@ -9,11 +9,23 @@ namespace Network
         public SolarPS(int maxEnergyProduction, Fuel fuelType, Weather weather) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
-            this.weatherIntensity= weather.solarIntensity;
+            
             this.sourceType["isFlexible"]= false;
             this.sourceType["isWeatherDependant"]= true;
             this.sourceType["isInfinite"]= false;
-
+            if(weather.solarIntensity>=100)
+            {
+                this.weatherIntensity= 100;
+            }
+            else if(weather.solarIntensity<=0)
+            {
+                this.weatherIntensity= 0;
+            }
+            else
+            {
+                this.weatherIntensity= weather.solarIntensity;
+            }
+            
             if(maxEnergyProduction>=0)
             {
                 this.nodePower = maxEnergyProduction * this.weatherIntensity/100;
@@ -22,6 +34,8 @@ namespace Network
             {
                 this.nodePower = 0;
             }
+
+            
         }
 
         public void setUpdateWeather(Weather weather) //If we want to test with another weather intensity

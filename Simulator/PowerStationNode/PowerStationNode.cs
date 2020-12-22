@@ -16,7 +16,7 @@ namespace Network
 
         public PowerStationNode(int maxEnergyProduction, Fuel fuelType): base()
         {
-            this.maxEnergyProduction = maxEnergyProduction;
+            
             this.sourceType = new Dictionary<string, bool>();
             this.sourceType.Add("isFlexible",false);
             this.sourceType.Add("isWeatherDependant",false);
@@ -30,10 +30,12 @@ namespace Network
             if(maxEnergyProduction>=0)
             {
                 this.nodePower = maxEnergyProduction;
+                this.maxEnergyProduction = maxEnergyProduction;
             }
             else
             {
                 this.nodePower = 0;
+                this.maxEnergyProduction = 0;
             }
         
         }

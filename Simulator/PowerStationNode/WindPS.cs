@@ -8,11 +8,23 @@ namespace Network
         public WindPS(int maxEnergyProduction, Fuel fuelType, Weather weather) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
-            this.weatherIntensity= weather.windIntensity;
+            
 
             this.sourceType["isFlexible"]= false;
             this.sourceType["isWeatherDependant"]= true;
             this.sourceType["isInfinite"]= false;
+            if(weather.solarIntensity>=100)
+            {
+                this.weatherIntensity= 100;
+            }
+            else if(weather.solarIntensity<=0)
+            {
+                this.weatherIntensity= 0;
+            }
+            else
+            {
+                this.weatherIntensity= weather.windIntensity;
+            }
             if(maxEnergyProduction>=0)
             {
                 this.nodePower = maxEnergyProduction * this.weatherIntensity/100;
@@ -21,6 +33,8 @@ namespace Network
             {
                 this.nodePower = 0;
             }
+
+            
     
         }
         
