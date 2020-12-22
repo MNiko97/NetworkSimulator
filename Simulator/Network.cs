@@ -70,14 +70,17 @@ namespace Network{
         public float diff(){
             float powerRequired = 0;
             float powerSent = 0;
+            float acutalConsumerPower = 0;
             foreach (var powerStation in sourceArray){
                 powerSent += powerStation.Value.nodePower;
             }
             foreach (var consumer in consumerArray)
             {
                 powerRequired += consumer.Value.energyRequire;
+                acutalConsumerPower+= consumer.Value.nodePower;
             }
             return powerRequired - powerSent; //demand - supply
+            //  return powerRequired - acutalConsumerPower;
         }
         
         public void setConsumerPower(string nodeType)
@@ -91,7 +94,8 @@ namespace Network{
                     Console.WriteLine(consumer.Value+"     Current Power {0} MW     Power Require {1} - {2} MW",
                     consumer.Value.nodePower, consumer.Value.energyRequire,diff());
 
-                    consumer.Value.energyRequire = (consumer.Value.nodePower - diff());
+                    // consumer.Value.energyRequire = (consumer.Value.nodePower - diff());
+                    consumer.Value.setNewRequirement(consumer.Value.nodePower- diff());
 
                 }
             }
@@ -139,12 +143,12 @@ namespace Network{
                     case 0 :    //check state
                         if(diff()>0) //demand>supply
                         {
-                            Console.WriteLine("CASE 0 if diff>0");
+                            // Console.WriteLine("CASE 0 if diff>0");
                             status=1; 
                         }
                         else //demand<supply
                         {
-                            Console.WriteLine("CASE 0 if diff<0");
+                            // Console.WriteLine("CASE 0 if diff<0");
                             status= -1;
                         }
                         break;
