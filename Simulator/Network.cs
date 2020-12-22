@@ -70,24 +70,21 @@ namespace Network{
         public float diff(){
             float powerRequired = 0;
             float powerSent = 0;
-            float acutalConsumerPower = 0;
             foreach (var powerStation in sourceArray){
                 powerSent += powerStation.Value.nodePower;
             }
             foreach (var consumer in consumerArray)
             {
                 powerRequired += consumer.Value.energyRequire;
-                acutalConsumerPower+= consumer.Value.nodePower;
             }
             return powerRequired - powerSent; //demand - supply
-            //  return powerRequired - acutalConsumerPower;
         }
         
-        public void setConsumerPower(string nodeType)
+        public void setConsumerPower(bool isPrioritized)
         {
             foreach(var consumer in consumerArray)
             {
-                if(consumer.Value.GetType().Name == nodeType )
+                if (consumer.Value.isPrioritized ==isPrioritized)
                 {
                     // MINUS diff() because we want to reduce when diff()>0 and augment when <0
                      
@@ -96,7 +93,6 @@ namespace Network{
 
                     // consumer.Value.energyRequire = (consumer.Value.nodePower - diff());
                     consumer.Value.setNewRequirement(consumer.Value.nodePower- diff());
-
                 }
             }
         }
@@ -143,17 +139,17 @@ namespace Network{
                     case 0 :    //check state
                         if(diff()>0) //demand>supply
                         {
-                            // Console.WriteLine("CASE 0 if diff>0");
+                            mess = "ERROR, Program went to case 0 mode inside switch case at of method Network.run()";
                             status=1; 
                         }
                         else //demand<supply
                         {
-                            // Console.WriteLine("CASE 0 if diff<0");
+                            mess = "ERROR, Program went to case 0 mode inside switch case at of method Network.run()";
                             status= -1;
                         }
                         break;
                     case 1: // need to reduce DISSIPATOR
-                        setConsumerPower("Dissipator");
+                        setConsumerPower(false);
                         break;
                     case 2: // need to augment WIND
                         setSourcePower(true, true,false);
@@ -175,11 +171,11 @@ namespace Network{
                         setSourcePower(true, true ,false);
                         break;
                     case -4: // need to augment DISSIPATOR
-                        setConsumerPower("Dissipator");
+                        setConsumerPower(false);
                         // status = 0;
                         break;
                     default: 
-                        mess = "ERROR";
+                        mess = "ERROR, Program went to default mode inside switch case at of method Network.run()";
                         //status = 0;
                         break;
                     
@@ -191,9 +187,9 @@ namespace Network{
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("AFTER ADJUSTMENTS");
             show();
-            foreach(var consumer in consumerArray)
+            foreach(var consumer in consumerArray) //change a little the requirements of the consummers
             {
-                if(consumer.Value.nodeState){
+                if(consumer.Value.nodeState && consumer.Value.isPrioritized){
                     consumer.Value.changeRequirement();  
                 }
             }

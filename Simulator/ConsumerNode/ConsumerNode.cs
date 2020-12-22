@@ -14,10 +14,11 @@ namespace Network{
         {
             this.nodePower = 0;        
             this.connexionLine = new List<Line>();
+            this.isPrioritized = true;
             if (energyRequire<=0)
             {
                 this.energyRequire = 0;
-                this.isPrioritized = true;
+                
             }
             else
             {

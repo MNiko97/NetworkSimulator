@@ -11,13 +11,14 @@ namespace Network
         public int changingCost;
         public int changingState;
         public bool isChanging;
+        public bool hasAppliedFee ;
         
     
         public NuclearPS(int maxEnergyProduction, Fuel fuelType) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
-            this.changingCost = 4000;
-            this.changingDelay = 5000;
+            this.changingCost = 69420;
+            this.changingDelay = 2000;
             this.isChanging = false;
             this.changingState = 1;
             
@@ -25,6 +26,7 @@ namespace Network
             this.sourceType["isWeatherDependant"]= false;
             this.sourceType["isInfinite"]= false;
 
+            hasAppliedFee = false;
             
             
         }
@@ -41,6 +43,7 @@ namespace Network
 
                         this.isChanging = true; //BLOCKING OTHER COMMANDS
                         this.changingState = 2; //turning off state
+                        
                     }
                     else //if STATE FALSE --> already OFF
                     {
@@ -77,56 +80,75 @@ namespace Network
                 this.nodePower = 0; // always 0 
                 this.nodeState = false; //always not providing
             }
+            setCurrentCost();
+            setCurrentPollution();
             
             //update();
         }
         public override void setCurrentCost()
         {
+            
+
+            string mess="";
             switch (this.changingState)
             {
                 case 1: //Running
                     //Console.WriteLine("CASE 1");
-
+                    mess = "The Nuclear power Plant : "+id+" is running";
                     this.nodeState = true;
                     this.isChanging = false;
-
+                    hasAppliedFee =false;
                     this.nodePower = this.maxEnergyProduction;
                     currentCost = this.fuelType.getCost() * this.nodePower / fuelType.getEnergy();
+                    
+                    
                     
                     break;
 
                 case 2 : //stopping
                     //Console.WriteLine("CASE 2");
-
-                    currentCost = this.changingCost;
-
-                    Task.Delay(this.changingDelay).ContinueWith(t=>this.changingState = 3);
+                    mess = "The Nuclear power Plant : "+id+" is stopping";
+                    if(hasAppliedFee == false)
+                    {
+                        currentCost = this.changingCost;
+                        hasAppliedFee = true;
+                    }else{
+                        currentCost=0;
+                    }
+                    Task.Delay(this.changingDelay).ContinueWith(t=>this.changingState = 3).ContinueWith(t=>hasAppliedFee = false);
 
                     break;
                     
                 case 3 : // sleeping
                     //Console.WriteLine("CASE 3");
-
+                    mess = "The Nuclear power Plant : "+id+" is sleeping";
                     currentCost = 0;
                     this.isChanging = false;
-
                     
                     break;
 
                 case 4: //starting
                     //Console.WriteLine("CASE 4");
-
-                    currentCost = this.changingCost;
-
-                    Task.Delay(this.changingDelay).ContinueWith(t=>this.changingState = 1);
+                    mess = "The Nuclear power Plant : "+id+" is starting";
+                    if(hasAppliedFee== false)
+                    {
+                        currentCost = this.changingCost;
+                        hasAppliedFee = true;
+                    }else{
+                        currentCost=0;
+                    }
+                    hasAppliedFee =false;
+                    Task.Delay(this.changingDelay).ContinueWith(t=>this.changingState = 1).ContinueWith(t=>hasAppliedFee = false);
                     break;
 
                 default : 
                     this.changingState = 1;
-                    Console.WriteLine("Station state ERROR");
+                    hasAppliedFee = false;
+                    mess = "The Nuclear power Plant : "+id+" has an error";
                     break;
 
             }
+            Console.WriteLine(mess);
         }
               
         

@@ -5,7 +5,6 @@ namespace Network
         public ImportCountry(int maxEnergyProduction,Fuel fuelType): base(maxEnergyProduction,fuelType)
         {
             this.fuelType = fuelType;
-            this.nodeState = false;
             this.sourceType["isFlexible"]= true;
             this.sourceType["isWeatherDependant"]= false;
             this.sourceType["isInfinite"]= true;
