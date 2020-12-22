@@ -5,7 +5,6 @@ namespace Network
 {
     class DistributionNode : Node
     {
-        private const string V = "Node N";
         public bool inputIsFull;
         public List<Line> inputLine;
         public List<Line> outputLine;
