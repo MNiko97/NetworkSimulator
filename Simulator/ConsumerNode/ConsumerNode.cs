@@ -31,17 +31,6 @@ namespace Network{
         public virtual void setPrice(){
             //
         }
-        public void setEnergyRequire(float energy){
-            if (energy<=0)
-            {
-                this.energyRequire = 0;
-            }
-            else
-            {
-                this.energyRequire = energy;
-            }
-            
-        }
         public void changeRequirement(){
             Random energy = new Random();
             float min = energyRequire - (energyRequire*20/100);
@@ -50,7 +39,7 @@ namespace Network{
         }
         public override void update()
         { 
-            if(isConnected){
+            if(isConnected && nodeState){
                 connexionLine[0].update();
                 nodePower = connexionLine[0].getLinePower();
                 float power = connexionLine[0].getLinePower();
@@ -60,10 +49,11 @@ namespace Network{
                     Console.WriteLine("Asked: " + energyRequire.ToString() + " Received: " + power.ToString());
                     //throw new Exception();
                 }
-                else{
-                   energyRequire -= power; 
-                }
                 
+            }
+            if(isConnected && !nodeState){
+                nodePower = 0;
+                energyRequire = 0;
             }
         }
         public override void connect(Line line)

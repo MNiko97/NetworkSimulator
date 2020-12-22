@@ -90,8 +90,7 @@ namespace Network{
                      
                     Console.WriteLine(consumer.Value+"     Current Power {0} MW     Power Require {1} MW     Difference : {2} MW",
                     consumer.Value.nodePower, consumer.Value.energyRequire,diff());
-                    consumer.Value.setEnergyRequire(consumer.Value.nodePower - diff());
-                    
+                    consumer.Value.energyRequire = (consumer.Value.nodePower - diff());
 
                 }
             }
@@ -109,7 +108,6 @@ namespace Network{
                     source.Value.maxEnergyProduction, source.Value.nodePower,diff());
 
                     source.Value.setEnergyProduction(source.Value.nodePower + diff());
-                     
                 }
 
             }
@@ -184,14 +182,15 @@ namespace Network{
             }
             
             Console.WriteLine("\nThe adjustment we needed to make were : {0} and the difference is now : {1}",mess,diff());
-            
             updateNetwork();
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("AFTER ADJUSTMENTS");
             show();
             foreach(var consumer in consumerArray)
             {
-                consumer.Value.changeRequirement();
+                if(consumer.Value.nodeState){
+                    consumer.Value.changeRequirement();  
+                }
             }
             
         }
