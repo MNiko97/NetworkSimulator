@@ -6,6 +6,7 @@ namespace Network{
     {
         public Dissipator(float energyRequire):base(energyRequire)
         {
+            isPrioritized = false;
         }
 
         public override void setPrice(){

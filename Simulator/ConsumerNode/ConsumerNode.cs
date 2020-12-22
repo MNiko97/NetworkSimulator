@@ -8,6 +8,7 @@ namespace Network{
         public float energyPrice;
         public float energyRequire;
         public List<Line> connexionLine;
+        public bool isPrioritized;
 
         public ConsumerNode(float energyRequire) : base ()
         {
@@ -16,6 +17,7 @@ namespace Network{
             if (energyRequire<=0)
             {
                 this.energyRequire = 0;
+                this.isPrioritized = true;
             }
             else
             {
