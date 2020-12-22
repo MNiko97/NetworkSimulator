@@ -57,7 +57,7 @@ namespace Network{
                 updatedNode.Add(powerNode.Value.id);
             }
             foreach (var line in lineArray){
-                Console.WriteLine("");
+                // Console.WriteLine("");
                 while(!updatedLine.Contains(line.Value.id)){
                     if(updatedNode.Contains(line.Value.connexionNode[0].id)){
                         line.Value.connexionNode[1].update();
@@ -84,12 +84,13 @@ namespace Network{
         {
             foreach(var consumer in consumerArray)
             {
-                if(consumer.Value.GetType().Name == nodeType)
+                if(consumer.Value.GetType().Name == nodeType )
                 {
                     // MINUS diff() because we want to reduce when diff()>0 and augment when <0
                      
-                    Console.WriteLine(consumer.Value+"     Current Power {0} MW     Power Require {1} MW     Difference : {2} MW",
+                    Console.WriteLine(consumer.Value+"     Current Power {0} MW     Power Require {1} - {2} MW",
                     consumer.Value.nodePower, consumer.Value.energyRequire,diff());
+
                     consumer.Value.energyRequire = (consumer.Value.nodePower - diff());
 
                 }
