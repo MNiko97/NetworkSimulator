@@ -33,6 +33,17 @@ namespace Network{
         public virtual void setPrice(){
             //
         }
+        public void setNewRequirement(float energy)
+        {
+            if (energy<=0)
+            {
+                this.energyRequire = 0;
+            }
+            else
+            {
+                this.energyRequire = energy;
+            }
+        }
         public void changeRequirement(){
             Random energy = new Random();
             float min = energyRequire - (energyRequire*20/100);
