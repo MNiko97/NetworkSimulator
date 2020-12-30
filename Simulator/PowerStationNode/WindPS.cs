@@ -42,7 +42,6 @@ namespace Network
         {
             this.weatherIntensity = weather.windIntensity;
             this.nodePower = this.maxEnergyProduction * this.weatherIntensity/100;
-            //update();
         }
 
         public override void setEnergyProduction(float newEnergyQuantity)
@@ -61,11 +60,7 @@ namespace Network
             {
                 this.nodePower = newEnergyQuantity;
                 this.nodeState = true;
-            }  
-            //update();          
+            }       
         }
-
-
-
     }
 }

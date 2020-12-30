@@ -75,6 +75,10 @@ namespace Network
             }
 
         }
+        public virtual void stop()
+        {
+            this.nodePower = 0;
+        }
         
 
         public void setCurrentPollution()

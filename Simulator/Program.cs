@@ -40,7 +40,7 @@ namespace Network
             //create 16 lines with id from 0 to 15
             for (int i=0;i<16;i++)
             {
-                network.addLine(100000); 
+                network.addLine(10000); 
             }
 
             //Connect two nodes : node 1 (input), node 2 (output), line
@@ -91,17 +91,16 @@ namespace Network
             Console.WriteLine("=============================================");
             Console.WriteLine("Current time: {0:HH:mm:ss.fff}", e.SignalTime);
             network.run();
+            Console.WriteLine("\n\n");
             
             
         }
         private static void Start(){
             SetTimer();
 
-            //Change the production of Power stations with a delay
-            // Task.Delay(1000).ContinueWith(t=>network.sourceArray[1].setEnergyProduction(0));    //stop the nuc plant after 1s
+            // Change the production of Power stations with a delay
+            // Task.Delay(2000).ContinueWith(t=>network.sourceArray[1].stop());    //stop the nuc plant after 2s
             // Task.Delay(7000).ContinueWith(t=>network.sourceArray[1].setEnergyProduction(1000)); //Start the nuc plant after 7s
-            // network.updateNetwork();
-
             Console.WriteLine("\nPress the Enter key to exit the application...\n");
             Console.ReadLine();
             

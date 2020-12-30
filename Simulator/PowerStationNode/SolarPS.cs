@@ -42,7 +42,6 @@ namespace Network
         {
             this.weatherIntensity = weather.solarIntensity;
             this.nodePower = this.maxEnergyProduction * this.weatherIntensity/100;
-            //update();
         }
 
 
@@ -60,9 +59,9 @@ namespace Network
                 this.nodePower =0;
                 this.nodeState = false;
             }
-            
-            //update();          
+                     
         }
+         
 
 
     }

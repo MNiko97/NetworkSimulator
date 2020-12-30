@@ -135,18 +135,7 @@ namespace Network{
                 }
                 switch (status)
                 {
-                    case 0 :    //check state
-                        if(diff()>0) //demand>supply
-                        {
-                            mess = "ERROR, Program went to case 0 mode inside switch case at of method Network.run()";
-                            status=1; 
-                        }
-                        else //demand<supply
-                        {
-                            mess = "ERROR, Program went to case 0 mode inside switch case at of method Network.run()";
-                            status= -1;
-                        }
-                        break;
+                    
                     case 1: // need to reduce DISSIPATOR
                         setConsumerPower(false);
                         break;
@@ -158,7 +147,6 @@ namespace Network{
                         break;
                     case 4: // need to need to to augment IMPORT
                         setSourcePower(true, false ,true);
-                        // status = 0;
                         break;
                     case -1: // need to reduce IMPORT 
                         setSourcePower(true, false ,true);
@@ -171,11 +159,14 @@ namespace Network{
                         break;
                     case -4: // need to augment DISSIPATOR
                         setConsumerPower(false);
-                        // status = 0;
                         break;
                     default: 
-                        mess = "ERROR, Program went to default mode inside switch case at of method Network.run()";
-                        //status = 0;
+                        if(diff()>0){
+                            mess= "ERROR, could not provide requested supply";
+                        }else{
+                            status-=1;
+                            mess= "ERROR, could not reduce the supply";
+                        }
                         break;
                     
                 }

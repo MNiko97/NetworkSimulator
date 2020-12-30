@@ -80,10 +80,37 @@ namespace Network
                 this.nodePower = 0; // always 0 
                 this.nodeState = false; //always not providing
             }
-            setCurrentCost();
-            setCurrentPollution();
-            
-            //update();
+            // setCurrentCost();
+            // setCurrentPollution();
+
+        }
+        public override void stop()
+        {
+            if(this.isChanging ==false)
+            {
+                
+                if (this.nodeState) //if STATE TRUE  --> want to turn OFF
+                {
+                    this.nodePower = 0;
+                    this.nodeState = false;
+
+                    this.isChanging = true; //BLOCKING OTHER COMMANDS
+                    this.changingState = 2; //turning off state
+                    
+                }
+                else //if STATE FALSE --> already OFF
+                {
+                    this.nodePower = 0;
+                    this.nodeState = false;
+                    
+                    this.isChanging = false;
+                    this.changingState = 3; //sleeping state
+                }
+                    
+                
+                
+            }
+
         }
         public override void setCurrentCost()
         {
@@ -137,7 +164,6 @@ namespace Network
                     }else{
                         currentCost=0;
                     }
-                    hasAppliedFee =false;
                     Task.Delay(this.changingDelay).ContinueWith(t=>this.changingState = 1).ContinueWith(t=>hasAppliedFee = false);
                     break;
 
