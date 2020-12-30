@@ -1,5 +1,6 @@
 .vscode
 Simulator/bin
 Simulator/obj
+Simulator/Simulator.csproj
 Simulator/TODO.txt
 Simulator/help.txt
