@@ -6,23 +6,28 @@ namespace Network{
         public float nodePower;
         public bool nodeState;
         public bool isConnected;
-        public Node(){
+        public Node()
+        {
             this.id = 0;
             this.nodePower = 0;
             this.nodeState = false;
             this.isConnected = false;
         }
-        public void setId(int id){
+        public void setId(int id)
+        {
             this.id = id;
             this.isConnected = false;
         }
-        public float getNodePower(){
+        public float getNodePower()
+        {
             return nodePower;
         }
-        public bool getNodeState(){
+        public bool getNodeState()
+        {
             return nodeState;
         }
-        public int getID(){
+        public int getID()
+        {
             return id;
         }
         public abstract void connect(Line line);

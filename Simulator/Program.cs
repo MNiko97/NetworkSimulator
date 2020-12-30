@@ -10,8 +10,7 @@ namespace Network
         private static Network network = new Network();
         public static int count = 4000;
         static void Main(string[] args)
-        {
-                       
+        {         
             //Create Power Stations
             network.addPowerStationNode(new GasPS(15000, new Fuel(10, 10, 100))); //id = 1
             network.addPowerStationNode(new NuclearPS(30000,new Fuel(50,1,1000)));
@@ -61,7 +60,7 @@ namespace Network
             network.connect(12,9,14);
             network.connect(12,10,15);
 
-            //Modify Current production
+            //Modify the network
             network.sourceArray[0].setEnergyProduction(500);
             network.sourceArray[2].setEnergyProduction(2500);
             network.sourceArray[5].setEnergyProduction(5000);
@@ -71,11 +70,7 @@ namespace Network
 
             //Start Simulation
             Start();
-            
-            
-
         }
-    
         private static void SetTimer()
         {
             // Create a timer with one second interval.
@@ -85,22 +80,16 @@ namespace Network
             networkUpdateTimer.AutoReset = true;
             networkUpdateTimer.Enabled = true;
         }
-
         private static void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             Console.WriteLine("=============================================");
             Console.WriteLine("Current time: {0:HH:mm:ss.fff}", e.SignalTime);
             network.run();
-            Console.WriteLine("\n\n");
-            
-            
+            Console.WriteLine("\n\n");            
         }
-        private static void Start(){
+        private static void Start()
+        {
             SetTimer();
-
-            // Change the production of Power stations with a delay
-            // Task.Delay(2000).ContinueWith(t=>network.sourceArray[1].stop());    //stop the nuc plant after 2s
-            // Task.Delay(7000).ContinueWith(t=>network.sourceArray[1].setEnergyProduction(1000)); //Start the nuc plant after 7s
             Console.WriteLine("\nPress the Enter key to exit the application...\n");
             Console.ReadLine();
             networkUpdateTimer.Stop();
@@ -108,5 +97,4 @@ namespace Network
             Console.WriteLine("Terminating the application...");
         }
     }
-
 }

@@ -6,16 +6,20 @@ namespace Network{
             windIntensity = (windIntensityPercentage <100)?windIntensityPercentage:100;
             solarIntensity = solarIntensityPercentage<100?solarIntensityPercentage:100;
         }
-        public int getWindIntensity(){
+        public int getWindIntensity()
+        {
             return windIntensity;
         }
-        public int getSolarIntensity(){
+        public int getSolarIntensity()
+        {
             return solarIntensity;
         }
-        public void setWindIntensity(int intensity){
+        public void setWindIntensity(int intensity)
+        {
             windIntensity = intensity;
         }
-        public void setSolarIntensity(int intensity){
+        public void setSolarIntensity(int intensity)
+        {
             solarIntensity = intensity;
         }
     }

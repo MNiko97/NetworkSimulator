@@ -9,70 +9,83 @@ namespace Network{
         public bool lineState;
         public float linePower;
         public bool isConnected;
-        
-        public Line(int id, int maxPower){
+        public Line(int id, int maxPower)
+        {
             this.id = id;
             this.maxPower = maxPower;
             this.lineState = false;
             this.linePower = 0;
             this.isConnected = false;
-            this.connexionNode = new List<Node>();
-            
+            this.connexionNode = new List<Node>();    
         }
-        public void checkLineState(){
-            if (linePower > maxPower){
+        public void checkLineState()
+        {
+            if (linePower > maxPower)
+            {
                 Console.WriteLine("Error: Current power exceding " + this + " maximum capacity");
                 linePower = 0;
                 //generate an error to node
                 lineState = false;
             }
-            else if (linePower < 0){
+            else if (linePower < 0)
+            {
                 Console.WriteLine("Error: Abnormal power in " + this);
                 linePower = 0;
                 lineState = false;
             }
-            else if (linePower <= maxPower){
+            else if (linePower <= maxPower)
+            {
                 lineState = true;
             }
         }
-        public void addNode(Node node){
-            if(!isConnected){
-                if(connexionNode.Count <2){
+        public void addNode(Node node)
+        {
+            if(!isConnected)
+            {
+                if(connexionNode.Count <2)
+                {
                     connexionNode.Add(node); 
                 }
-            }else{
+            }else
+            {
                 Console.WriteLine("Error: " + this + " is already connected");
                 Console.WriteLine("Error: " + node + " is not connected");
             }
-            if(connexionNode.Count == 2){
+            if(connexionNode.Count == 2)
+            {
                 isConnected = true;
             }
             
         }
         public void setPowerLine(float newPower, int id){
-            if(connexionNode[0].getID() == id){
+            if(connexionNode[0].getID() == id)
+            {
                 linePower = newPower;
             }
-            else{
+            else
+            {
                 linePower = -1;
                 Console.WriteLine("Error: " + this + " is connected to 2 sources");
-            }
-            
-        }
-        
-        public override string ToString(){
+            }  
+        }     
+        public override string ToString()
+        {
             return "Line L" + id.ToString();
         }
-        public float getLinePower(){
+        public float getLinePower()
+        {
             return linePower;
         }
-        public bool getLineState(){
+        public bool getLineState()
+        {
             return this.lineState;
         }
-        public int getID(){
+        public int getID()
+        {
             return id;
         }
-        public string showConnexionNode(){
+        public string showConnexionNode()
+        {
             string strConnexionNode = "[";
             if(connexionNode.Count == 0){
                 strConnexionNode += "empty]";
@@ -93,7 +106,8 @@ namespace Network{
         {
             throw new NotImplementedException();
         }
-        public bool isInputAvailable(){
+        public bool isInputAvailable()
+        {
             if(connexionNode.Count == 0){
                 return true;
             }
