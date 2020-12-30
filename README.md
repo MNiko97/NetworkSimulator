@@ -85,7 +85,7 @@ Au terme de chaque *run,* la mise à jour des éléments du réseau est réalis�
 
 La mise à jour des lignes se fait dans un ordre spécifique afin de respecter certaines conditions. En effet il faut s’assurer que le nœud à l’entrée d’une ligne a déjà été mis à jour avant de mettre à jour le nœud à la sortie. Ce sont les nœuds qui appellent la méthode *update* de la ligne qui met à jour sa puissance transmise tout en vérifiant qu’elle ne dépasse pas sa capacité maximale auquel cas la ligne affichera un message d’erreur et changera son état *nodeState* en inactif.
 
-Concernant les nœuds de concentration, on va additionner les puissances qu’ils reçoivent en entrée pour l’envoyer vers la ligne de sortie. Quant aux nœuds de distribution, on va diviser leur puissance d’entrée entre toutes les sorties de manière équivalente.
+Concernant les nœuds de concentration, on va additionner les puissances qu’ils reçoivent en entrée pour l’envoyer vers la ligne de sortie. Quant aux nœuds de distribution, on va diviser leur puissance d’entrée entre toutes les sorties de manière équivalente .
 
 Pour les différents consommateurs du réseau, on réceptionne l’énergie de la ligne et on vérifie si cette énergie est supérieure à la demande, auquel cas on envoie un signal d’erreur et on passe l’état *nodeState* en inactif.
 
