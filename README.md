@@ -168,7 +168,7 @@ Start();
 ```
 - La commande *Update*, nous permet de mettre à jour tout réseau.
 ```csharp
-network.updateNetwork();
+network.update();
 ```
 
 ## **Diagrammes :**
