@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 namespace Network{
-    class Network{
+    class Network:IupdatableComponent{
         public Dictionary<int, Node> nodeArray;
         public Dictionary<int, PowerStationNode> sourceArray;
         public Dictionary<int, ConsumerNode> consumerArray;
@@ -12,7 +12,6 @@ namespace Network{
 
         public int newLineID;
         public int newNodeID;
-
         public Network()
         {
             this.nodeArray = new Dictionary<int, Node>();
