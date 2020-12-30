@@ -75,7 +75,7 @@ Interface qui permet de mettre à jour un l’élément qui l’implémentent.
 
 ## **Organisation du code :**
 
-*Le code est divisé en un dossier main, qui contient le fichier *Progam.cs* et la classe Network qui donne accès à tous les outils pour créer un réseau et des objets. Il y a 4 dossiers *Consummer*, *PowerStation*, *Distribution et* Concentration reprenant respectivement les 4 grandes classes de nœuds (consommateur, source, nœud de distribution et concentration)*
+*Le code est divisé en un dossier main, qui contient le fichier *Progam.cs* et la classe Network qui donne accès à tous les outils pour créer un réseau et des objets. Il y a 4 dossiers *Consummer*, *PowerStation*, *Distribution et* Concentration reprenant respectivement les 4 grandes classes de nœuds (consommateur, source, nœud de distribution et concentration.*
 
 La structure du stockage des différents éléments du réseaux se fait au moyen de dictionnaires. On y ajoute chaque objet et son id associé (généré automatiquement par le réseau) dans cette structure de donnée. Il y a 4 dictionnaires au total. Les consommateurs et les sources d’énergie sont préalablement séparés dans 2 dictionnaires indépendants. Il y a un dictionnaire principal contenant tous les objets de type nœud et un dictionnaire contenant toutes les lignes.
 
