@@ -102,7 +102,7 @@ namespace Network
             switch (this.changingState)
             {
                 case 1: //Running
-                    mess = "The Nuclear power Plant : "+id+" is running";
+                    mess = "Nuclear " + this + " is running";
                     this.nodeState = true;
                     this.isChanging = false;
                     hasAppliedFee =false;
@@ -110,7 +110,7 @@ namespace Network
                     currentCost = this.fuelType.getCost() * this.nodePower / fuelType.getEnergy();
                     break;
                 case 2 : //stopping
-                    mess = "The Nuclear power Plant : "+id+" is stopping";
+                    mess =  "Nuclear " + this + "is stopping";
                     if(hasAppliedFee == false)
                     {
                         currentCost = this.changingCost;

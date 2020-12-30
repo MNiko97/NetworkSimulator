@@ -12,6 +12,7 @@ namespace Network{
 
         public int newLineID;
         public int newNodeID;
+        public bool running;
         public Network()
         {
             this.nodeArray = new Dictionary<int, Node>();
@@ -21,6 +22,7 @@ namespace Network{
             this.weather = new Weather(80, 50);        
             this.newLineID = 0;
             this.newNodeID = 0;
+            this.running = false;
         }  
         public void addPowerStationNode(PowerStationNode node)
         {
@@ -55,7 +57,7 @@ namespace Network{
             nodeArray[node1ID].connect(lineArray[lineID]);
             nodeArray[node2ID].connect(lineArray[lineID]);
         }
-        public void updateNetwork()
+        private void updateNetwork()
         {
             List<int> updatedNode = new List<int>();
             List<int> updatedLine = new List<int>();
@@ -124,13 +126,15 @@ namespace Network{
             }
         }
         public void run(){
-            Console.WriteLine("-------------------------------------------");
-            Console.WriteLine("\nADJUSTMENTS");
-            Console.WriteLine("-------------------------------------------");
-            Console.WriteLine("\nThe Adjustments we have to make in the Power Stations : {0}",diff()+
-            "\nIf the value is >0 : need to produce more. Else if value is<0 : need to produce less. Else : no modification required.\n");
-
-
+            if(!running)
+            {
+                updateNetwork();
+                running = true;
+            }
+            Console.WriteLine("\n###########");
+            Console.WriteLine("ADJUSTMENTS");
+            Console.WriteLine("###########");
+            Console.WriteLine("\nThe Adjustments we have to make in the Power Stations : {0}",diff() + " MW");
             string mess= "demand = supply";
             int status = 0;
             while(diff()!=0)
@@ -172,18 +176,18 @@ namespace Network{
                         break;
                     default: 
                         if(diff()>0){
-                            mess= "ERROR, could not provide requested supply";
+                            mess= "Error: Could not provide requested supply";
                         }else{
                             status-=1;
-                            mess= "ERROR, could not reduce the supply";
+                            mess= "Error: Could not reduce the supply";
                         }
                         break;
-                    
                 }
             }   
-            Console.WriteLine("\nThe adjustment we needed to make were : {0} and the difference is now : {1}",mess,diff());
-            update();
-            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("\nAfter adjustment the difference is now : {1}",mess,diff() + " MW\n");
+            Console.WriteLine("NETWORK INFO");
+            updateNetwork();
+            Console.WriteLine("\n#################");
             Console.WriteLine("AFTER ADJUSTMENTS");
             show();
             foreach(var consumer in consumerArray) //change a little the requirements of the consummers
@@ -193,10 +197,9 @@ namespace Network{
                     consumer.Value.changeRequirement();  
                 }
             }
-            
         }
         public void show(){
-            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("#################");
             Console.WriteLine("\nPOWER STATIONS");
             foreach(var source in sourceArray)
             {
@@ -212,8 +215,8 @@ namespace Network{
             Console.WriteLine("\nLINES");
             foreach (var line in lineArray)
             {
-                Console.WriteLine("{0}    Status: {1}    Current Power: {2} MW    Connected: {3}    Link: {4}", 
-                line.Value, line.Value.getLineState(), line.Value.getLinePower(), line.Value.isConnected, line.Value.showConnexionNode());
+                Console.WriteLine("{0}    Status: {1}    Current Power: {2} MW    Link: {3}", 
+                line.Value, line.Value.getLineState(), line.Value.getLinePower(), line.Value.showConnexionNode());
             }
         }
     }

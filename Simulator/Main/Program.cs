@@ -11,16 +11,17 @@ namespace Network
         public static int count = 4000;
         static void Main(string[] args)
         {         
+            //This is a demonstration
             //Create Power Stations
-            network.addPowerStationNode(new GasPS(15000, new Fuel(10, 10, 100))); //id = 1
+            network.addPowerStationNode(new GasPS(15000, new Fuel(10, 10, 100))); 
             network.addPowerStationNode(new NuclearPS(30000,new Fuel(50,1,1000)));
             network.addPowerStationNode(new WindPS(5000,new Fuel(0,0,50),network.weather));
             network.addPowerStationNode(new SolarPS(3000,new Fuel(0,0,60),network.weather));
             network.addPowerStationNode(new ImportCountry(2000, new Fuel(100,0,100)));
-            network.addPowerStationNode(new GasPS(10000, new Fuel(10000, 10, 100))); //id = 5
+            network.addPowerStationNode(new GasPS(10000, new Fuel(10000, 10, 100)));
 
             //Create Consumers
-            network.addConsumerNode(new ExportCountry(20000)); //id = 6
+            network.addConsumerNode(new ExportCountry(20000)); 
             network.addConsumerNode(new Town(20000));
             network.addConsumerNode(new Company(40000));
             network.addConsumerNode(new Town(8000));
@@ -36,7 +37,7 @@ namespace Network
             network.addConcentrationNode();
             network.addConcentrationNode();
 
-            //create 16 lines with id from 0 to 15
+            //create 16 lines
             for (int i=0;i<16;i++)
             {
                 network.addLine(10000); 
@@ -60,14 +61,11 @@ namespace Network
             network.connect(12,9,14);
             network.connect(12,10,15);
 
-            //Modify the network
+            //Set personalized energy production
             network.sourceArray[0].setEnergyProduction(500);
             network.sourceArray[2].setEnergyProduction(2500);
             network.sourceArray[5].setEnergyProduction(5000);
             
-            //Update network
-            network.updateNetwork();
-
             //Start Simulation
             Start();
         }
@@ -82,10 +80,10 @@ namespace Network
         }
         private static void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("=============================================");
             Console.WriteLine("Current time: {0:HH:mm:ss.fff}", e.SignalTime);
             network.run();
-            Console.WriteLine("\n\n");            
+            Console.WriteLine("=============================================");
+            Console.WriteLine("\n\n\n\n");            
         }
         private static void Start()
         {
