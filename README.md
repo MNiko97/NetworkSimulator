@@ -153,7 +153,7 @@ network.sourceArray[0].fuelType.setCost(50);
 ```
 - Afin de modifier la production d’une centrale ou la demande d’électricité d’un consommateur à un temps donné (en ms), nous utilisons cette commande en combinaison avec l’une des commandes ci-dessus.
 ```csharp
-Task.Delay(delayIn_ms).ContinueWith(t=>network.sourceArray[idOfNode].setEnergyProduction(PowerIntensity));
+Task.Delay(delayIn_ms).ContinueWith(t=>method());
 ```
 
 ### **Lancement et mise à jour de la simulation :**
