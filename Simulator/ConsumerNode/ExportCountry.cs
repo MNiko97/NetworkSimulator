@@ -1,15 +1,8 @@
 using System;
-
 namespace Network{
-
     class ExportCountry : ConsumerNode
     {
-        public ExportCountry(float energyRequire):base( energyRequire)
-        {
-        }
-        // public override string ToString(){
-        //     return "External Source N" + id.ToString();
-        // }
+        public ExportCountry(float energyRequire):base( energyRequire){}
         public override void setPrice()
         {
             energyPrice = 25*energyRequire;
