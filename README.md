@@ -102,16 +102,29 @@ Cependant, si l’offre est plus grande que la demande, on diminue l’importati
 ### **Création de réseau :**
 
 - Pour créer un réseau, nous utilisons cette commande ci :
-'''cs
+```csharp
 private static Network network = new Network();
-'''
-![](Rapport%20POO.001.png)
-
-- Ensuite, dans ce réseau, nous créons des centrales de production d’électricité. En paramètre de celles-ci, nous ajoutons le type de centrale avec sa production maximale et son carburant (le carburant prenant en paramètre un prix, une émission de CO2 et une production par unité). Pour les centrales dépendant de la météo, nous ajoutons en paramètre la météo liée au réseau.![](Rapport%20POO.002.png)
-- Puis, nous créons des consommateurs avec en paramètre leur type ainsi que leur demande d’électricité.![](Rapport%20POO.003.png)
-- Par après, nous créons des nœuds de distributions et des nœuds de concentration grâce à ces commandes-ci :![](Rapport%20POO.004.png)
-- Les lignes peuvent ensuite être créées. Celles-ci prennent en paramètre leur puissance maximale.![](Rapport%20POO.005.png)
-- Enfin, nous pouvons connecter les nœuds désirés entre eux grâce à la commande ci-dessous. Elle prend en paramètre un nœud d’entrée et un nœud de sortie, ainsi que l’id de la ligne.![](Rapport%20POO.006.png)
+```
+- Ensuite, dans ce réseau, nous créons des centrales de production d’électricité. En paramètre de celles-ci, nous ajoutons le type de centrale avec sa production maximale et son carburant (le carburant prenant en paramètre un prix, une émission de CO2 et une production par unité). Pour les centrales dépendant de la météo, nous ajoutons en paramètre la météo liée au réseau.
+```csharp
+network.addPowerStationNode(new GasPS(15000, new Fuel(10, 10, 100)));
+```
+- Puis, nous créons des consommateurs avec en paramètre leur type ainsi que leur demande d’électricité.
+```csharp
+network.addPowerStationNode(new WindPS(500,new Fuel(0,0,50),network.weather));
+```
+- Par après, nous créons des nœuds de distributions et des nœuds de concentration grâce à ces commandes-ci :
+```csharp
+network.addConsumerNode(new ExportCountry(20000));
+```
+- Les lignes peuvent ensuite être créées. Celles-ci prennent en paramètre leur puissance maximale.
+```csharp
+network.addDistributionNode();
+```
+- Enfin, nous pouvons connecter les nœuds désirés entre eux grâce à la commande ci-dessous. Elle prend en paramètre un nœud d’entrée et un nœud de sortie, ainsi que l’id de la ligne.
+```csharp
+network.addConcentrationNode();
+```
 
 ### **Modification ou perturbation du réseau :**
 
