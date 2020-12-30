@@ -2,14 +2,10 @@ using System;
 namespace Network
 {
     class SolarPS : PowerStationNode
-    
-
     {
-
         public SolarPS(int maxEnergyProduction, Fuel fuelType, Weather weather) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
-            
             this.sourceType["isFlexible"]= false;
             this.sourceType["isWeatherDependant"]= true;
             this.sourceType["isInfinite"]= false;
@@ -25,7 +21,6 @@ namespace Network
             {
                 this.weatherIntensity= weather.solarIntensity;
             }
-            
             if(maxEnergyProduction>=0)
             {
                 this.nodePower = maxEnergyProduction * this.weatherIntensity/100;
@@ -33,21 +28,15 @@ namespace Network
             else
             {
                 this.nodePower = 0;
-            }
-
-            
+            }  
         }
-
         public void setUpdateWeather(Weather weather) //If we want to test with another weather intensity
         {
             this.weatherIntensity = weather.solarIntensity;
             this.nodePower = this.maxEnergyProduction * this.weatherIntensity/100;
         }
-
-
         public override void setEnergyProduction(float newEnergyQuantity)
         {
-            // base.setEnergyProduction(newEnergyQuantity);
             if (newEnergyQuantity>0)
             {
                 this.nodePower = this.maxEnergyProduction* this.weatherIntensity/100;
@@ -55,14 +44,9 @@ namespace Network
             }
             else 
             {
-                // Console.WriteLine("New energy quantity ="+newEnergyQuantity);
                 this.nodePower =0;
                 this.nodeState = false;
-            }
-                     
+            }        
         }
-         
-
-
     }
 }

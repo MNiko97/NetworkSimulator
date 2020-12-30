@@ -1,10 +1,7 @@
 namespace Network
 {
     class StoragePS : PowerStationNode
-    
-
     {
-
         public StoragePS(int maxEnergyProduction, Fuel fuelType) : base(maxEnergyProduction, fuelType)
         {
             this.fuelType = fuelType;
@@ -36,6 +33,5 @@ namespace Network
                 this.nodeState = true;
             }
         }
-
     }
 }
