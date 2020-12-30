@@ -143,6 +143,8 @@ network.addConcentrationNode();
 
 ## **Diagrammes :**
 
+- Démonstration de simulation : ![](demo.png)
+
 - Diagramme de classe : <https://lucid.app/lucidchart/invitations/accept/c70c3df0-3a74-478b-8c72-c87c4ec8c674> 
 
 - Diagramme de séquence : https://lucid.app/lucidchart/invitations/accept/9d517c69-5f3c-43f2-8248-948bf1e947a5
@@ -151,10 +153,3 @@ network.addConcentrationNode();
 - MITROVIC Nikola [18365]
 - ROQUERO Pedro [17010]
 - SAMELSON Nicolas [17288]
-
-```csharp
-    public static void Log(string message)
-    {
-        _logger.LogInformation(message);
-    }
-```
