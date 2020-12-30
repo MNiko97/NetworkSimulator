@@ -108,19 +108,20 @@ private static Network network = new Network();
 - Ensuite, dans ce réseau, nous créons des centrales de production d’électricité. En paramètre de celles-ci, nous ajoutons le type de centrale avec sa production maximale et son carburant (le carburant prenant en paramètre un prix, une émission de CO2 et une production par unité). Pour les centrales dépendant de la météo, nous ajoutons en paramètre la météo liée au réseau.
 ```csharp
 network.addPowerStationNode(new GasPS(15000, new Fuel(10, 10, 100)));
+network.addPowerStationNode(new WindPS(500,new Fuel(0,0,50),network.weather));
 ```
 - Puis, nous créons des consommateurs avec en paramètre leur type ainsi que leur demande d’électricité.
 ```csharp
-network.addPowerStationNode(new WindPS(500,new Fuel(0,0,50),network.weather));
+network.addConsumerNode(new ExportCountry(20000));
 ```
 - Par après, nous créons des nœuds de distributions et des nœuds de concentration grâce à ces commandes-ci :
 ```csharp
-network.addConsumerNode(new ExportCountry(20000));
+network.addDistributionNode();
+network.addConcentrationNode();
 ```
 - Les lignes peuvent ensuite être créées. Celles-ci prennent en paramètre leur puissance maximale.
 ```csharp
-network.addDistributionNode();
-network.addConcentrationNode();
+network.addLine(100000);
 ```
 - Enfin, nous pouvons connecter les nœuds désirés entre eux grâce à la commande ci-dessous. Elle prend en paramètre un nœud d’entrée et un nœud de sortie, ainsi que l’id de la ligne.
 ```csharp
