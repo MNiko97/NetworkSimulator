@@ -75,7 +75,7 @@ Interface qui permet de mettre à jour un l’élément qui l’implémentent.
 
 ## **Organisation du code :**
 
-*Le code est divisé en un dossier main, qui contient le fichier *Progam.cs* et la classe Network qui donne accès à tous les outils pour créer un réseau et des objets. Il y a 4 dossiers *Consummer*, *PowerStation*, *Distribution et* Concentration reprenant respectivement les 4 grandes classes de nœuds (consommateur, source, nœud de distribution et concentration.*
+Le code est divisé en un dossier main, qui contient le fichier *Progam.cs* et la classe Network qui donne accès à tous les outils pour créer un réseau et des objets. Il y a 4 dossiers *Consummer*, *PowerStation*, *Distribution et* Concentration reprenant respectivement les 4 grandes classes de nœuds (consommateur, source, nœud de distribution et concentration.
 
 La structure du stockage des différents éléments du réseaux se fait au moyen de dictionnaires. On y ajoute chaque objet et son id associé (généré automatiquement par le réseau) dans cette structure de donnée. Il y a 4 dictionnaires au total. Les consommateurs et les sources d’énergie sont préalablement séparés dans 2 dictionnaires indépendants. Il y a un dictionnaire principal contenant tous les objets de type nœud et un dictionnaire contenant toutes les lignes.
 
@@ -120,26 +120,55 @@ network.addConsumerNode(new ExportCountry(20000));
 - Les lignes peuvent ensuite être créées. Celles-ci prennent en paramètre leur puissance maximale.
 ```csharp
 network.addDistributionNode();
+network.addConcentrationNode();
 ```
 - Enfin, nous pouvons connecter les nœuds désirés entre eux grâce à la commande ci-dessous. Elle prend en paramètre un nœud d’entrée et un nœud de sortie, ainsi que l’id de la ligne.
 ```csharp
-network.addConcentrationNode();
+network.connect(FirstNodeId, SecondNodeId, LineId);
 ```
 
 ### **Modification ou perturbation du réseau :**
 
-- Pour modifier la production d’une centrale de production nous utilisons cette commande. Celle-ci prend l’id de la centrale recherchée et en paramètre la nouvelle puissance voulue. Une centrale se met à l’arrêt lorsque la production est mise à 0 et elle redémarre lorsqu’on lui fourni une quantité supérieure à 0.![](Rapport%20POO.007.png)
+- Pour modifier la production d’une centrale de production nous utilisons cette commande. Celle-ci prend l’id de la centrale recherchée et en paramètre la nouvelle puissance voulue. Une centrale se met à l’arrêt lorsque la production est mise à 0 et elle redémarre lorsqu’on lui fourni une quantité supérieure à 0.
+```csharp
+ network.sourceArray[idOfPowerSource].setEnergyProduction(500);
+```
 - Nous pouvons aussi arrêter n’importe quelle station grâce à cette fonction :
-- Pour modifier la demande d’électricité d’un consommateur, cette commande-ci est appliquée. Elle prend en paramètre la puissance demandée.![](Rapport%20POO.008.png)
-- Afin de modifier la production d’une centrale ou la demande d’électricité d’un consommateur à un temps donné (en ms), nous utilisons cette commande en combinaison avec l’une des commandes ci-dessus.![](Rapport%20POO.009.png)
-- Nous pouvons aussi changer la météo du réseau (l’intensité du vent et lumineuse peut varier entre 0 et 100).![](Rapport%20POO.010.png)
-- Le prix du carburant peut prendre une nouvelle valeur grâce à cette commande.![](Rapport%20POO.011.png)
+```csharp
+network.sourceArray[idOfPowerSource].stop();
+```
+- Pour modifier la demande d’électricité d’un consommateur, cette commande-ci est appliquée. Elle prend en paramètre la puissance demandée.
+```csharp
+network.consumerArray[idOfConsumer].setNewRequirement(1000);
+```
+- Afin de modifier la production d’une centrale ou la demande d’électricité d’un consommateur à un temps donné (en ms), nous utilisons cette commande en combinaison avec l’une des commandes ci-dessus.
+```csharp
+Task.Delay(10).ContinueWith(t=>network.sourceArray[1].setEnergyProduction(0));
+```
+- Nous pouvons aussi changer la météo du réseau (l’intensité du vent et lumineuse peut varier entre 0 et 100).
+```csharp
+network.weather.setSolarIntensity(30);
+network.weather.setWindIntensity(80);
+```
+- Le prix du carburant peut prendre une nouvelle valeur grâce à cette commande.
+```csharp
+network.sourceArray[0].fuelType.setCost(50);
+```
 
 ### **Lancement et mise à jour de la simulation :**
 
-- La commande *Run* nous permet de lancer la simulation une fois.![](Rapport%20POO.012.png)
-- La commande *Start* nous permet de lancer la méthode *run* qui sera appelée toutes les secondes. Pour stopper la simulation, il suffit d’appuyer sur la touche « Enter » du clavier.![](Rapport%20POO.013.png)
-- La commande *Update*, nous permet de mettre à jour tout réseau.![](Rapport%20POO.014.png)
+- La commande *Run* nous permet de lancer la simulation une fois.
+```csharp
+network.run();
+```
+- La commande *Start* nous permet de lancer la méthode *run* qui sera appelée toutes les secondes. Pour stopper la simulation, il suffit d’appuyer sur la touche « Enter » du clavier.
+```csharp
+Start();
+```
+- La commande *Update*, nous permet de mettre à jour tout réseau.
+```csharp
+network.updateNetwork();
+```
 
 ## **Diagrammes :**
 
