@@ -2,7 +2,7 @@
 
 Dans le cadre du cours de “Programmation Orienté Objet”, nous avons développé une plateforme de simulation de réseau électrique afin de pouvoir simuler le comportement dynamique d’un ensemble de centres de production d’électricité et d’un ensemble de consommateurs. Pour ce faire nous avons utilisé le langage de programmation C#.
 
-## **Classes :**
+## **1. Classes :**
 
 Les classes présentes dans ce projet sont les suivantes :
 
@@ -46,7 +46,7 @@ Classe permettant de paramétrer et simuler la météo pour les centrales solair
 
 Interface qui permet de mettre à jour un l’élément qui l’implémente.
 
-## **Fonctionnalités :**
+## **2. Les fonctionnalités :**
 
 - Création d’un réseau électrique permettant de contenir des objets (lignes et nœuds).
 
@@ -73,7 +73,7 @@ Interface qui permet de mettre à jour un l’élément qui l’implémente.
 
 - Possibilité d’ajouter une source de stockage.
 
-## **Organisation du code :**
+## **3. Organisation du code :**
 
 Le code est divisé en plusieurs dossiers dont le dossier *Main*, qui contient le fichier *Progam.cs*, la classe *Network* qui donne accès à tous les outils pour créer un réseau et des objets, la classe *Weather* qui implémente la météo liée au réseau ainsi que l'interface IUpdatableComponent qui permet de définir les mis à jour de tout les objets qui l'implémentent. Il y 4 dossiers *Consummer*, *PowerStation*, *Distribution et* Concentration reprenant respectivement les 4 grandes classes de nœuds (consommateur, source, nœud de distribution et concentration.
 
@@ -97,9 +97,9 @@ Dans le cas où la demande est supérieure à l’offre, on diminue en priorité
 
 Dans le deuxième cas où, si l’offre est plus grande que la demande, on envoie l'énergie en exportation en priorité.  S’il y a surplus, on diminue la production des centrales flexibles indépendantes de la météo, puis les énergies renouvelables et en dernier recourt on redirige l'énergie vers des dissipateurs. La possibilité de stocker l’énergie est envisagée mais non implémentée dans le simulateur. Si l'une des solutions n'est pas disponible (car inexistante) ou encore qu'après tout les changements il reste encore un un surplus, le réseau le fera savoir au moyen d'un message d'avertissement.
 
-## **Commandes :**
+## **4. Commandes :**
 
-### **Création de réseau :**
+### **4.1 Création de réseau :**
 
 - Pour créer un réseau, nous utilisons la commande suivante :
 ```csharp
@@ -128,7 +128,7 @@ network.addLine(100000);
 network.connect(FirstNodeId, SecondNodeId, LineId);
 ```
 
-### **Modification ou perturbation du réseau :**
+### **4.2 Modification ou perturbation du réseau :**
 
 - La commande suivante permet de mofidier la production d'énergie d'une source. Celle-ci prend l’id de la centrale recherchée et la nouvelle puissance souhaitée en paramètre. Une centrale se met à l’arrêt lorsque la production est mise à 0 ou moins (par sécurité) et elle redémarre lorsqu’on lui fourni une quantité supérieure à 0.
 ```csharp
@@ -156,7 +156,7 @@ powerSource.fuelType.setCost(50);
 Task.Delay(delayInMilliSeconds).ContinueWith(t=>object.methodName());
 ```
 
-### **Lancement et mise à jour de la simulation :**
+### **4.3 Lancement et mise à jour de la simulation :**
 
 - La commande *Run* appliqué au réseau nous permet d'executer la simulation.
 ```csharp
@@ -171,7 +171,7 @@ Start();
 network.updateNetwork();
 ```
 
-## **Diagrammes :**
+## **5. Diagrammes et schémas:**
 
 - Démonstration de simulation : ![](demo.png)
 
