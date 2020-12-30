@@ -132,7 +132,7 @@ network.connect(FirstNodeId, SecondNodeId, LineId);
 
 - Pour modifier la production d’une centrale de production nous utilisons cette commande. Celle-ci prend l’id de la centrale recherchée et en paramètre la nouvelle puissance voulue. Une centrale se met à l’arrêt lorsque la production est mise à 0 et elle redémarre lorsqu’on lui fourni une quantité supérieure à 0.
 ```csharp
- network.sourceArray[idOfPowerSource].setEnergyProduction(500);
+ network.sourceArray[idOfPowerSource].setEnergyProduction(PowerIntensity);
 ```
 - Nous pouvons aussi arrêter n’importe quelle station grâce à cette fonction :
 ```csharp
@@ -140,11 +140,7 @@ network.sourceArray[idOfPowerSource].stop();
 ```
 - Pour modifier la demande d’électricité d’un consommateur, cette commande-ci est appliquée. Elle prend en paramètre la puissance demandée.
 ```csharp
-network.consumerArray[idOfConsumer].setNewRequirement(1000);
-```
-- Afin de modifier la production d’une centrale ou la demande d’électricité d’un consommateur à un temps donné (en ms), nous utilisons cette commande en combinaison avec l’une des commandes ci-dessus.
-```csharp
-Task.Delay(10).ContinueWith(t=>network.sourceArray[1].setEnergyProduction(0));
+network.consumerArray[idOfConsumer].setNewRequirement(PowerIntensity);
 ```
 - Nous pouvons aussi changer la météo du réseau (l’intensité du vent et lumineuse peut varier entre 0 et 100).
 ```csharp
@@ -154,6 +150,10 @@ network.weather.setWindIntensity(80);
 - Le prix du carburant peut prendre une nouvelle valeur grâce à cette commande.
 ```csharp
 network.sourceArray[0].fuelType.setCost(50);
+```
+- Afin de modifier la production d’une centrale ou la demande d’électricité d’un consommateur à un temps donné (en ms), nous utilisons cette commande en combinaison avec l’une des commandes ci-dessus.
+```csharp
+Task.Delay(delayIn_ms).ContinueWith(t=>network.sourceArray[idOfNode].setEnergyProduction(PowerIntensity));
 ```
 
 ### **Lancement et mise à jour de la simulation :**
