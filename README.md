@@ -10,7 +10,7 @@ Les classes et interface utilisées dans ce projet sont les suivantes :
 
 Contrôle tout le réseau électrique regroupant les nœuds, les lignes dans des dictionnaires, un objet météo. C’est dans cette classe que l’on va pouvoir réaliser la simulation.
 
-- *Line* :
+- *Line :*
 
 Permet de lier deux éléments du réseau. Chaque ligne est composée d’une puissance maximale, d’une puissance de ligne, d’un id unique, d’un état d’activité sur le réseau et d’un état de connexion (en entrée et en sortie).
 
@@ -29,10 +29,6 @@ Ce sont des nœuds qui permettent d’envoyer sur plusieurs lignes l’énergie 
 - *ConcentrationNode :*
 
 Ces nœuds permettent de concentrer l’énergie provenant de plusieurs lignes en entrée afin de sortir sur une unique ligne la somme totale des énergies qu’il a reçu.
-
-
-
-
 
 - *PowerStationNode :*
 
@@ -63,12 +59,6 @@ Interface qui permet de mettre à jour un l’élément qui l’implémentent.
 
 - Une fonctionnalité de météo associé au réseau entièrement paramétrable sur l’intensité lumineuse et le vent pour simuler les productions d’énergie des sources de production dépendante de la météo.
 
-
-
-
-
-
-
 - Des nœuds de concentration permettant de regrouper plusieurs entrées et combiner leur puissance en une unique sortie.
 
 - Des nœuds de distribution permettant de distribuer de manière équitable l’énergie reçu sur son unique entrée vers ces différentes sorties.
@@ -85,7 +75,7 @@ Interface qui permet de mettre à jour un l’élément qui l’implémentent.
 
 ## **Organisation du code :**
 
-Le code est divisé en un dossier main, qui contient le fichier *Progam.cs* et la classe Network qui donne accès à tous les outils pour créer un réseau et des objets. Il y a 4 dossiers *Consummer*, *PowerStation*, *Distribution et* Concentration reprenant respectivement les 4 grandes classes de nœuds (consommateur, source, nœud de distribution et concentration)
+*Le code est divisé en un dossier main, qui contient le fichier *Progam.cs* et la classe Network qui donne accès à tous les outils pour créer un réseau et des objets. Il y a 4 dossiers *Consummer*, *PowerStation*, *Distribution et* Concentration reprenant respectivement les 4 grandes classes de nœuds (consommateur, source, nœud de distribution et concentration)*
 
 La structure du stockage des différents éléments du réseaux se fait au moyen de dictionnaires. On y ajoute chaque objet et son id associé (généré automatiquement par le réseau) dans cette structure de donnée. Il y a 4 dictionnaires au total. Les consommateurs et les sources d’énergie sont préalablement séparés dans 2 dictionnaires indépendants. Il y a un dictionnaire principal contenant tous les objets de type nœud et un dictionnaire contenant toutes les lignes.
 
@@ -147,6 +137,6 @@ Cependant, si l’offre est plus grande que la demande, on diminue l’importati
 - Diagramme de séquence : https://lucid.app/lucidchart/invitations/accept/9d517c69-5f3c-43f2-8248-948bf1e947a5
 
 ## Participants au projet :
-MITROVIC Nikola [18365]
-ROQUERO Pedro [17010]
-SAMELSON Nicolas [17288]
+- MITROVIC Nikola [18365]
+- ROQUERO Pedro [17010]
+- SAMELSON Nicolas [17288]
