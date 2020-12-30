@@ -151,10 +151,6 @@ network.weather.setWindIntensity(80);
 ```csharp
 powerSource.fuelType.setCost(50);
 ```
-- Afin de modifier la production d’une centrale ou la demande d’électricité d’un consommateur à un temps donné (en ms), nous utilisons cette commande en combinaison avec l’une des commandes ci-dessus.
-```csharp
-Task.Delay(delayInMilliSeconds).ContinueWith(t=>object.methodName());
-```
 
 ### **4.3 Lancement et mise à jour de la simulation :**
 
