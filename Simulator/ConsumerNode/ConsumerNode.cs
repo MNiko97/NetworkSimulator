@@ -15,7 +15,6 @@ namespace Network{
             if (energyRequire<=0)
             {
                 this.energyRequire = 0;
-                
             }
             else
             {
