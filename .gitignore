@@ -1,7 +1,6 @@
 .vscode
 Simulator/bin
 Simulator/obj
-Simulator/Program.cs
 Simulator/Simulator.csproj
 Simulator/NetworkOLD.cs
 NetworkOLD.cs
