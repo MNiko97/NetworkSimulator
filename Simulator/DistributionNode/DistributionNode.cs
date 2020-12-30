@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-
 namespace Network
 {
     class DistributionNode : Node
@@ -8,14 +7,11 @@ namespace Network
         public bool inputIsFull;
         public List<Line> inputLine;
         public List<Line> outputLine;
-
-
         public DistributionNode() : base()
         {
             this.inputLine = new List<Line>();
             this.outputLine = new List<Line>();
         }
-
         public void addInputLine(Line line)
         {
             if (!inputIsFull){
@@ -28,42 +24,50 @@ namespace Network
                 Console.WriteLine(this + " can only have 1 INPUT!");
             }
         }
-        public void addOutputLine(Line line){
+        public void addOutputLine(Line line)
+        {
             outputLine.Add(line);
             line.addNode(this);
         }
-        public override string ToString(){
+        public override string ToString()
+        {
             return "Distribution Node N" + id.ToString();
         }
-        public void output(){
-            foreach (Line line in outputLine){
+        public void output()
+        {
+            foreach (Line line in outputLine)
+            {
                 line.setPowerLine(nodePower/outputLine.Count, id);
                 line.update();
             }
         }
-
-        public override List<string> getAlert(){
+        public override List<string> getAlert()
+        {
             throw new NotImplementedException();
         }
-
-        public override void update(){
-            if(inputIsFull){
+        public override void update()
+        {
+            if(inputIsFull)
+            {
                nodePower = inputLine[0].getLinePower(); 
             }
             output();
         }
-
-        public override void connect(Line line){            
-            if(line.isInputAvailable()){
+        public override void connect(Line line)
+        {            
+            if(line.isInputAvailable())
+            {
                 addOutputLine(line);
-            }else{
+            }
+            else
+            {
                 addInputLine(line);
             } 
-            if(outputLine.Count > 0 && inputIsFull){  
+            if(outputLine.Count > 0 && inputIsFull)
+            {  
                 isConnected = true;
                 nodeState = true;
             }
         }
     }
-
 }
