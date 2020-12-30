@@ -102,7 +102,7 @@ Cependant, si l’offre est plus grande que la demande, on diminue l’importati
 ### **Création de réseau :**
 
 - Pour créer un réseau, nous utilisons cette commande ci :
-'''csharp:
+'''cs
 private static Network network = new Network();
 '''
 ![](Rapport%20POO.001.png)
