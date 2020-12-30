@@ -1,4 +1,4 @@
-# **Rapport**
+# **Projet Simulateur Réseaux Électrique**
 
 Dans le cadre du cours de “Programmation Orienté Objet”, nous avons développé une plateforme de simulation de réseau électrique afin de pouvoir simuler le comportement dynamique d’un ensemble de centres de production d’électricité et d’un ensemble de consommateurs. Pour ce faire nous avons utilisé le langage de programmation C#.
 
