@@ -50,7 +50,7 @@ Classe permettant de paramétrer et simuler la météo pour les centrales solair
 
 Interface qui permet de mettre à jour un l’élément qui l’implémentent.
 
-**Fonctionnalités :**
+## **Fonctionnalités :**
 
 - Création d’un réseau électrique permettant de contenir des objets (lignes et nœuds).
 
@@ -83,7 +83,7 @@ Interface qui permet de mettre à jour un l’élément qui l’implémentent.
 
 - Possibilité d’ajouter une source de stockage.
 
-**Organisation du code :**
+## **Organisation du code :**
 
 Le code est divisé en un dossier main, qui contient le fichier *Progam.cs* et la classe Network qui donne accès à tous les outils pour créer un réseau et des objets. Il y a 4 dossiers *Consummer*, *PowerStation*, *Distribution et* Concentration reprenant respectivement les 4 grandes classes de nœuds (consommateur, source, nœud de distribution et concentration)
 
@@ -111,9 +111,9 @@ Cependant, si l’offre est plus grande que la demande, on diminue l’importati
 
 
 
-**Commandes :**
+## **Commandes :**
 
-**Création de réseau :**
+### **Création de réseau :**
 
 - Pour créer un réseau, nous utilisons cette commande ci :
 
@@ -125,7 +125,7 @@ Cependant, si l’offre est plus grande que la demande, on diminue l’importati
 - Les lignes peuvent ensuite être créées. Celles-ci prennent en paramètre leur puissance maximale.![](Rapport%20POO.005.png)
 - Enfin, nous pouvons connecter les nœuds désirés entre eux grâce à la commande ci-dessous. Elle prend en paramètre un nœud d’entrée et un nœud de sortie, ainsi que l’id de la ligne.![](Rapport%20POO.006.png)
 
-**Modification ou perturbation du réseau :**
+### **Modification ou perturbation du réseau :**
 
 - Pour modifier la production d’une centrale de production nous utilisons cette commande. Celle-ci prend l’id de la centrale recherchée et en paramètre la nouvelle puissance voulue. Une centrale se met à l’arrêt lorsque la production est mise à 0 et elle redémarre lorsqu’on lui fourni une quantité supérieure à 0.![](Rapport%20POO.007.png)
 - Nous pouvons aussi arrêter n’importe quelle station grâce à cette fonction :
@@ -134,21 +134,14 @@ Cependant, si l’offre est plus grande que la demande, on diminue l’importati
 - Nous pouvons aussi changer la météo du réseau (l’intensité du vent et lumineuse peut varier entre 0 et 100).![](Rapport%20POO.010.png)
 - Le prix du carburant peut prendre une nouvelle valeur grâce à cette commande.![](Rapport%20POO.011.png)
 
-**Lancement et mise à jour de la simulation :**
+### **Lancement et mise à jour de la simulation :**
 
 - La commande *Run* nous permet de lancer la simulation une fois.![](Rapport%20POO.012.png)
 - La commande *Start* nous permet de lancer la méthode *run* qui sera appelée toutes les secondes. Pour stopper la simulation, il suffit d’appuyer sur la touche « Enter » du clavier.![](Rapport%20POO.013.png)
 - La commande *Update*, nous permet de mettre à jour tout réseau.![](Rapport%20POO.014.png)
 
-**Diagrammes :**
+## **Diagrammes :**
 
 - Diagramme de classe : <https://lucid.app/lucidchart/invitations/accept/c70c3df0-3a74-478b-8c72-c87c4ec8c674> 
 
-- Diagramme de séquence : 
-
-
-
-
-PAGE   \\* MERGEFORMAT2
-
-
+- Diagramme de séquence : https://lucid.app/lucidchart/invitations/accept/9d517c69-5f3c-43f2-8248-948bf1e947a5
