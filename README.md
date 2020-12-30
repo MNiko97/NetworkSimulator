@@ -145,3 +145,8 @@ Cependant, si l’offre est plus grande que la demande, on diminue l’importati
 - Diagramme de classe : <https://lucid.app/lucidchart/invitations/accept/c70c3df0-3a74-478b-8c72-c87c4ec8c674> 
 
 - Diagramme de séquence : https://lucid.app/lucidchart/invitations/accept/9d517c69-5f3c-43f2-8248-948bf1e947a5
+
+## Participants au projet :
+MITROVIC Nikola [18365]
+ROQUERO Pedro [17010]
+SAMELSON Nicolas [17288]
