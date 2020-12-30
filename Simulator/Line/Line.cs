@@ -57,7 +57,8 @@ namespace Network{
             }
             
         }
-        public void setPowerLine(float newPower, int id){
+        public void setPowerLine(float newPower, int id)
+        {
             if(connexionNode[0].getID() == id)
             {
                 linePower = newPower;
