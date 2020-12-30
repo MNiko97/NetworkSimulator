@@ -12,7 +12,7 @@ Contrôle tout le réseau électrique regroupant les nœuds, les lignes dans des
 
 - *Line :*
 
-Permet de lier deux éléments du réseau. Chaque ligne est composée d’une puissance maximale, d’une puissance de ligne, d’un id unique, d’un état d’activité sur le réseau et d’un état de connexion (en entrée et en sortie).
+Permet de lier deux éléments du réseau. Chaque ligne est composée d’une puissance maximale, d’une puissance de ligne, d’un id unique, d’un état d’activité sur le réseau et d’un état de connexion (vrai).
 
 - *Node :*
 
@@ -20,7 +20,7 @@ Tous les éléments que l’on peut rajouter dans le réseau (mis à part les li
 
 - *ConsumerNode :*
 
-Ce sont des nœuds de type consommateurs. Il y a des sous classes de consommateurs comme les villes (Town), les entreprises (Company), les dissipateurs (Dissipator) où des consommateurs étrangers (ExportCountry). 
+Ce sont des nœuds de type consommateurs. On retrouve les villes (Town), les entreprises (Company), les dissipateurs (Dissipator) où des consommateurs étrangers (ExportCountry). 
 
 - *DistributionNode :*
 
@@ -44,30 +44,30 @@ Classe permettant de paramétrer et simuler la météo pour les centrales solair
 
 - *UpdatableComponent :*
 
-Interface qui permet de mettre à jour un l’élément qui l’implémentent.
+Interface qui permet de mettre à jour un l’élément qui l’implémente.
 
 ## **Fonctionnalités :**
 
 - Création d’un réseau électrique permettant de contenir des objets (lignes et nœuds).
 
-- Fonction permettant de rajouter les éléments sur le réseau (les nœuds de distribution et de concentration, les consommateurs et les sources). L'attribution des ids des objets du réseaux est entièrement gérer par le réseau et de manière automatique.
+- Fonction permettant de rajouter les éléments sur le réseau (les nœuds de distribution et de concentration, les consommateurs et les sources). L'attribution des ids des objets est entièrement gérée par le réseau et de manière automatique.
 
-- Fonction de mise à jour de tous les éléments qui composent le réseau.
+- Fonction permettant de mettre à jour de tous les éléments qui composent le réseau.
 - Simuler une demande variable des consommateurs.
 
 - Fonction qui permet de répondre à la demande d’énergie des consommateurs avec une gestion basique des priorités au niveau du choix des sources de production d’énergie à modifier.
 
-- Une fonctionnalité de météo associé au réseau entièrement paramétrable sur l’intensité lumineuse et le vent pour simuler les productions d’énergie des sources de production dépendante de la météo.
+- Une fonctionnalité de météo associée au réseau entièrement paramétrable sur l’intensité lumineuse et le vent pour simuler les productions d’énergie des sources de production dépendante de la météo.
 
 - Des nœuds de concentration permettant de regrouper plusieurs entrées et combiner leur puissance en une unique sortie.
 
-- Des nœuds de distribution permettant de distribuer de manière équitable l’énergie reçu sur son unique entrée vers ces différentes sorties.
+- Des nœuds de distribution permettant de distribuer de manière équitable l’énergie réceptionnée sur son unique entrée vers ces différentes sorties.
 
 - Des consommateurs dont leur consommation électrique est modifiable (villes, entreprises, dissipateurs et export vers les pays étrangers).
 
-- Des sources qui permettent de fournir de l’énergie a des consommateurs (centrales à gaz, centrales nucléaires, panneaux solaires et parcs éoliens). Une source peut être une combinaison des 3 caractéristiques suivantes : flexible, dépendant de la météo et infini.
+- Des sources qui permettent de fournir de l’énergie à des consommateurs (centrales à gaz, centrales nucléaires, panneaux solaires et parcs éoliens). Une source peut être une combinaison des 3 caractéristiques suivantes : flexible, dépendante de la météo et production infinie.
 
-- Fonction permettant de connecter différents éléments au moyen de ligne.
+- Fonction permettant de connecter différents éléments au moyen d'une ligne.
 
 - Possibilité de mettre à jour le coût du carburant suivant les prix du marché.
 
