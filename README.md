@@ -97,16 +97,14 @@ Dans le cas où la demande est supérieure à l’offre, on diminue en priorité
 
 Cependant, si l’offre est plus grande que la demande, on diminue l’importation d’énergie en priorité.  S’il y a surplus, on réduit la production des centrales flexibles indépendantes de la météo, puis les énergies renouvelables et en dernier recourt on redirige l'énergie vers des dissipateurs. La possibilité de stocker l’énergie est envisagée mais non implémentée dans le simulateur.
 
-
-
-
-
 ## **Commandes :**
 
 ### **Création de réseau :**
 
 - Pour créer un réseau, nous utilisons cette commande ci :
-
+'''csharp
+private static Network network = new Network();
+'''
 ![](Rapport%20POO.001.png)
 
 - Ensuite, dans ce réseau, nous créons des centrales de production d’électricité. En paramètre de celles-ci, nous ajoutons le type de centrale avec sa production maximale et son carburant (le carburant prenant en paramètre un prix, une émission de CO2 et une production par unité). Pour les centrales dépendant de la météo, nous ajoutons en paramètre la météo liée au réseau.![](Rapport%20POO.002.png)
