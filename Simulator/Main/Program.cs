@@ -66,7 +66,7 @@ namespace Network
             network.sourceArray[5].setEnergyProduction(5000);
             
             //Update network
-            network.update();
+            network.updateNetwork();
 
             //Start Simulation
             Start();

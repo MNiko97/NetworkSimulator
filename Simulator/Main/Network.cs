@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 namespace Network{
-    class Network:IupdatableComponent{
+    class Network{
         public Dictionary<int, Node> nodeArray;
         public Dictionary<int, PowerStationNode> sourceArray;
         public Dictionary<int, ConsumerNode> consumerArray;
@@ -55,7 +55,7 @@ namespace Network{
             nodeArray[node1ID].connect(lineArray[lineID]);
             nodeArray[node2ID].connect(lineArray[lineID]);
         }
-        public void update()
+        public void updateNetwork()
         {
             List<int> updatedNode = new List<int>();
             List<int> updatedLine = new List<int>();
