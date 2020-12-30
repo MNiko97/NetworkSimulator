@@ -67,7 +67,7 @@ namespace Network
             network.sourceArray[5].setEnergyProduction(5000);
             
             //Update network
-            network.updateNetwork();
+            network.update();
 
             //Start Simulation
             Start();
@@ -103,8 +103,6 @@ namespace Network
             // Task.Delay(7000).ContinueWith(t=>network.sourceArray[1].setEnergyProduction(1000)); //Start the nuc plant after 7s
             Console.WriteLine("\nPress the Enter key to exit the application...\n");
             Console.ReadLine();
-            
-            
             networkUpdateTimer.Stop();
             networkUpdateTimer.Dispose();
             Console.WriteLine("Terminating the application...");

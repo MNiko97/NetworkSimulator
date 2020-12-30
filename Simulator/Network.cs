@@ -49,7 +49,7 @@ namespace Network{
             nodeArray[node1ID].connect(lineArray[lineID]);
             nodeArray[node2ID].connect(lineArray[lineID]);
         }
-        public void updateNetwork(){
+        public void update(){
             List<int> updatedNode = new List<int>();
             List<int> updatedLine = new List<int>();
             foreach(var powerNode in sourceArray){
@@ -173,7 +173,7 @@ namespace Network{
             }
             
             Console.WriteLine("\nThe adjustment we needed to make were : {0} and the difference is now : {1}",mess,diff());
-            updateNetwork();
+            update();
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine("AFTER ADJUSTMENTS");
             show();
