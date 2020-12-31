@@ -1,6 +1,6 @@
 # **Projet Simulateur Réseau Électrique**
 
-Dans le cadre du cours de “Programmation Orienté Objet”, nous avons développé une plateforme de simulation de réseau électrique afin de pouvoir simuler le comportement dynamique d’un ensemble de centres de production d’électricité et d’un ensemble de consommateurs. Pour ce faire nous avons utilisé le langage de programmation C#.
+Dans le cadre du cours de “Programmation Orienté Objet”, nous avons développé une plateforme de simulation de réseau électrique afin de pouvoir simuler le comportement dynamique d’un ensemble de centres de production d’électricité et d’un ensemble de consommateurs. Pour ce faire nous avons utilisé le langage de programmation C#. Pour lancer le programme il faut d'abord créer un projet csharp vierge et copier le contenu du dossier *Simulator* dans votre projet. Il suffit après d'executer le fichier *Program.cs* dans le dossier *Main* pour lancer la démonstration. Assurez vous d'avoir une version du framework DOTNet >= 5.0 afin d'assurer la comptabilité du projet.
 
 ## **1. Classes :**
 
