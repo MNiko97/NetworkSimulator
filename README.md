@@ -158,7 +158,7 @@ powerSource.fuelType.setCost(50);
 ```csharp
 network.run();
 ```
-- La commande *Start* présent dans le fichier *Program.cs* nous permet de lancer la méthode *run* toutes les secondes. Pour stopper la simulation, il suffit d’appuyer sur la touche « Entrée » du clavier.
+- La commande *Start* présent dans le fichier *Program.cs* nous permet de lancer la méthode *network.run* toutes les secondes. Pour stopper la simulation, il suffit d’appuyer sur la touche *entrée* du clavier.
 ```csharp
 Start();
 ```
