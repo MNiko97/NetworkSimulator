@@ -4,7 +4,7 @@ Dans le cadre du cours de “Programmation Orienté Objet”, nous avons dévelo
 
 ## **1. Classes :**
 
-Les classes présentes dans ce projet sont les suivantes :
+Les principales classes présentes dans ce projet sont les suivantes :
 
 - *Network :*
 
