@@ -44,7 +44,7 @@ Classe permettant de paramétrer et simuler la météo pour les centrales solair
 
 - *UpdatableComponent :*
 
-Interface qui permet de mettre à jour un l’élément qui l’implémente.
+Interface qui permet de mettre à jour les classes d'objets qui l’implémentent.
 
 ## **2. Les fonctionnalités :**
 
