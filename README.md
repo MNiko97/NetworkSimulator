@@ -80,7 +80,7 @@ Le code est divisé en plusieurs dossiers dont le dossier *Main*, qui contient l
 
 La structure du stockage des différents éléments du réseaux se fait au moyen de dictionnaires. On y ajoute chaque objet et son id associé (généré automatiquement par le réseau) dans cette structure de donnée. Il y a 4 dictionnaires au total. Les consommateurs et les sources d’énergie sont préalablement séparés dans 2 dictionnaires indépendants. Il y a un dictionnaire principal contenant tous les objets de type nœud et un dictionnaire contenant toutes les lignes.
 
-### **3.2 Création et mis à jour du réseau**
+### **3.2 Création et mis à jour du réseau :**
 
 Dans le fichier *Program.cs*, on crée le réseau et on y ajoute les éléments souhaités. On lance la simulation au moyen de la méthode *run* du réseau qui s’occupe de mettre à jour la production d’énergie en fonction de la consommation énergétique des consommateurs. Cette méthode *run* sera appelée toutes les secondes au moyen de la librairie *Timer* dans la fonction *OnTimeEvent*.
 
