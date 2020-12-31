@@ -74,10 +74,13 @@ Interface qui permet de mettre à jour les classes d'objets qui l’implémenten
 - Possibilité d’ajouter une source de stockage.
 
 ## **3. Organisation et fonctionnement générale :**
+### **3.1 Structure :**
 
 Le code est divisé en plusieurs dossiers dont le dossier *Main*, qui contient le fichier *Progam.cs*, la classe *Network* qui donne accès à tous les outils pour créer un réseau et des objets, la classe *Weather* qui implémente la météo liée au réseau ainsi que l'interface IUpdatableComponent qui permet de définir les mis à jour de tout les objets qui l'implémentent. Il y 4 dossiers *Consummer*, *PowerStation*, *Distribution et* Concentration reprenant respectivement les 4 grandes classes de nœuds (consommateur, source, nœud de distribution et concentration.
 
 La structure du stockage des différents éléments du réseaux se fait au moyen de dictionnaires. On y ajoute chaque objet et son id associé (généré automatiquement par le réseau) dans cette structure de donnée. Il y a 4 dictionnaires au total. Les consommateurs et les sources d’énergie sont préalablement séparés dans 2 dictionnaires indépendants. Il y a un dictionnaire principal contenant tous les objets de type nœud et un dictionnaire contenant toutes les lignes.
+
+### **3.2 Création et mis à jour du réseau**
 
 Dans le fichier *Program.cs*, on crée le réseau et on y ajoute les éléments souhaités. On lance la simulation au moyen de la méthode *run* du réseau qui s’occupe de mettre à jour la production d’énergie en fonction de la consommation énergétique des consommateurs. Cette méthode *run* sera appelée toutes les secondes au moyen de la librairie *Timer* dans la fonction *OnTimeEvent*.
 
@@ -91,6 +94,7 @@ Pour les différents consommateurs du réseau, on réceptionne l’énergie de l
 
 Finalement, pour les centrales de production, on actualise la production en allumant ou éteignant des centrales. On vérifie aussi qu’elles sont les conditions météorologiques (vent, soleil) pour actualiser la production des centrales dépendantes de la météo. En fonction de cette nouvelle production, on calcule le coût et l’émission de CO2.
 
+### **3.3 Simulation :**
 Le réseau simule une demande et décide ensuite quelles sources activer ou éteindre afin d’augmenter ou diminuer la production et satisfaire ainsi la demande. Pour ce faire il change la production selon des priorités prédéfinies. 
 
 Dans le cas où la demande est supérieure à l’offre, on diminue en priorité la dissipation d’énergie, ensuite on peut modifier la production provenant des énergies renouvelables. Si ça ne suffit pas, on augmente la production des centrales qui sont flexibles, et en ultime recourt on comble le manque par l'importation d’énergie. Si l'une des solutions n'est pas disponible (car inexistante) ou encore qu'après tout les changements il reste encore un manque, le réseau le fera savoir au moyen d'un message d'avertissement.
