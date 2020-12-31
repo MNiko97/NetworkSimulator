@@ -73,7 +73,7 @@ Interface qui permet de mettre à jour les classes d'objets qui l’implémenten
 
 - Possibilité d’ajouter une source de stockage.
 
-## **3. Organisation du code :**
+## **3. Organisation et fonctionnement générale :**
 
 Le code est divisé en plusieurs dossiers dont le dossier *Main*, qui contient le fichier *Progam.cs*, la classe *Network* qui donne accès à tous les outils pour créer un réseau et des objets, la classe *Weather* qui implémente la météo liée au réseau ainsi que l'interface IUpdatableComponent qui permet de définir les mis à jour de tout les objets qui l'implémentent. Il y 4 dossiers *Consummer*, *PowerStation*, *Distribution et* Concentration reprenant respectivement les 4 grandes classes de nœuds (consommateur, source, nœud de distribution et concentration.
 
