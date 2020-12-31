@@ -130,7 +130,7 @@ network.connect(FirstNodeId, SecondNodeId, LineId);
 
 ### **4.2 Modification ou perturbation du réseau :**
 
-- La commande suivante permet de mofidier la production d'énergie d'une source. Celle-ci prend l’id de la centrale recherchée et la nouvelle puissanceen MW souhaitée en paramètre. Une centrale se met à l’arrêt lorsque la production est mise à 0 ou moins (par sécurité) et elle redémarre lorsqu’on lui fourni une quantité supérieure à 0.
+- La commande suivante permet de mofidier la production d'énergie d'une source. Celle-ci prend l’id de la centrale recherchée et la nouvelle puissance en MW souhaitée en paramètre. Une centrale se met à l’arrêt lorsque la production est mise à 0 ou moins (par sécurité) et elle redémarre lorsqu’on lui fourni une quantité supérieure à 0.
 ```csharp
  powerSource.setEnergyProduction(PowerProduction);
 ```
