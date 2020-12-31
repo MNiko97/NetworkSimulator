@@ -162,7 +162,7 @@ network.run();
 ```csharp
 Start();
 ```
-- La commande *Update*, permet de mettre à jour tout les objets du réseau.
+- La commande suivante permet de mettre à jour tout les objets du réseau.
 ```csharp
 network.updateNetwork();
 ```
