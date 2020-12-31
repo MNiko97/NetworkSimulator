@@ -167,16 +167,16 @@ Start();
 network.updateNetwork();
 ```
 
-## **5. Diagrammes et schémas:**
+## **5. Diagrammes et schémas :**
 
-- Démonstration de simulation : 
+- **Démonstration de simulation :**
 ![](demo.png)
 
-- Diagramme de classe : 
+- **Diagramme de classe :**
 ![](ClassDiagram.png)
 PDF (<https://ecambxl-my.sharepoint.com/:b:/g/personal/18365_ecam_be/EfQHWx16vSZIrjuTP1L7zVMBN0JaCYRo5zCIg1_p7He8bA?e=OmboXT>)
 
-- Diagramme de séquence : 
+- **Diagramme de séquence :**
 ![](SequenceDiagram.png)
 PDF (<https://ecambxl-my.sharepoint.com/:b:/g/personal/18365_ecam_be/ES90ymiYlHxGmR-g7UyaUeEB83_uxbpKwFLxA9VUKArAtA?e=fqS2Ep>)
 
