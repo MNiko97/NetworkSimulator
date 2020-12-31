@@ -174,11 +174,11 @@ network.updateNetwork();
 
 - Diagramme de classe : 
 ![](ClassDiagram.png)
-PDF(<https://lucid.app/lucidchart/invitations/accept/c70c3df0-3a74-478b-8c72-c87c4ec8c674>)
+PDF (<https://ecambxl-my.sharepoint.com/:b:/g/personal/18365_ecam_be/EfQHWx16vSZIrjuTP1L7zVMBN0JaCYRo5zCIg1_p7He8bA?e=OmboXT>)
 
 - Diagramme de séquence : 
 ![](SequenceDiagram.png)
-PDF(https://lucid.app/lucidchart/invitations/accept/9d517c69-5f3c-43f2-8248-948bf1e947a5)
+PDF (<https://ecambxl-my.sharepoint.com/:b:/g/personal/18365_ecam_be/ES90ymiYlHxGmR-g7UyaUeEB83_uxbpKwFLxA9VUKArAtA?e=fqS2Ep>)
 
 ## Participants au projet :
 - MITROVIC Nikola [18365]
