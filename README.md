@@ -42,7 +42,7 @@ Classe qui permet de spécifier le type de carburant de chaque centrale de produ
 
 Classe permettant de paramétrer et simuler la météo pour les centrales solaires et le parc éolien.
 
-- *UpdatableComponent :*
+- *IUpdatableComponent :*
 
 Interface qui permet de mettre à jour les classes d'objets qui l’implémentent.
 
